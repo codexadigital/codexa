@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0a08">
+<title>ARGENT & CO. — Advocates, Counsel & Legal Strategy</title>
+<meta name="description" content="Ultra-premium law firm website concept with consultation booking, practice areas, attorneys, case assessment, client portal, case tracker, legal resources and more.">
+<style>
+:root{
+  --black:#0a0908; --black2:#12100d; --ink:#1b1712; --gold:#c7a466; --gold2:#e1c38b;
+  --ivory:#f4efe6; --ivory2:#e7dfd2; --muted:#9e968b; --line:rgba(199,164,102,.18);
+  --whiteLine:rgba(255,255,255,.07); --shadow:0 28px 90px rgba(0,0,0,.35);
+  --max:1260px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#090806,#11100d 48%,#080705);color:#f7f3ec;font-family:"Segoe UI",Arial,Helvetica,sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font:inherit}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+.section{padding:104px 0}
+.light{background:var(--ivory);color:#231e18}
+.alt{background:#11100d}
+.kicker{display:inline-flex;align-items:center;gap:10px;color:var(--gold2);font-size:10px;font-weight:900;letter-spacing:.19em;text-transform:uppercase}
+.kicker:before{content:"";width:30px;height:1px;background:var(--gold2)}
+h1,h2,h3,p{margin-top:0}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(60px,7.5vw,106px);line-height:.92;letter-spacing:-.05em;font-weight:500;margin:18px 0 26px}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5.1vw,66px);line-height:1.02;letter-spacing:-.04em;font-weight:500;margin:12px 0 18px}
+.lead{font-size:16px;line-height:1.82;color:var(--muted);max-width:720px}
+.light .lead{color:#756d63}
+.accent{color:var(--gold2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:0 21px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:white;font-size:11px;font-weight:850;letter-spacing:.05em;cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-2px);border-color:rgba(225,195,139,.55);box-shadow:0 15px 40px rgba(0,0,0,.28)}
+.btn.primary{background:linear-gradient(120deg,#9d7a40,#d7b879);color:#17120d;border:0}
+.btn.dark{background:#17120f;color:#fff;border:0}
+.btn.lightbtn{background:#f7f2e9;color:#1e1711;border:0}
+.topbar{height:34px;background:#050403;color:#a99f93;font-size:10px;display:flex;align-items:center;border-bottom:1px solid var(--whiteLine)}
+.topbar .container{display:flex;justify-content:space-between;gap:20px}
+.navwrap{position:fixed;top:0;left:0;right:0;z-index:70;transition:.25s}
+.navwrap.scrolled{background:rgba(10,9,8,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--whiteLine)}
+.navwrap.scrolled .topbar{display:none}
+.navwrap.scrolled nav{height:74px}
+.navspace{height:116px}
+nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:13px}
+.brandmark{width:54px;height:54px;border-radius:16px;border:1px solid var(--line);display:grid;place-items:center;background:linear-gradient(145deg,#1a1510,#090806);font-family:Georgia,serif;font-size:24px;color:var(--gold2);position:relative}
+.brandmark:after{content:"§";position:absolute;font-size:11px;right:8px;bottom:6px;color:#876a3b}
+.brandname{font-size:16px;font-weight:900;letter-spacing:.13em}
+.brandsub{font-size:8px;color:#81786f;letter-spacing:.17em;margin-top:4px}
+.navlinks{display:flex;gap:23px;color:#d0c8bf;font-size:10px;font-weight:750}
+.navlinks a{position:relative}
+.navlinks a:after{content:"";position:absolute;left:0;bottom:-9px;width:0;height:1px;background:var(--gold);transition:.2s}
+.navlinks a:hover:after{width:100%}
+.menu{display:none;background:none;border:0;color:#fff;font-weight:900}
+.drawer{display:none;position:fixed;top:78px;left:12px;right:12px;z-index:69;background:#11100d;border:1px solid var(--whiteLine);border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+.drawer.open{display:block}
+.drawer a{display:block;padding:14px;border-bottom:1px solid var(--whiteLine);font-size:13px}
+
+.hero{min-height:840px;position:relative;display:flex;align-items:center;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:
+radial-gradient(circle at 76% 24%,rgba(199,164,102,.20),transparent 24%),
+radial-gradient(circle at 82% 64%,rgba(97,74,44,.20),transparent 32%),
+linear-gradient(90deg,#090806 0%,#11100d 50%,#17120d 100%)}
+.hero:after{content:"";position:absolute;right:7%;top:18%;width:430px;height:520px;border:1px solid rgba(199,164,102,.22);transform:rotate(7deg);box-shadow:0 0 0 22px rgba(255,255,255,.015),0 40px 80px rgba(0,0,0,.35)}
+.hero-figure{position:absolute;right:10%;top:19%;width:360px;height:520px;z-index:1}
+.hero-figure .pillar{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:190px;height:350px;background:linear-gradient(90deg,#2d271f,#5c4a34 45%,#211b15);clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);opacity:.72}
+.hero-figure .head{position:absolute;left:50%;top:35px;transform:translateX(-50%);width:126px;height:126px;border-radius:50%;background:radial-gradient(circle at 40% 32%,#e8d8bd,#8f7654 70%,#433524)}
+.hero-figure .shoulders{position:absolute;left:50%;top:145px;transform:translateX(-50%);width:250px;height:240px;border-radius:120px 120px 20px 20px;background:linear-gradient(145deg,#1b1917,#494039 55%,#161413)}
+.hero-figure .tie{position:absolute;left:50%;top:170px;transform:translateX(-50%);width:34px;height:170px;background:linear-gradient(#d3b478,#6f5531);clip-path:polygon(50% 0,80% 18%,66% 100%,34% 100%,20% 18%)}
+.hero-content{position:relative;z-index:3;max-width:800px;padding:72px 0 60px}
+.hero-content p{font-size:17px;line-height:1.82;color:#c9c0b7;max-width:650px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px}
+.hbadge{padding:13px 16px;border:1px solid var(--line);background:rgba(18,15,12,.64);backdrop-filter:blur(10px);border-radius:13px;font-size:10px;color:#b9afa4}
+.hbadge b{color:#e4c38a}
+
+.quick{margin-top:-36px;position:relative;z-index:6}
+.quickgrid{display:grid;grid-template-columns:repeat(6,1fr);background:#13110e;border:1px solid var(--whiteLine);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.qitem{padding:22px;border-right:1px solid var(--whiteLine);transition:.2s}
+.qitem:last-child{border-right:0}
+.qitem:hover{background:#1a1612}
+.qicon{width:44px;height:44px;border-radius:13px;background:#211b14;color:#d7b77a;display:grid;place-items:center;font-weight:900;margin-bottom:14px}
+.qitem b{font-size:12px;display:block;margin-bottom:4px}
+.qitem span{font-size:10px;color:#857d74}
+
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:40px}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.story-art{height:590px;border-radius:30px;position:relative;overflow:hidden;background:
+radial-gradient(circle at 63% 28%,rgba(206,171,106,.22),transparent 24%),
+linear-gradient(145deg,#211a13,#4d3b29 46%,#19130f)}
+.story-art:before{content:"";position:absolute;left:12%;right:12%;top:15%;bottom:15%;border:1px solid rgba(230,205,158,.28);box-shadow:0 0 0 18px rgba(255,255,255,.02)}
+.story-art:after{content:"JUSTICE";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-90deg);font-family:Georgia,serif;font-size:78px;letter-spacing:.12em;color:rgba(255,255,255,.07)}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.value{padding:17px;border-top:1px solid rgba(50,39,27,.13)}
+.value b{display:block;color:#2b2118;margin-bottom:4px}
+.value span{font-size:11px;color:#756b61;line-height:1.65}
+
+.practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.practice{border:1px solid var(--whiteLine);background:#13110e;border-radius:21px;padding:24px;min-height:230px;position:relative;overflow:hidden;transition:.25s}
+.practice:hover{transform:translateY(-5px);border-color:rgba(199,164,102,.38)}
+.practice .num{font-family:Georgia,serif;font-size:38px;color:#c9a76a}
+.practice p{font-size:11px;line-height:1.7;color:#8f877e}
+.practice a{position:absolute;left:24px;bottom:22px;font-size:10px;font-weight:900;color:#d7b77b}
+
+.results{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}
+.result{background:#f5efe5;border:1px solid rgba(76,57,34,.12);border-radius:18px;padding:20px}
+.result b{font-family:Georgia,serif;font-size:32px;color:#8f6a2f}
+.result span{display:block;font-size:10px;color:#7d6f62;margin-top:4px}
+
+.attorneys{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.attorney{background:#15120f;border:1px solid var(--whiteLine);border-radius:21px;overflow:hidden}
+.photo{height:285px;position:relative;background:linear-gradient(145deg,#2a2520,#75634f 55%,#17130f)}
+.photo:before{content:"";position:absolute;left:50%;top:46px;transform:translateX(-50%);width:104px;height:104px;border-radius:50%;background:#b99d7b;box-shadow:0 -34px 0 -9px #25201b}
+.photo:after{content:"";position:absolute;left:50%;bottom:-62px;transform:translateX(-50%);width:210px;height:220px;border-radius:100px 100px 18px 18px;background:#171717;box-shadow:inset 0 32px 0 #efe7dc}
+.attorney-body{padding:19px}
+.attorney-body p{font-size:11px;color:#8f867e;line-height:1.65}
+.meta{display:flex;justify-content:space-between;border-top:1px solid var(--whiteLine);padding-top:12px;font-size:9px;color:#81786f}
+
+.consult{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:start}
+.formcard{background:#15120f;border:1px solid var(--whiteLine);border-radius:25px;padding:28px;box-shadow:var(--shadow)}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:9px;color:#958a7f;text-transform:uppercase;letter-spacing:.09em;font-weight:850}
+.field input,.field select,.field textarea{background:#0d0b09;border:1px solid rgba(255,255,255,.10);border-radius:11px;padding:13px;color:#fff;outline:0}
+.field textarea{min-height:105px;resize:vertical}
+.steps{display:grid;gap:11px;margin-top:25px}
+.step{display:flex;gap:12px;padding:15px;border-top:1px solid var(--whiteLine)}
+.step .qicon{margin:0;flex:0 0 auto}
+.step b{font-size:12px}.step span{display:block;font-size:10px;color:#867e76;margin-top:4px}
+
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.toolcard{background:#f7f2e9;color:#231c15;border:1px solid rgba(75,56,33,.12);border-radius:21px;padding:23px;min-height:220px}
+.toolcard p{font-size:11px;line-height:1.7;color:#75695d}
+.toolcard button{margin-top:10px}
+
+.wizard{background:#15120f;border:1px solid var(--whiteLine);border-radius:25px;padding:28px}
+.wizard-progress{height:5px;background:#241f19;border-radius:999px;overflow:hidden;margin:16px 0 22px}
+.wizard-bar{height:100%;width:25%;background:linear-gradient(90deg,#9c7740,#dfc087);transition:.25s}
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.option{padding:14px;border:1px solid var(--whiteLine);border-radius:13px;background:#0f0d0a;color:#c9c0b7;cursor:pointer;text-align:left}
+.option:hover,.option.selected{border-color:rgba(199,164,102,.55);background:#1a1510;color:#f2e4cc}
+
+.portal{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.portalbox{background:#11100d;border:1px solid var(--whiteLine);border-radius:24px;padding:27px}
+.trackbox{display:flex;gap:8px;margin-top:15px}
+.trackbox input{flex:1;background:#0c0a08;border:1px solid var(--whiteLine);border-radius:11px;padding:13px;color:white}
+.status{margin-top:15px;padding:15px;border-radius:13px;background:#1b1712;border:1px solid var(--line);display:none}
+.status b{color:#d9b879}
+.checklist{display:grid;gap:9px;margin-top:15px}
+.check{display:flex;gap:10px;align-items:center;padding:12px;border:1px solid var(--whiteLine);border-radius:12px;font-size:11px;color:#b9b0a7}
+.check input{accent-color:#c9a86e}
+
+.industries{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.industry{padding:20px;border:1px solid var(--whiteLine);border-radius:16px;text-align:center;background:#13110e;font-size:11px;font-weight:800;color:#c8beb4}
+
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.case{background:#15120f;border:1px solid var(--whiteLine);border-radius:22px;padding:24px}
+.case .tag{font-size:9px;letter-spacing:.1em;color:#d4b274;text-transform:uppercase;font-weight:900}
+.case h3{font-family:Georgia,serif;font-size:24px;margin:9px 0}
+.case p{font-size:11px;color:#91887f;line-height:1.7}
+.case strong{display:block;margin-top:18px;color:#e0c38d;font-size:13px}
+
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.article{background:#f6f0e7;border-radius:21px;overflow:hidden;color:#241d16;border:1px solid rgba(66,49,29,.12)}
+.article-cover{height:180px;background:
+radial-gradient(circle at 74% 25%,rgba(199,164,102,.30),transparent 24%),
+linear-gradient(145deg,#1c1712,#5b4730)}
+.article-body{padding:20px}
+.article-body span{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:#9b763b;font-weight:900}
+.article-body p{font-size:11px;color:#75695e;line-height:1.7}
+
+.faq{display:grid;gap:10px}
+.faqitem{border:1px solid rgba(62,47,29,.12);background:#fff;border-radius:15px;overflow:hidden}
+.faqq{width:100%;padding:17px 18px;background:none;border:0;text-align:left;display:flex;justify-content:space-between;font-weight:800;color:#241d17;cursor:pointer}
+.faqa{display:none;padding:0 18px 18px;color:#74695e;font-size:12px;line-height:1.7}
+.faqitem.open .faqa{display:block}
+
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.testimonial{border:1px solid var(--whiteLine);background:#15120f;border-radius:21px;padding:24px}
+.stars{color:#d8b77a}
+.testimonial p{font-size:12px;line-height:1.75;color:#968d84}
+.person{display:flex;align-items:center;gap:10px}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(145deg,#4d3b27,#d0ac70);display:grid;place-items:center;font-weight:900}
+.person b{font-size:12px}.person small{display:block;font-size:10px;color:#82796f}
+
+.offices{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.office{border:1px solid var(--whiteLine);background:#15120f;border-radius:21px;padding:24px}
+.office p{font-size:11px;color:#8f877e;line-height:1.7}
+.office-meta{display:flex;justify-content:space-between;border-top:1px solid var(--whiteLine);padding-top:13px;margin-top:15px;font-size:10px;color:#81786f}
+
+.emergency{background:linear-gradient(120deg,#9b753e,#d6b77b);color:#17120e;border-radius:30px;padding:40px;display:grid;grid-template-columns:1.1fr .9fr;gap:25px;align-items:center}
+.emergency h2{color:#17120e}
+.emergency .lead{color:#58452f}
+.em-list{display:grid;gap:9px}
+.em-row{padding:13px;background:rgba(255,255,255,.34);border-radius:12px;font-size:11px}
+
+.newsletter{background:#f4eee5;color:#211a14;border-radius:28px;padding:38px;display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:center}
+.newsbox{display:flex;background:white;border-radius:999px;padding:7px;box-shadow:0 14px 40px rgba(48,34,21,.10)}
+.newsbox input{flex:1;border:0;outline:0;background:none;padding:0 14px}
+
+.floating{position:fixed;right:18px;bottom:18px;z-index:55;display:flex;flex-direction:column;gap:10px}
+.floatbtn{width:58px;height:58px;border-radius:50%;border:0;background:#c9a76b;color:#17120e;font-weight:900;box-shadow:0 18px 45px rgba(0,0,0,.32);cursor:pointer}
+.chatbox{position:fixed;right:18px;bottom:88px;width:330px;background:#14110e;border:1px solid var(--whiteLine);border-radius:20px;padding:18px;z-index:54;box-shadow:var(--shadow);display:none}
+.chatbox.open{display:block}
+.chatmsg{padding:11px;border-radius:12px;background:#1d1813;color:#bdb4ab;font-size:11px;line-height:1.6;margin:8px 0}
+.chatinput{display:flex;gap:8px;margin-top:10px}
+.chatinput input{flex:1;background:#0d0b09;border:1px solid var(--whiteLine);border-radius:10px;padding:11px;color:white}
+.chatinput button{border:0;border-radius:10px;background:#c9a76b;padding:0 13px;font-weight:900}
+
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.70);backdrop-filter:blur(8px);padding:18px}
+.modal.open{display:flex}
+.modalbox{width:min(580px,100%);max-height:84vh;overflow:auto;background:#15120f;border:1px solid var(--whiteLine);border-radius:24px;padding:24px;box-shadow:var(--shadow)}
+.fee-output{margin-top:14px;padding:16px;border-radius:14px;background:#211b14;border:1px solid var(--line);color:#e0c38c;font-weight:800}
+
+footer{padding:52px 0 28px;border-top:1px solid var(--whiteLine);color:#80776f}
+.footergrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:30px}
+footer h4{color:white;margin:0 0 14px} footer a{display:block;padding:6px 0;font-size:11px}
+.copy{margin-top:30px;padding-top:18px;border-top:1px solid var(--whiteLine);display:flex;justify-content:space-between;font-size:10px}
+
+.reveal{opacity:0;transform:translateY(24px);transition:.65s}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:1040px){
+ .topbar{display:none}.navspace{height:82px}.navlinks{display:none}.menu{display:block}
+ .hero-figure{opacity:.25;right:-4%}
+ .quickgrid{grid-template-columns:repeat(3,1fr)}
+ .story,.consult,.portal,.emergency,.newsletter{grid-template-columns:1fr}
+ .practice-grid,.cases,.insights,.offices,.testimonials{grid-template-columns:1fr 1fr}
+ .attorneys,.tools-grid{grid-template-columns:repeat(2,1fr)}
+ .industries{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+ .container{width:min(var(--max),calc(100% - 24px))}.section{padding:74px 0}h1{font-size:54px}
+ .quickgrid,.practice-grid,.cases,.insights,.offices,.testimonials,.attorneys,.tools-grid,.industries,.formgrid,.footergrid{grid-template-columns:1fr}
+ .values,.option-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+ .sectionhead{flex-direction:column;align-items:flex-start}.results{grid-template-columns:1fr 1fr}
+ .newsbox{flex-direction:column;border-radius:16px;gap:8px}.copy{flex-direction:column;gap:8px}
+ .chatbox{left:12px;right:12px;width:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="navwrap" id="nav">
+  <div class="topbar"><div class="container"><span>Strategic Counsel • Litigation • Corporate Advisory</span><span>24/7 Urgent Legal Line • +92 300 700 1100</span></div></div>
+  <div class="container">
+    <nav>
+      <a href="#home" class="brand"><div class="brandmark">A</div><div><div class="brandname">ARGENT & CO.</div><div class="brandsub">ADVOCATES • COUNSEL • LEGAL STRATEGY</div></div></a>
+      <div class="navlinks"><a href="#practice">Practice Areas</a><a href="#attorneys">Attorneys</a><a href="#results">Results</a><a href="#tools">Legal Tools</a><a href="#insights">Insights</a><a href="#contact">Contact</a></div>
+      <a class="btn primary" href="#consult">BOOK CONSULTATION →</a>
+      <button class="menu" id="menuBtn">MENU</button>
+    </nav>
+  </div>
+</header>
+<div class="drawer" id="drawer"><a href="#practice">Practice Areas</a><a href="#attorneys">Attorneys</a><a href="#results">Results</a><a href="#tools">Legal Tools</a><a href="#insights">Insights</a><a href="#contact">Contact</a></div>
+<div class="navspace"></div>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-figure"><div class="pillar"></div><div class="head"></div><div class="shoulders"></div><div class="tie"></div></div>
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="kicker">Argent & Co. Law</div>
+      <h1>When the stakes<br><span class="accent">are high.</span></h1>
+      <p>Strategic legal counsel for businesses, founders, families and individuals navigating complex disputes, transactions and high-impact decisions.</p>
+      <div class="actions"><a class="btn primary" href="#consult">CONFIDENTIAL CONSULTATION →</a><a class="btn" href="#practice">EXPLORE PRACTICE AREAS</a></div>
+      <div class="hero-badges"><div class="hbadge"><b>25+ Years</b> Combined Experience</div><div class="hbadge"><b>94%</b> Favorable Resolution Rate*</div><div class="hbadge"><b>24/7</b> Urgent Legal Support</div><div class="hbadge"><b>3 Offices</b> Pakistan</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="quick">
+  <div class="container quickgrid">
+    <a class="qitem" href="#consult"><div class="qicon">01</div><b>Consultation</b><span>Book confidential meeting</span></a>
+    <a class="qitem" href="#practice"><div class="qicon">02</div><b>Practice Areas</b><span>Find the right legal team</span></a>
+    <a class="qitem" href="#case-assessment"><div class="qicon">03</div><b>Case Assessment</b><span>Guided intake wizard</span></a>
+    <a class="qitem" href="#portal"><div class="qicon">04</div><b>Client Portal</b><span>Track matter status</span></a>
+    <a class="qitem" href="#tools"><div class="qicon">05</div><b>Legal Tools</b><span>Estimator & checklist</span></a>
+    <a class="qitem" href="#contact"><div class="qicon">06</div><b>Offices</b><span>Karachi • Lahore • Islamabad</span></a>
+  </div>
+</section>
+
+<section class="section light" id="about">
+  <div class="container story">
+    <div class="story-art reveal"></div>
+    <div class="reveal"><div class="kicker">The Firm</div><h2>Precision, judgment<br><span class="accent">and calm under pressure.</span></h2><p class="lead">Argent & Co. is a fictional premium law-firm concept built around high-trust service, clear communication and decisive legal strategy. Every matter begins with understanding the client’s risk, objective and commercial reality.</p><div class="values"><div class="value"><b>Discreet by Design</b><span>Confidentiality and professional communication at every stage.</span></div><div class="value"><b>Commercial Thinking</b><span>Advice shaped around business and personal outcomes, not only legal theory.</span></div><div class="value"><b>Senior Attention</b><span>Critical matters receive direct senior-lawyer involvement.</span></div><div class="value"><b>Clear Strategy</b><span>Clients understand options, risks, timelines and next steps.</span></div></div></div>
+  </div>
+</section>
+
+<section class="section" id="practice">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Practice Areas</div><h2>Depth where it matters.<br><span class="accent">Strategy where it counts.</span></h2></div><p class="lead">A multi-disciplinary offering for private clients, founders and corporations.</p></div>
+    <div class="practice-grid">
+      <article class="practice reveal"><div class="num">01</div><h3>Corporate & Commercial</h3><p>Contracts, governance, shareholder matters, negotiations, joint ventures and advisory.</p><a href="#consult">DISCUSS A MATTER →</a></article>
+      <article class="practice reveal"><div class="num">02</div><h3>Dispute Resolution</h3><p>Strategic litigation, arbitration, mediation and settlement planning.</p><a href="#consult">DISCUSS A MATTER →</a></article>
+      <article class="practice reveal"><div class="num">03</div><h3>Real Estate & Property</h3><p>Property transactions, title, development, tenancy and ownership disputes.</p><a href="#consult">DISCUSS A MATTER →</a></article>
+      <article class="practice reveal"><div class="num">04</div><h3>Family & Private Client</h3><p>Family matters, succession, inheritance planning and confidential private disputes.</p><a href="#consult">DISCUSS A MATTER →</a></article>
+      <article class="practice reveal"><div class="num">05</div><h3>Employment & HR</h3><p>Employment contracts, terminations, workplace investigations and policy advisory.</p><a href="#consult">DISCUSS A MATTER →</a></article>
+      <article class="practice reveal"><div class="num">06</div><h3>Technology & IP</h3><p>Software agreements, data, brand protection, licensing and digital business risk.</p><a href="#consult">DISCUSS A MATTER →</a></article>
+      <article class="practice reveal"><div class="num">07</div><h3>White Collar & Investigations</h3><p>Internal reviews, regulatory response, reputational risk and sensitive investigations.</p><a href="#consult">DISCUSS A MATTER →</a></article>
+      <article class="practice reveal"><div class="num">08</div><h3>Tax & Regulatory</h3><p>Regulatory strategy, notices, compliance matters and commercial tax support.</p><a href="#consult">DISCUSS A MATTER →</a></article>
+      <article class="practice reveal"><div class="num">09</div><h3>Startup & Venture</h3><p>Founder agreements, investment documentation, ESOPs and growth-stage legal support.</p><a href="#consult">DISCUSS A MATTER →</a></article>
+    </div>
+  </div>
+</section>
+
+<section class="section light" id="results">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Selected Outcomes</div><h2>Measured by outcomes,<br><span class="accent">not noise.</span></h2></div><p class="lead">Illustrative demo figures for portfolio presentation only. Real law firms must replace these with verified information.</p></div>
+    <div class="results">
+      <div class="result reveal"><b>PKR 1.8B+</b><span>Value of transactions advised*</span></div>
+      <div class="result reveal"><b>94%</b><span>Favorable resolution rate*</span></div>
+      <div class="result reveal"><b>320+</b><span>Corporate matters handled*</span></div>
+      <div class="result reveal"><b>48 hrs</b><span>Average first strategy turnaround*</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="attorneys">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Our Counsel</div><h2>Senior thinking.<br><span class="accent">Personal accountability.</span></h2></div></div>
+    <div class="attorneys">
+      <article class="attorney reveal"><div class="photo"></div><div class="attorney-body"><h3>Ali Raza Siddiqui</h3><p>Managing Partner • Corporate, Commercial & Strategy</p><div class="meta"><span>18+ Years</span><span>Karachi</span></div></div></article>
+      <article class="attorney reveal"><div class="photo"></div><div class="attorney-body"><h3>Sara Ahmed Khan</h3><p>Partner • Disputes, Arbitration & Investigations</p><div class="meta"><span>14+ Years</span><span>Karachi</span></div></div></article>
+      <article class="attorney reveal"><div class="photo"></div><div class="attorney-body"><h3>Hamza Farooq</h3><p>Partner • Real Estate, Employment & Regulatory</p><div class="meta"><span>12+ Years</span><span>Lahore</span></div></div></article>
+      <article class="attorney reveal"><div class="photo"></div><div class="attorney-body"><h3>Mariam Noor</h3><p>Counsel • Technology, IP & Venture</p><div class="meta"><span>10+ Years</span><span>Islamabad</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="consult">
+  <div class="container consult">
+    <div class="reveal"><div class="kicker">Confidential Consultation</div><h2>Tell us what is<br><span class="accent">at stake.</span></h2><p class="lead">Request a confidential consultation and select urgency, matter type and preferred meeting format.</p>
+      <div class="steps">
+        <div class="step"><div class="qicon">1</div><div><b>Conflict Check</b><span>Basic parties are reviewed before substantive discussion.</span></div></div>
+        <div class="step"><div class="qicon">2</div><div><b>Strategy Call</b><span>Understand objectives, risk, timing and immediate priorities.</span></div></div>
+        <div class="step"><div class="qicon">3</div><div><b>Engagement Plan</b><span>Scope, fee approach and next steps are clearly defined.</span></div></div>
+      </div>
+    </div>
+    <form class="formcard reveal" id="consultForm">
+      <div class="formgrid">
+        <div class="field"><label>Name</label><input required placeholder="Full name"></div>
+        <div class="field"><label>Phone</label><input required placeholder="+92 3XX XXXXXXX"></div>
+        <div class="field"><label>Email</label><input type="email" required placeholder="you@company.com"></div>
+        <div class="field"><label>Matter Type</label><select required><option value="">Select</option><option>Corporate & Commercial</option><option>Dispute / Litigation</option><option>Property</option><option>Family / Private Client</option><option>Employment</option><option>Technology / IP</option><option>Investigation</option><option>Other</option></select></div>
+        <div class="field"><label>Urgency</label><select><option>Standard</option><option>Within 48 hours</option><option>Urgent today</option><option>Immediate / Emergency</option></select></div>
+        <div class="field"><label>Meeting</label><select><option>Video Call</option><option>Office Meeting</option><option>Phone Call</option></select></div>
+        <div class="field full"><label>Brief Summary</label><textarea placeholder="Describe the issue in a few lines. Avoid sending highly sensitive documents until engagement is confirmed."></textarea></div>
+        <div class="field full"><button class="btn primary" type="submit">REQUEST CONFIDENTIAL CONSULTATION →</button></div>
+      </div>
+      <div id="consultSuccess" style="display:none;margin-top:12px;padding:12px;border-radius:10px;background:#211b14;color:#dec087;font-size:11px;font-weight:900">Consultation request received. A conflict check and response would follow in a real deployment.</div>
+    </form>
+  </div>
+</section>
+
+<section class="section light" id="tools">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Client Tools</div><h2>Legal service,<br><span class="accent">made easier to use.</span></h2></div></div>
+    <div class="tools-grid">
+      <article class="toolcard reveal"><h3>Fee Estimator</h3><p>Choose a matter category and complexity level to see a demo consultation range.</p><button class="btn dark" id="feeBtn">OPEN ESTIMATOR</button></article>
+      <article class="toolcard reveal"><h3>Case Assessment</h3><p>A guided intake wizard helps prospective clients identify the type and urgency of legal support.</p><a class="btn dark" href="#case-assessment">START ASSESSMENT</a></article>
+      <article class="toolcard reveal"><h3>Document Checklist</h3><p>Prepare key documents before your first meeting to make the consultation more efficient.</p><a class="btn dark" href="#portal">VIEW CHECKLIST</a></article>
+      <article class="toolcard reveal"><h3>Client Case Tracker</h3><p>Existing clients can enter a secure matter reference to view a sample status screen.</p><a class="btn dark" href="#portal">TRACK MATTER</a></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="case-assessment">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Guided Intake</div><h2>Case assessment<br><span class="accent">in under 60 seconds.</span></h2></div></div>
+    <div class="wizard reveal">
+      <div style="display:flex;justify-content:space-between;gap:15px"><strong id="wizardTitle">What best describes your matter?</strong><span id="wizardStep">Step 1 of 4</span></div>
+      <div class="wizard-progress"><div class="wizard-bar" id="wizardBar"></div></div>
+      <div class="option-grid" id="wizardOptions"></div>
+      <div class="actions"><button class="btn" id="wizardBack">BACK</button><button class="btn primary" id="wizardNext">NEXT →</button></div>
+      <div id="wizardResult" style="display:none;margin-top:18px;padding:18px;border-radius:14px;background:#211b14;color:#dcbf88;font-size:12px;line-height:1.7"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="portal">
+  <div class="container portal">
+    <div class="portalbox reveal"><div class="kicker">Client Portal</div><h2 style="font-size:38px">Track your matter.</h2><p class="lead">Demo case tracker for a premium client experience.</p><div class="trackbox"><input id="caseRef" placeholder="Example: ARG-2026-114"><button class="btn primary" id="trackBtn">TRACK</button></div><div class="status" id="caseStatus"><b>Matter Status: Strategy & Drafting</b><p style="margin:8px 0 0;font-size:11px;color:#a89e93;line-height:1.6">Last update: Counsel review completed. Next milestone: client approval of draft documents.</p></div></div>
+    <div class="portalbox reveal"><div class="kicker">Document Checklist</div><h2 style="font-size:38px">Arrive prepared.</h2><p class="lead">A sample pre-consultation checklist.</p><div class="checklist"><label class="check"><input type="checkbox"> Government-issued identification</label><label class="check"><input type="checkbox"> Relevant agreements / contracts</label><label class="check"><input type="checkbox"> Notices, emails or correspondence</label><label class="check"><input type="checkbox"> Timeline of key events</label><label class="check"><input type="checkbox"> Names of all involved parties</label></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Industries</div><h2>Legal context meets<br><span class="accent">commercial context.</span></h2></div></div>
+    <div class="industries"><div class="industry reveal">Technology</div><div class="industry reveal">Real Estate</div><div class="industry reveal">Healthcare</div><div class="industry reveal">Manufacturing</div><div class="industry reveal">Retail</div><div class="industry reveal">Hospitality</div><div class="industry reveal">Financial Services</div><div class="industry reveal">Media</div><div class="industry reveal">Startups</div><div class="industry reveal">Family Business</div></div>
+  </div>
+</section>
+
+<section class="section" id="casework">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Representative Matters</div><h2>Complex problems.<br><span class="accent">Structured solutions.</span></h2></div></div>
+    <div class="cases">
+      <article class="case reveal"><span class="tag">Commercial Dispute</span><h3>Shareholder deadlock resolved without trial.</h3><p>Negotiation and settlement strategy aligned legal rights with business continuity.</p><strong>Outcome: Confidential settlement*</strong></article>
+      <article class="case reveal"><span class="tag">Transaction</span><h3>Growth-stage investment documentation.</h3><p>Term review, founder protection, governance and execution planning for a scaling company.</p><strong>Outcome: Deal completed*</strong></article>
+      <article class="case reveal"><span class="tag">Property</span><h3>High-value title and possession dispute.</h3><p>Evidence review, injunction strategy and negotiated commercial resolution.</p><strong>Outcome: Client position protected*</strong></article>
+    </div>
+  </div>
+</section>
+
+<section class="section light" id="insights">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Legal Insights</div><h2>Useful thinking before<br><span class="accent">the problem becomes urgent.</span></h2></div></div>
+    <div class="insights">
+      <article class="article reveal"><div class="article-cover"></div><div class="article-body"><span>Corporate</span><h3>Five clauses founders should review before signing an investment term sheet.</h3><p>Practical points around control, dilution, exits and governance.</p></div></article>
+      <article class="article reveal"><div class="article-cover"></div><div class="article-body"><span>Disputes</span><h3>When settlement is strategically stronger than litigation.</h3><p>How cost, timing, evidence and leverage shape the decision.</p></div></article>
+      <article class="article reveal"><div class="article-cover"></div><div class="article-body"><span>Employment</span><h3>What employers should document before a difficult termination.</h3><p>Reducing avoidable risk through process and records.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section light">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Frequently Asked</div><h2>Clear answers<br><span class="accent">before we begin.</span></h2></div></div>
+    <div class="faq">
+      <div class="faqitem reveal"><button class="faqq">Is the first consultation confidential?<span>+</span></button><div class="faqa">Law firms generally handle prospective-client information carefully, but formal duties and engagement terms vary. This demo should be adapted to the actual firm's policy.</div></div>
+      <div class="faqitem reveal"><button class="faqq">How are legal fees structured?<span>+</span></button><div class="faqa">Depending on the matter, fees may be fixed, hourly, milestone-based or retainer-based. A real firm should publish only verified fee information.</div></div>
+      <div class="faqitem reveal"><button class="faqq">Can I send documents before the first meeting?<span>+</span></button><div class="faqa">For a real deployment, the firm should specify a secure intake channel and avoid encouraging highly sensitive uploads before conflicts and engagement are addressed.</div></div>
+      <div class="faqitem reveal"><button class="faqq">Do you handle urgent matters?<span>+</span></button><div class="faqa">This concept includes an urgent legal support flow. Actual response times must match the firm's real staffing and service policy.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Client Notes</div><h2>Trust is earned<br><span class="accent">in difficult moments.</span></h2></div></div>
+    <div class="testimonials">
+      <article class="testimonial reveal"><div class="stars">★★★★★</div><p>The biggest difference was clarity. We knew the risks, the options and what each step was meant to achieve.</p><div class="person"><div class="avatar">A</div><div><b>Corporate Client</b><small>Technology Sector</small></div></div></article>
+      <article class="testimonial reveal"><div class="stars">★★★★★</div><p>Professional, responsive and calm during a matter that had become extremely stressful for our family.</p><div class="person"><div class="avatar">S</div><div><b>Private Client</b><small>Karachi</small></div></div></article>
+      <article class="testimonial reveal"><div class="stars">★★★★★</div><p>The team understood the commercial side of the dispute, not only the legal side. That changed the strategy completely.</p><div class="person"><div class="avatar">H</div><div><b>Business Owner</b><small>Manufacturing</small></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container emergency reveal">
+    <div><div class="kicker" style="color:#3f301d">Urgent Legal Support</div><h2>Some matters<br>cannot wait.</h2><p class="lead">For arrests, urgent injunctions, raids, immediate commercial disputes or time-sensitive notices, the site can offer a dedicated priority channel.</p><div class="actions"><a class="btn dark" href="tel:+923007001100">CALL URGENT LINE</a><a class="btn dark" href="https://wa.me/923007001100">WHATSAPP COUNSEL</a></div></div>
+    <div class="em-list"><div class="em-row"><b>Emergency Litigation</b><br>Time-sensitive court and injunction support</div><div class="em-row"><b>Regulatory Response</b><br>Urgent notices, inspections or investigations</div><div class="em-row"><b>Corporate Crisis</b><br>Board, shareholder or transaction emergencies</div></div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <div class="sectionhead reveal"><div><div class="kicker">Our Offices</div><h2>Local access.<br><span class="accent">Senior counsel.</span></h2></div></div>
+    <div class="offices">
+      <article class="office reveal"><h3>Karachi</h3><p>DHA / Clifton Business District<br>Corporate, disputes & private client</p><div class="office-meta"><span>Mon–Sat</span><span>9AM–7PM</span></div></article>
+      <article class="office reveal"><h3>Lahore</h3><p>Gulberg Business District<br>Commercial, property & employment</p><div class="office-meta"><span>Mon–Sat</span><span>9AM–7PM</span></div></article>
+      <article class="office reveal"><h3>Islamabad</h3><p>Blue Area / F-Sector<br>Regulatory, technology & advisory</p><div class="office-meta"><span>Mon–Fri</span><span>9AM–6PM</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container newsletter reveal">
+    <div><div class="kicker" style="color:#7b5d30">Argent Briefing</div><h2>Legal updates,<br>without the noise.</h2><p class="lead">Monthly commercial and legal insights for business leaders and private clients.</p></div>
+    <form class="newsbox" id="newsForm"><input required type="email" placeholder="Your email address"><button class="btn dark" type="submit">SUBSCRIBE</button></form>
+  </div>
+</section>
+</main>
+
+<div class="floating"><button class="floatbtn" id="chatBtn">CHAT</button></div>
+<div class="chatbox" id="chatbox">
+  <div class="kicker">Legal Concierge</div>
+  <h3 style="margin:10px 0">How can we direct you?</h3>
+  <div class="chatmsg">Welcome to Argent & Co. This demo concierge can help route you to consultation, urgent support, practice areas or the client portal.</div>
+  <div class="chatinput"><input id="chatInput" placeholder="Type a message..."><button id="chatSend">→</button></div>
+</div>
+
+<div class="modal" id="feeModal">
+  <div class="modalbox">
+    <div style="display:flex;justify-content:space-between;gap:14px;align-items:center"><div><div class="kicker">Demo Fee Estimator</div><h3 style="font-size:26px;margin:10px 0">Estimate a consultation range</h3></div><button class="btn" id="feeClose">CLOSE</button></div>
+    <div class="formgrid">
+      <div class="field"><label>Matter</label><select id="feeMatter"><option value="25000">Corporate Advisory</option><option value="30000">Dispute / Litigation</option><option value="22000">Property</option><option value="20000">Family / Private Client</option><option value="24000">Employment</option><option value="28000">Technology / IP</option></select></div>
+      <div class="field"><label>Complexity</label><select id="feeComplexity"><option value="1">Standard</option><option value="1.5">Moderate</option><option value="2.2">Complex / Urgent</option></select></div>
+    </div>
+    <button class="btn primary" id="calculateFee" style="margin-top:14px">CALCULATE DEMO RANGE</button>
+    <div class="fee-output" id="feeOutput">Select a matter and complexity level.</div>
+    <p style="font-size:10px;color:#857c73;line-height:1.6;margin-top:12px">Illustrative only. Legal fees vary by scope, jurisdiction, urgency and complexity.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footergrid">
+      <div><div class="brand"><div class="brandmark">A</div><div><div class="brandname">ARGENT & CO.</div><div class="brandsub">ADVOCATES • COUNSEL • LEGAL STRATEGY</div></div></div><p style="font-size:11px;line-height:1.7;max-width:360px;margin-top:18px">Premium law-firm website concept featuring consultation intake, legal tools, client portal, urgent support and business-focused practice areas.</p></div>
+      <div><h4>Firm</h4><a href="#about">About</a><a href="#attorneys">Attorneys</a><a href="#results">Results</a><a href="#insights">Insights</a></div>
+      <div><h4>Services</h4><a href="#practice">Practice Areas</a><a href="#consult">Consultation</a><a href="#case-assessment">Case Assessment</a><a href="#portal">Client Portal</a></div>
+      <div><h4>Contact</h4><a href="#contact">Offices</a><a href="tel:+923007001100">+92 300 700 1100</a><a href="#">contact@argentlaw.pk</a><a href="https://wa.me/923007001100">WhatsApp</a></div>
+    </div>
+    <div class="copy"><span>© 2026 Argent & Co. Demo Concept. All rights reserved.</span><span>Privacy • Terms • Disclaimer • Attorney Advertising Notice</span></div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const menuBtn=document.getElementById('menuBtn'),drawer=document.getElementById('drawer');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20));
+menuBtn.onclick=()=>drawer.classList.toggle('open');
+drawer.querySelectorAll('a').forEach(a=>a.onclick=()=>drawer.classList.remove('open'));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.getElementById('consultForm').addEventListener('submit',e=>{
+ e.preventDefault(); document.getElementById('consultSuccess').style.display='block';
+});
+
+document.querySelectorAll('.faqq').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+
+const feeModal=document.getElementById('feeModal');
+document.getElementById('feeBtn').onclick=()=>feeModal.classList.add('open');
+document.getElementById('feeClose').onclick=()=>feeModal.classList.remove('open');
+document.getElementById('calculateFee').onclick=()=>{
+ const base=+document.getElementById('feeMatter').value;
+ const mult=+document.getElementById('feeComplexity').value;
+ const low=Math.round(base*mult/1000)*1000;
+ const high=Math.round(low*1.45/1000)*1000;
+ document.getElementById('feeOutput').textContent='Indicative consultation / initial strategy range: PKR '+low.toLocaleString()+' – '+high.toLocaleString();
+};
+
+document.getElementById('trackBtn').onclick=()=>{
+ const ref=document.getElementById('caseRef').value.trim();
+ if(!ref)return alert('Enter a matter reference first.');
+ document.getElementById('caseStatus').style.display='block';
+};
+
+const wizardData=[
+ {title:'What best describes your matter?', opts:['Business / Contract','Court Dispute','Property','Family / Private','Employment','Technology / IP']},
+ {title:'How urgent is the issue?', opts:['No immediate deadline','Deadline within 7 days','Within 48 hours','Immediate / today']},
+ {title:'What is your preferred objective?', opts:['Legal advice only','Negotiate / settle','Prepare documents','Start or defend proceedings']},
+ {title:'Who is the other side?', opts:['Individual','Company','Government / regulator','Not sure yet']}
+];
+let wStep=0,answers=[];
+const title=document.getElementById('wizardTitle'), stepEl=document.getElementById('wizardStep'), opts=document.getElementById('wizardOptions'), bar=document.getElementById('wizardBar'), result=document.getElementById('wizardResult');
+function renderWizard(){
+ title.textContent=wizardData[wStep].title; stepEl.textContent='Step '+(wStep+1)+' of 4'; bar.style.width=((wStep+1)*25)+'%'; result.style.display='none';
+ opts.innerHTML='';
+ wizardData[wStep].opts.forEach(o=>{
+  const b=document.createElement('button'); b.className='option'+(answers[wStep]===o?' selected':''); b.textContent=o;
+  b.onclick=()=>{answers[wStep]=o; renderWizard();}; opts.appendChild(b);
+ });
+}
+document.getElementById('wizardNext').onclick=()=>{
+ if(!answers[wStep])return alert('Choose one option first.');
+ if(wStep<3){wStep++;renderWizard()} else {
+   result.style.display='block';
+   result.innerHTML='<b>Suggested next step:</b> A confidential consultation with the relevant practice team. Your answers indicate a <b>'+answers[1]+'</b> matter involving <b>'+answers[0]+'</b>. In a live website, this could route the inquiry automatically to the correct lawyer.';
+ }
+};
+document.getElementById('wizardBack').onclick=()=>{if(wStep>0){wStep--;renderWizard()}};
+renderWizard();
+
+const chatbox=document.getElementById('chatbox');
+document.getElementById('chatBtn').onclick=()=>chatbox.classList.toggle('open');
+document.getElementById('chatSend').onclick=()=>{
+ const inp=document.getElementById('chatInput'); if(!inp.value.trim())return;
+ const m=document.createElement('div'); m.className='chatmsg'; m.textContent='Thanks. For this demo, please use the consultation form or urgent legal support buttons so your inquiry can be routed properly.';
+ inp.parentElement.parentElement.insertBefore(m,inp.parentElement); inp.value='';
+};
+
+document.getElementById('newsForm').addEventListener('submit',e=>{e.preventDefault();alert('Subscribed to Argent Briefing.');e.target.reset();});
+</script>
+</body>
+</html>

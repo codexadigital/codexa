@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#020b18" />
+  <title>CODEXA — Software House | Web, Apps & Digital Products</title>
+  <meta name="description" content="CODEXA is a premium software house delivering web, app, software and UI/UX solutions." />
+
+  <style>
+    :root{
+      --bg:#020814;
+      --bg2:#041326;
+      --card:#07182b;
+      --card2:#06111f;
+      --line:rgba(92,176,255,.17);
+      --text:#f4f8ff;
+      --muted:#8ea5bd;
+      --blue:#087cff;
+      --cyan:#37d7ff;
+      --blue2:#1a4fff;
+      --glow:0 0 40px rgba(8,124,255,.28);
+      --radius:22px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Segoe UI",Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at 80% 5%, rgba(0,115,255,.13), transparent 27%),
+        radial-gradient(circle at 10% 48%, rgba(0,196,255,.07), transparent 24%),
+        linear-gradient(180deg,#010713 0%,#020a17 35%,#020813 100%);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    body:before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size:55px 55px;
+      mask-image:linear-gradient(to bottom,black,transparent 78%);
+    }
+
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit} body,button,input,textarea,a{font-family:"Segoe UI",Arial,Helvetica,sans-serif;}
+    .container{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .section{padding:92px 0}
+    .eyebrow{
+      color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+      display:inline-flex;gap:8px;align-items:center
+    }
+    .eyebrow:before{content:"";width:22px;height:1px;background:var(--cyan)}
+    h1,h2,h3,p{margin-top:0}
+    h2{font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-.04em;margin-bottom:18px}
+    .lead{color:var(--muted);font-size:17px;line-height:1.8;max-width:650px}
+    .grad{background:linear-gradient(90deg,#fff 0%,#5fe4ff 35%,#1677ff 100%);-webkit-background-clip:text;color:transparent}
+
+    /* NAV */
+    .nav-wrap{
+      position:fixed;left:0;right:0;top:0;z-index:50;
+      transition:.3s;
+      border-bottom:1px solid transparent;
+    }
+    .nav-wrap.scrolled{
+      background:rgba(2,8,20,.82);
+      backdrop-filter:blur(18px);
+      border-color:var(--line);
+    }
+    nav{
+      height:84px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand svg{width:52px;height:52px;filter:drop-shadow(0 0 18px rgba(0,145,255,.35))}
+    .brand-word{font-weight:800;letter-spacing:.28em;font-size:18px}
+    .brand-sub{font-size:7px;letter-spacing:.28em;color:#7289a3;margin-top:3px}
+    .nav-links{display:flex;gap:30px;align-items:center;color:#a9bbce;font-size:13px}
+    .nav-links a{position:relative}
+    .nav-links a:after{content:"";position:absolute;left:0;bottom:-8px;width:0;height:1px;background:var(--cyan);transition:.25s}
+    .nav-links a:hover{color:white}
+    .nav-links a:hover:after{width:100%}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:48px;padding:0 20px;border-radius:12px;border:1px solid var(--line);
+      color:white;background:rgba(6,18,34,.75);cursor:pointer;transition:.25s;
+    }
+    .btn:hover{transform:translateY(-2px);border-color:rgba(55,215,255,.45);box-shadow:var(--glow)}
+    .btn.primary{background:linear-gradient(100deg,var(--blue2),var(--cyan));border:0;box-shadow:0 8px 30px rgba(0,107,255,.25)}
+    .btn.small{min-height:42px;padding:0 16px;font-size:12px}
+    .menu{display:none;background:none;border:0;color:white;font-size:12px;font-weight:800;letter-spacing:.12em}
+
+    /* HERO */
+    .hero{min-height:790px;padding-top:150px;display:flex;align-items:center;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:42px}
+    .hero h1{font-size:clamp(52px,6vw,84px);line-height:.97;letter-spacing:-.055em;margin:18px 0 25px}
+    .hero p{color:var(--muted);max-width:610px;font-size:17px;line-height:1.75}
+    .hero-actions{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+    .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:42px}
+    .stat{
+      padding:15px 14px;border:1px solid var(--line);border-radius:16px;background:rgba(4,16,31,.6)
+    }
+    .stat strong{font-size:20px;display:block}
+    .stat span{font-size:11px;color:#738aa4;line-height:1.3;display:block;margin-top:3px}
+
+    .logo-stage{
+      min-height:520px;display:flex;align-items:center;justify-content:center;position:relative;
+      perspective:1000px;
+    }
+    .logo-stage:before{
+      content:"";position:absolute;width:430px;height:430px;border-radius:50%;
+      background:radial-gradient(circle,rgba(36,151,255,.22),rgba(0,81,255,.05) 48%,transparent 69%);
+      filter:blur(12px);
+    }
+    .rings{
+      position:absolute;bottom:70px;width:470px;height:130px;border-radius:50%;
+      border:2px solid rgba(49,197,255,.43);box-shadow:0 0 30px rgba(29,145,255,.25), inset 0 0 30px rgba(29,145,255,.15);
+      transform:rotateX(72deg);
+    }
+    .rings:before,.rings:after{
+      content:"";position:absolute;inset:14px;border-radius:50%;border:1px solid rgba(64,206,255,.33);
+    }
+    .rings:after{inset:28px}
+    .hero-logo{
+      position:relative;width:min(460px,90%);filter:drop-shadow(0 0 28px rgba(29,119,255,.48));
+      animation:float 5s ease-in-out infinite;
+    }
+    @keyframes float{50%{transform:translateY(-13px) rotateY(3deg)}}
+    .spark{
+      position:absolute;width:4px;height:4px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);
+      animation:blink 2s infinite alternate
+    }
+    @keyframes blink{to{opacity:.15;transform:scale(.4)}}
+    .s1{top:15%;left:18%}.s2{top:24%;right:9%;animation-delay:.6s}.s3{bottom:30%;right:15%;animation-delay:1.2s}.s4{bottom:24%;left:9%;animation-delay:1.6s}
+
+    /* SERVICES */
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:35px}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .card{
+      position:relative;overflow:hidden;
+      background:linear-gradient(180deg,rgba(8,25,45,.86),rgba(4,14,27,.9));
+      border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.3s;
+    }
+    .card:before{
+      content:"";position:absolute;inset:auto -30% -65% -30%;height:70%;
+      background:radial-gradient(circle,rgba(0,128,255,.18),transparent 65%);
+      opacity:0;transition:.3s;
+    }
+    .card:hover{transform:translateY(-7px);border-color:rgba(55,215,255,.4);box-shadow:0 20px 55px rgba(0,0,0,.22)}
+    .card:hover:before{opacity:1}
+    .icon{
+      width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:22px;
+      color:var(--cyan);border:1px solid rgba(55,215,255,.3);
+      background:linear-gradient(145deg,rgba(17,75,140,.55),rgba(5,25,49,.9));box-shadow:inset 0 0 24px rgba(0,122,255,.14)
+    }
+    .card h3{font-size:18px;margin:20px 0 11px}
+    .card p{color:var(--muted);font-size:13px;line-height:1.7;margin:0}
+    .arrow{position:absolute;right:20px;bottom:18px;color:var(--cyan);font-size:20px}
+
+    /* PROJECTS */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .project{
+      min-height:285px;border-radius:20px;border:1px solid var(--line);overflow:hidden;position:relative;
+      background:#061020;
+    }
+    .project-ui{position:absolute;inset:0;padding:17px;background:
+      linear-gradient(160deg,rgba(33,39,108,.7),rgba(6,8,23,.96) 56%),
+      radial-gradient(circle at 80% 20%,rgba(177,65,255,.3),transparent 33%);
+    }
+    .project:nth-child(2) .project-ui{background:linear-gradient(160deg,#eff4ff,#cddcff)}
+    .project:nth-child(3) .project-ui{background:linear-gradient(160deg,#0d1321,#08101b),radial-gradient(circle at 70% 25%,#e38c44,transparent 20%)}
+    .project:nth-child(4) .project-ui{background:linear-gradient(160deg,#121827,#08101b)}
+    .mini-nav{height:8px;width:80%;border-radius:9px;background:rgba(255,255,255,.12);margin-bottom:18px}
+    .mini-title{width:65%;height:20px;border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,.85),rgba(71,181,255,.55))}
+    .mini-chart{position:absolute;left:18px;right:18px;bottom:56px;height:100px;border-radius:13px;background:
+      linear-gradient(180deg,rgba(72,78,255,.25),transparent),
+      linear-gradient(140deg,transparent 0 16%,rgba(82,119,255,.7) 17% 18%,transparent 19% 30%,rgba(159,69,255,.75) 31% 33%,transparent 34% 50%,rgba(65,208,255,.7) 51% 53%,transparent 54%);
+      border:1px solid rgba(255,255,255,.08)
+    }
+    .project-info{
+      position:absolute;left:0;right:0;bottom:0;padding:18px 19px;
+      background:linear-gradient(180deg,transparent,rgba(1,6,14,.95) 30%)
+    }
+    .project-info strong{display:block}
+    .project-info span{color:#8298af;font-size:11px}
+    .project-open{
+      display:inline-flex;align-items:center;gap:6px;margin-top:8px;
+      font-size:10px;font-weight:800;letter-spacing:.08em;color:#47d9ff;
+      text-transform:uppercase;
+    }
+    .project:hover .project-open{transform:translateX(3px)}
+    .project:nth-child(2) .project-info strong,.project:nth-child(2) .project-info span{color:#071425}
+
+    /* PROCESS */
+    .process{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}
+    .step{padding:24px 18px;border-top:1px solid var(--line);position:relative}
+    .step:after{content:"";position:absolute;top:-4px;left:20px;width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+    .num{color:#406487;font-size:12px}
+    .step h3{font-size:15px;margin:8px 0}
+    .step p{font-size:12px;line-height:1.65;color:#7f96af}
+
+    /* TESTIMONIALS */
+    .testimonials{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .quote{padding:22px;border-radius:18px;border:1px solid var(--line);background:rgba(5,18,34,.65)}
+    .quote b{font-size:26px;color:var(--blue)}
+    .quote p{font-size:13px;line-height:1.7;color:#b4c3d3;margin:8px 0 18px}
+    .person{display:flex;align-items:center;gap:10px}
+    .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,#0b62ff,#62dcff);display:grid;place-items:center;font-weight:800}
+    .person small{display:block;color:#7890aa;font-size:10px}
+
+    /* CTA */
+    .cta{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;
+      border:1px solid var(--line);border-radius:28px;padding:38px;
+      background:linear-gradient(120deg,rgba(7,29,54,.9),rgba(3,13,25,.9));box-shadow:0 25px 70px rgba(0,0,0,.2)
+    }
+    .contact-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .contact-chip{border:1px solid var(--line);border-radius:14px;padding:14px;background:#061326}
+    .contact-chip span{display:block;color:#6f88a3;font-size:10px;margin-bottom:5px}
+    .contact-chip b{font-size:12px}
+
+    footer{padding:34px 0 45px;border-top:1px solid var(--line);color:#6f839a;font-size:12px}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(28px);transition:.7s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* MOBILE */
+    @media(max-width:980px){
+      .nav-links{display:none}
+      .menu{display:block}
+      .hero{padding-top:120px;min-height:auto}
+      .hero-grid{grid-template-columns:1fr}
+      .logo-stage{min-height:420px;order:-1}
+      .hero-stats{grid-template-columns:repeat(2,1fr)}
+      .services-grid,.projects,.testimonials{grid-template-columns:repeat(2,1fr)}
+      .process{grid-template-columns:repeat(2,1fr)}
+      .cta{grid-template-columns:1fr}
+    }
+    @media(max-width:620px){
+      .container{width:min(100% - 24px,var(--max))}
+      nav{height:72px}
+      .brand-word{font-size:15px}
+      .brand svg{width:43px;height:43px}
+      .hero{padding-top:105px}
+      .hero h1{font-size:46px}
+      .logo-stage{min-height:310px}
+      .rings{width:330px;height:90px;bottom:36px}
+      .section{padding:70px 0}
+      .section-head{align-items:flex-start;flex-direction:column}
+      .services-grid,.projects,.testimonials,.process{grid-template-columns:1fr}
+      .hero-stats{grid-template-columns:1fr 1fr}
+      .contact-row{grid-template-columns:1fr}
+      .cta{padding:24px}
+      .footer-row{flex-direction:column;align-items:flex-start}
+    }
+
+    /* mobile drawer */
+    .drawer{
+      position:fixed;inset:72px 12px auto 12px;background:rgba(3,12,24,.97);
+      border:1px solid var(--line);border-radius:18px;padding:14px;z-index:49;
+      display:none;backdrop-filter:blur(20px)
+    }
+    .drawer.open{display:block}
+    .drawer a{display:block;padding:14px;border-bottom:1px solid rgba(255,255,255,.05);color:#b5c5d6}
+  </style>
+</head>
+
+<body>
+
+  <header class="nav-wrap" id="nav">
+    <div class="container">
+      <nav>
+        <a href="#home" class="brand">
+          <svg viewBox="0 0 120 120" aria-label="Codexa logo">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#00d9ff"/>
+                <stop offset=".45" stop-color="#087cff"/>
+                <stop offset="1" stop-color="#153dff"/>
+              </linearGradient>
+            </defs>
+            <path d="M76 18H49C30 18 17 33 17 52v16c0 19 13 34 32 34h23l14-17H49c-9 0-15-7-15-17V52c0-10 6-17 15-17h28l14 15 11-14-16-18z" fill="url(#g1)"/>
+            <path d="M56 44l19 19-19 19h22l19-19-19-19H56z" fill="url(#g1)"/>
+            <path d="M88 18h18L91 38H74z" fill="#f4f8ff"/>
+          </svg>
+          <div>
+            <div class="brand-word">CODEXA</div>
+            <div class="brand-sub">SOFTWARE HOUSE</div>
+          </div>
+        </a>
+
+        <div class="nav-links">
+          <a href="#home">HOME</a>
+          <a href="#services">SERVICES</a>
+          <a href="#work">PORTFOLIO</a>
+          <a href="#process">PROCESS</a>
+          <a href="#about">ABOUT US</a>
+        </div>
+
+        <a class="btn small" href="#contact">LET'S TALK →</a>
+        <button class="menu" id="menuBtn" aria-label="Open menu">MENU</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#work">Portfolio</a>
+    <a href="#process">Process</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+
+        <div class="reveal">
+          <div class="eyebrow">Building The Future. Together.</div>
+          <h1>Software Development<br>& <span class="grad">Digital Solutions</span></h1>
+          <p>
+            CODEXA is a premium software house delivering innovative, scalable and future-ready
+            web, app, software and digital experiences for ambitious brands.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn primary">START A PROJECT <span>→</span></a>
+            <a href="#work" class="btn">VIEW OUR WORK <span>→</span></a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat"><strong>50+</strong><span>Projects Delivered</span></div>
+            <div class="stat"><strong>98%</strong><span>Client Satisfaction</span></div>
+            <div class="stat"><strong>5+</strong><span>Years Experience</span></div>
+            <div class="stat"><strong>24/7</strong><span>Support & Maintenance</span></div>
+          </div>
+        </div>
+
+        <div class="logo-stage reveal">
+          <div class="rings"></div>
+          <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span><span class="spark s4"></span>
+
+          <svg class="hero-logo" viewBox="0 0 620 400">
+            <defs>
+              <linearGradient id="heroBlue" x1="0" x2="1">
+                <stop offset="0" stop-color="#e5f6ff"/>
+                <stop offset=".22" stop-color="#3bc8ff"/>
+                <stop offset=".58" stop-color="#086eff"/>
+                <stop offset="1" stop-color="#0a2a93"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="7" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <path filter="url(#glow)" d="M355 82H224c-79 0-137 56-137 117v17c0 62 58 112 137 112h122l48-55H224c-38 0-68-25-68-57v-17c0-33 30-61 68-61h125l63 57 44-53-101-60z" fill="url(#heroBlue)" />
+            <path filter="url(#glow)" d="M299 157l87 75-87 78h90l84-78-84-75h-90z" fill="url(#heroBlue)"/>
+            <path d="M455 81h81l-70 83h-75z" fill="#eaf7ff"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">What We Do</div>
+            <h2>Services That<br><span class="grad">Drive Your Success</span></h2>
+          </div>
+          <p class="lead">From idea to launch, we combine strategy, design and engineering to create digital products that look premium and perform even better.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="card reveal">
+            <div class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/>
+      </svg>
+    </div>
+            <h3>Custom Software Development</h3>
+            <p>Tailored business software built around your workflow, users and growth goals.</p>
+            <span class="arrow">→</span>
+          </article>
+          <article class="card reveal">
+            <div class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="M7 9h2M11 9h2M15 9h2M7 13h2M11 13h6"/>
+      </svg>
+    </div>
+            <h3>Web & Web App Development</h3>
+            <p>Fast, responsive websites and powerful web apps designed to convert visitors.</p>
+            <span class="arrow">→</span>
+          </article>
+          <article class="card reveal">
+            <div class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="7" y="2.8" width="10" height="18.4" rx="2"/>
+        <path d="M10 5h4M11 18h2"/>
+      </svg>
+    </div>
+            <h3>Mobile App Development</h3>
+            <p>Native-feeling mobile experiences built for iOS, Android and cross-platform use.</p>
+            <span class="arrow">→</span>
+          </article>
+          <article class="card reveal">
+            <div class="icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7L12 3z"/>
+        <path d="M18.2 14.5l.9 2.2 2.2.9-2.2.9-.9 2.2-.9-2.2-2.2-.9 2.2-.9.9-2.2z"/>
+      </svg>
+    </div>
+            <h3>UI/UX Design</h3>
+            <p>Elegant interfaces, clear user journeys and design systems that feel high-end.</p>
+            <span class="arrow">→</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Our Work</div>
+            <h2>Featured <span class="grad">Projects</span></h2>
+          </div>
+          <a class="btn small" href="#contact">VIEW ALL PROJECTS →</a>
+        </div>
+
+        <div class="projects">
+          <article class="project reveal">
+            <div class="project-ui">
+              <div class="mini-nav"></div><div class="mini-title"></div><div class="mini-chart"></div>
+            </div>
+            <div class="project-info"><strong>Fintra</strong><span>FinTech Platform</span></div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-ui">
+              <div class="mini-nav" style="background:#afbdd6"></div>
+              <div class="mini-title" style="background:#526784"></div>
+              <div class="mini-chart" style="background:linear-gradient(145deg,#f9fbff,#b9d2ff);border-color:#afc4e7"></div>
+            </div>
+            <div class="project-info"><strong>Healthora</strong><span>Healthcare Platform</span></div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-ui">
+              <div class="mini-nav"></div><div class="mini-title"></div>
+              <div class="mini-chart" style="background:radial-gradient(circle at 55% 45%,#d98b50 0 17%,transparent 18%),linear-gradient(145deg,#121928,#050914)"></div>
+            </div>
+            <div class="project-info"><strong>Shoppex</strong><span>E-commerce Platform</span></div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-ui">
+              <div class="mini-nav"></div><div class="mini-title"></div>
+              <div class="mini-chart" style="background:linear-gradient(90deg,#10213c 31%,#0a1425 31% 34%,#14243b 34% 64%,#0a1425 64% 67%,#10213c 67%)"></div>
+            </div>
+            <div class="project-info"><strong>Taska</strong><span>Project Management Tool</span></div>
+          </article>
+
+          <a class="project reveal" href="novasmile.html">
+            <div class="project-ui" style="background:
+              radial-gradient(circle at 82% 18%,rgba(48,190,255,.38),transparent 26%),
+              linear-gradient(150deg,#f7fcff 0%,#dff4ff 47%,#eefaff 100%);">
+              <div class="mini-nav" style="background:#9fc9db;width:88%"></div>
+              <div class="mini-title" style="background:linear-gradient(90deg,#0b7faa,#1ec7d9);width:58%"></div>
+              <div style="position:absolute;left:18px;right:18px;top:72px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+                <div style="height:82px;border-radius:12px;background:#fff;border:1px solid #cfe7ef;box-shadow:0 8px 24px rgba(31,126,157,.10)"></div>
+                <div style="height:82px;border-radius:12px;background:#fff;border:1px solid #cfe7ef;box-shadow:0 8px 24px rgba(31,126,157,.10)"></div>
+                <div style="height:82px;border-radius:12px;background:#fff;border:1px solid #cfe7ef;box-shadow:0 8px 24px rgba(31,126,157,.10)"></div>
+              </div>
+              <div style="position:absolute;left:18px;right:18px;bottom:68px;height:48px;border-radius:12px;background:linear-gradient(90deg,#087fa8,#27c9d7);opacity:.9"></div>
+            </div>
+            <div class="project-info">
+              <strong>NovaSmile Dental Clinic</strong>
+              <span>Healthcare Website • Doctor Profiles • Appointment Flow</span>
+              <div class="project-open">View Live Site →</div>
+            </div>
+          </a>
+
+          <a class="project reveal" href="ak-builders.html">
+            <div class="project-ui" style="background:
+              radial-gradient(circle at 75% 20%,rgba(215,173,99,.24),transparent 28%),
+              linear-gradient(155deg,#0c1118 0%,#111821 48%,#05080c 100%);">
+              <div class="mini-nav" style="background:linear-gradient(90deg,#d7ad63,#6d5830);width:90%"></div>
+              <div class="mini-title" style="background:linear-gradient(90deg,#f2f1ed,#d7ad63);width:72%;height:22px"></div>
+
+              <div style="position:absolute;left:18px;right:18px;top:75px;height:115px;border-radius:14px;overflow:hidden;
+                background:
+                linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.50)),
+                linear-gradient(135deg,#26303b 0%,#131a22 55%,#75603b 56%,#2d2315 70%,#10151b 100%);
+                border:1px solid rgba(215,173,99,.20);">
+                <div style="position:absolute;right:16px;bottom:12px;width:44%;height:58px;border:1px solid rgba(215,173,99,.35);
+                  background:linear-gradient(90deg,#1f252b 0 18%,#c99a4b 19% 22%,#151b22 23% 48%,#c99a4b 49% 52%,#1f252b 53% 100%)"></div>
+              </div>
+
+              <div style="position:absolute;left:18px;right:18px;bottom:68px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+                <div style="height:36px;border-radius:9px;background:#151b22;border:1px solid rgba(215,173,99,.20)"></div>
+                <div style="height:36px;border-radius:9px;background:#151b22;border:1px solid rgba(215,173,99,.20)"></div>
+                <div style="height:36px;border-radius:9px;background:#151b22;border:1px solid rgba(215,173,99,.20)"></div>
+              </div>
+            </div>
+            <div class="project-info">
+              <strong>AK BUILDERS</strong>
+              <span>Construction Website • Luxury UI • Project Showcase</span>
+              <div class="project-open">View Live Site →</div>
+            </div>
+          </a>
+
+          <a class="project reveal" href="hospital.html">
+            <div class="project-ui" style="background:
+              radial-gradient(circle at 78% 18%,rgba(49,205,190,.34),transparent 28%),
+              linear-gradient(155deg,#f3fffd 0%,#dff7f3 46%,#eafafb 100%);">
+              <div class="mini-nav" style="background:linear-gradient(90deg,#7fcac1,#2ab9a9);width:90%"></div>
+              <div class="mini-title" style="background:linear-gradient(90deg,#0f6171,#2ec8b7);width:66%;height:22px"></div>
+
+              <div style="position:absolute;left:18px;right:18px;top:74px;height:118px;border-radius:14px;overflow:hidden;
+                background:linear-gradient(145deg,#0b2f45 0%,#135868 52%,#e9faf8 53% 100%);
+                border:1px solid rgba(36,198,183,.22);">
+                <div style="position:absolute;right:18px;top:18px;width:42%;height:80px;border-radius:10px;
+                  background:
+                    linear-gradient(90deg,#dff6f3 0 18%,#6dc7bd 19% 22%,#eefafa 23% 48%,#6dc7bd 49% 52%,#dff6f3 53% 100%);
+                  border:1px solid rgba(20,122,130,.18)"></div>
+                <div style="position:absolute;left:22px;top:28px;width:50px;height:50px">
+                  <div style="position:absolute;left:19px;top:0;width:12px;height:50px;border-radius:4px;background:#37cfbf"></div>
+                  <div style="position:absolute;left:0;top:19px;width:50px;height:12px;border-radius:4px;background:#37cfbf"></div>
+                </div>
+              </div>
+
+              <div style="position:absolute;left:18px;right:18px;bottom:68px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+                <div style="height:36px;border-radius:9px;background:#ffffff;border:1px solid #cde9e5"></div>
+                <div style="height:36px;border-radius:9px;background:#ffffff;border:1px solid #cde9e5"></div>
+                <div style="height:36px;border-radius:9px;background:#ffffff;border:1px solid #cde9e5"></div>
+              </div>
+            </div>
+            <div class="project-info">
+              <strong>Aurelia Hospital</strong>
+              <span>Hospital Website • Doctors • Appointments • Emergency Care</span>
+              <div class="project-open">View Live Site →</div>
+            </div>
+          </a>
+
+
+          <a class="project reveal" href="gym.html">
+            <div class="project-ui" style="background:
+              radial-gradient(circle at 80% 18%,rgba(185,255,61,.26),transparent 28%),
+              linear-gradient(155deg,#0b0d0f 0%,#151a1c 48%,#090b0d 100%);">
+              <div class="mini-nav" style="background:linear-gradient(90deg,#b9ff3d,#536b2a);width:90%"></div>
+              <div class="mini-title" style="background:linear-gradient(90deg,#f0f3ed,#b9ff3d);width:67%;height:22px"></div>
+              <div style="position:absolute;left:18px;right:18px;top:75px;height:116px;border-radius:14px;overflow:hidden;
+                background:radial-gradient(circle at 75% 30%,rgba(185,255,61,.24),transparent 24%),linear-gradient(145deg,#171c1e 0%,#0b0e10 65%,#1b211b 100%);
+                border:1px solid rgba(185,255,61,.16);">
+                <div style="position:absolute;left:24px;top:24px;width:72px;height:7px;border-radius:8px;background:#b9ff3d"></div>
+                <div style="position:absolute;left:24px;top:46px;width:140px;height:14px;border-radius:8px;background:#f1f3ee"></div>
+                <div style="position:absolute;left:24px;top:68px;width:110px;height:9px;border-radius:8px;background:#6d7375"></div>
+              </div>
+              <div style="position:absolute;left:18px;right:18px;bottom:68px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+                <div style="height:36px;border-radius:9px;background:#161b1d;border:1px solid rgba(185,255,61,.16)"></div>
+                <div style="height:36px;border-radius:9px;background:#161b1d;border:1px solid rgba(185,255,61,.16)"></div>
+                <div style="height:36px;border-radius:9px;background:#161b1d;border:1px solid rgba(185,255,61,.16)"></div>
+              </div>
+            </div>
+            <div class="project-info">
+              <strong>IRONVAULT Fitness Club</strong>
+              <span>Gym Website • Memberships • Classes • BMI Calculator</span>
+              <div class="project-open">View Live Site →</div>
+            </div>
+          </a>
+
+
+          <a class="project reveal" href="cafe.html">
+            <div class="project-ui" style="background:
+              radial-gradient(circle at 78% 18%,rgba(216,171,115,.28),transparent 28%),
+              linear-gradient(155deg,#1a120f 0%,#2b1d16 48%,#120c09 100%);">
+              <div class="mini-nav" style="background:linear-gradient(90deg,#d8ab73,#6a462e);width:90%"></div>
+              <div class="mini-title" style="background:linear-gradient(90deg,#f3eadc,#c9884a);width:68%;height:22px"></div>
+              <div style="position:absolute;left:18px;right:18px;top:75px;height:116px;border-radius:14px;overflow:hidden;
+                background:
+                radial-gradient(circle at 70% 28%,rgba(255,190,110,.24),transparent 24%),
+                linear-gradient(145deg,#2b1c15 0%,#17100d 64%,#342116 100%);
+                border:1px solid rgba(216,171,115,.16);">
+                <div style="position:absolute;left:24px;top:24px;width:78px;height:7px;border-radius:8px;background:#d8ab73"></div>
+                <div style="position:absolute;left:24px;top:46px;width:145px;height:14px;border-radius:8px;background:#f0e7dc"></div>
+                <div style="position:absolute;right:34px;bottom:18px;width:66px;height:48px;border-radius:8px 8px 22px 22px;background:#ead9c4"></div>
+                <div style="position:absolute;right:24px;bottom:28px;width:24px;height:24px;border:5px solid #ead9c4;border-left:0;border-radius:0 18px 18px 0"></div>
+              </div>
+              <div style="position:absolute;left:18px;right:18px;bottom:68px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+                <div style="height:36px;border-radius:9px;background:#211611;border:1px solid rgba(216,171,115,.16)"></div>
+                <div style="height:36px;border-radius:9px;background:#211611;border:1px solid rgba(216,171,115,.16)"></div>
+                <div style="height:36px;border-radius:9px;background:#211611;border:1px solid rgba(216,171,115,.16)"></div>
+              </div>
+            </div>
+            <div class="project-info">
+              <strong>NOIR & BEAN Coffee House</strong>
+              <span>Café Website • Menu • Reservations • Online Ordering</span>
+              <div class="project-open">View Live Site →</div>
+            </div>
+          </a>
+
+
+          <a class="project reveal" href="school.html">
+            <div class="project-ui" style="background:
+              radial-gradient(circle at 80% 18%,rgba(228,184,95,.26),transparent 28%),
+              linear-gradient(155deg,#edf5fa 0%,#dce9f2 48%,#f7f3ea 100%);">
+              <div class="mini-nav" style="background:linear-gradient(90deg,#173e6e,#e4b85f);width:90%"></div>
+              <div class="mini-title" style="background:linear-gradient(90deg,#163d6a,#d3a343);width:70%;height:22px"></div>
+              <div style="position:absolute;left:18px;right:18px;top:75px;height:116px;border-radius:14px;overflow:hidden;
+                background:linear-gradient(145deg,#244d78 0%,#173e6e 54%,#eef4f7 55% 100%);
+                border:1px solid rgba(23,62,110,.16);">
+                <div style="position:absolute;right:24px;bottom:12px;width:48%;height:78px;border-radius:10px;background:#f3eadc;border:1px solid rgba(23,62,110,.14)"></div>
+                <div style="position:absolute;right:40px;bottom:24px;width:12px;height:42px;background:#d3a343"></div>
+                <div style="position:absolute;right:70px;bottom:24px;width:12px;height:42px;background:#d3a343"></div>
+                <div style="position:absolute;right:100px;bottom:24px;width:12px;height:42px;background:#d3a343"></div>
+              </div>
+              <div style="position:absolute;left:18px;right:18px;bottom:68px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+                <div style="height:36px;border-radius:9px;background:#ffffff;border:1px solid #d6e2ea"></div>
+                <div style="height:36px;border-radius:9px;background:#ffffff;border:1px solid #d6e2ea"></div>
+                <div style="height:36px;border-radius:9px;background:#ffffff;border:1px solid #d6e2ea"></div>
+              </div>
+            </div>
+            <div class="project-info">
+              <strong>Excellence Schooling System</strong>
+              <span>School Website • Admissions • Portals • Results • Transport</span>
+              <div class="project-open">View Live Site →</div>
+            </div>
+          </a>
+
+
+          <a class="project reveal" href="law.html">
+            <div class="project-ui" style="background:
+              radial-gradient(circle at 78% 20%,rgba(199,164,102,.24),transparent 28%),
+              linear-gradient(155deg,#0d0b09 0%,#1a1510 50%,#080705 100%);">
+              <div class="mini-nav" style="background:linear-gradient(90deg,#c7a466,#5b4529);width:90%"></div>
+              <div class="mini-title" style="background:linear-gradient(90deg,#f3eadc,#c7a466);width:66%;height:22px"></div>
+              <div style="position:absolute;left:18px;right:18px;top:75px;height:116px;border-radius:14px;overflow:hidden;
+                background:
+                radial-gradient(circle at 72% 30%,rgba(225,195,139,.18),transparent 24%),
+                linear-gradient(145deg,#16120e 0%,#2b2218 55%,#0a0908 100%);
+                border:1px solid rgba(199,164,102,.18);">
+                <div style="position:absolute;left:24px;top:24px;width:82px;height:7px;border-radius:8px;background:#c7a466"></div>
+                <div style="position:absolute;left:24px;top:46px;width:145px;height:14px;border-radius:8px;background:#f0e7dc"></div>
+                <div style="position:absolute;right:40px;bottom:14px;width:82px;height:82px;border-radius:50%;border:1px solid rgba(225,195,139,.35)"></div>
+                <div style="position:absolute;right:78px;bottom:16px;width:6px;height:74px;background:#c7a466;transform:rotate(18deg)"></div>
+              </div>
+              <div style="position:absolute;left:18px;right:18px;bottom:68px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+                <div style="height:36px;border-radius:9px;background:#15120f;border:1px solid rgba(199,164,102,.16)"></div>
+                <div style="height:36px;border-radius:9px;background:#15120f;border:1px solid rgba(199,164,102,.16)"></div>
+                <div style="height:36px;border-radius:9px;background:#15120f;border:1px solid rgba(199,164,102,.16)"></div>
+              </div>
+            </div>
+            <div class="project-info">
+              <strong>ARGENT & CO. Law Firm</strong>
+              <span>Legal Website • Consultation • Client Portal • Case Assessment</span>
+              <div class="project-open">View Live Site →</div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Our Process</div>
+            <h2>A Proven Process for<br><span class="grad">Outstanding Results</span></h2>
+          </div>
+          <p class="lead">A clear, collaborative workflow keeps your project moving fast without sacrificing quality.</p>
+        </div>
+
+        <div class="process">
+          <div class="step reveal"><div class="num">01</div><h3>DISCOVER</h3><p>We understand your goals, users, market and technical needs.</p></div>
+          <div class="step reveal"><div class="num">02</div><h3>PLAN</h3><p>We define roadmap, architecture, features and delivery milestones.</p></div>
+          <div class="step reveal"><div class="num">03</div><h3>BUILD</h3><p>Our team develops clean, scalable and secure digital products.</p></div>
+          <div class="step reveal"><div class="num">04</div><h3>TEST</h3><p>Performance, responsiveness and quality are tested carefully.</p></div>
+          <div class="step reveal"><div class="num">05</div><h3>LAUNCH</h3><p>We deploy, optimize and support your product after launch.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Clients Love Us</div>
+            <h2>What Our Clients<br><span class="grad">Say About Us</span></h2>
+          </div>
+          <p class="lead">Long-term partnerships are built on reliable communication, strong design and code that actually works.</p>
+        </div>
+
+        <div class="testimonials">
+          <div class="quote reveal"><b>&quot;</b><p>CODEXA transformed our idea into a polished digital product. Their team is responsive, professional and creative.</p><div class="person"><div class="avatar">A</div><div>Alex Morgan<small>CEO, Fintra</small></div></div></div>
+          <div class="quote reveal"><b>&quot;</b><p>Their attention to detail and commitment to quality is unmatched. Highly recommended for serious projects.</p><div class="person"><div class="avatar">S</div><div>Sarah Johnson<small>CTO, Healthora</small></div></div></div>
+          <div class="quote reveal"><b>&quot;</b><p>Excellent communication, on-time delivery and outstanding support throughout the entire project.</p><div class="person"><div class="avatar">D</div><div>Daniel Lee<small>Founder, Shoppex</small></div></div></div>
+          <div class="quote reveal"><b>&quot;</b><p>A reliable and skilled software team that truly cares about your success. We'd definitely work with them again.</p><div class="person"><div class="avatar">M</div><div>Michael Brown<small>Product Manager, Taska</small></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="cta reveal">
+          <div>
+            <div class="eyebrow">Ready To Start?</div>
+            <h2>Let's Build Something<br><span class="grad">Amazing Together</span></h2>
+            <p class="lead">Have a project in mind? Tell us what you want to build and we'll help turn it into a premium digital product.</p>
+            <a class="btn primary" href="mailto:hello@codexa.com">START A PROJECT →</a>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-chip"><span>Email Us</span><b>hello@codexa.com</b></div>
+            <div class="contact-chip"><span>Call Us</span><b>+92 300 1234567</b></div>
+            <div class="contact-chip"><span>Location</span><b>Karachi, Pakistan</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© 2026 CODEXA Software House. All rights reserved.</div>
+      <div>Web • Apps • Software • UI/UX</div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const menuBtn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    menuBtn.addEventListener('click', () => drawer.classList.toggle('open'));
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.12});
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // subtle 3D hero movement
+    const stage = document.querySelector('.logo-stage');
+    const logo = document.querySelector('.hero-logo');
+    if(stage && logo){
+      stage.addEventListener('mousemove', e => {
+        const r = stage.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width - .5) * 10;
+        const y = ((e.clientY - r.top) / r.height - .5) * -8;
+        logo.style.transform = `rotateY(${x}deg) rotateX(${y}deg) translateY(-4px)`;
+      });
+      stage.addEventListener('mouseleave', () => logo.style.transform = '');
+    }
+  </script>
+</body>
+</html>

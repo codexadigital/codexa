@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#17100d" name="theme-color"/>
+<title>EMBER SPICE — Modern South Asian Kitchen</title>
+<meta content="Colorful premium restaurant website with rich menu photography, reservations, online ordering, catering, events and more." name="description"/>
+<style>
+:root{
+ --ink:#17100d;--ink2:#241714;--cream:#fff7ea;--paper:#fffaf2;--ember:#ef5d42;--saffron:#f5b642;
+ --teal:#2fb899;--plum:#7a355f;--sky:#54b7d3;--muted:#766a63;--line:rgba(52,31,20,.12);
+ --darkLine:rgba(255,255,255,.08);--shadow:0 26px 80px rgba(63,34,19,.16);--max:1260px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}.section{padding:100px 0}
+.alt{background:#f6efe5}.dark{background:#17100d;color:#fff}
+.kicker{font-family:"Trebuchet MS",Arial,sans-serif;font-size:11px;font-weight:900;letter-spacing:.17em;text-transform:uppercase;color:var(--ember);display:inline-flex;align-items:center;gap:10px}
+.kicker:before{content:"";width:30px;height:2px;background:linear-gradient(90deg,var(--ember),var(--saffron))}
+h1,h2,h3,p{margin-top:0}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(58px,7.4vw,104px);line-height:.92;letter-spacing:-.055em;font-weight:500;margin:18px 0 25px}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,64px);line-height:1.02;letter-spacing:-.04em;font-weight:500;margin:12px 0 18px}
+h3{font-family:"Trebuchet MS",Arial,sans-serif}
+.lead{font-family:"Trebuchet MS",Arial,sans-serif;font-size:16px;line-height:1.8;color:var(--muted);max-width:720px}
+.dark .lead{color:#bdb1aa}.accent{color:var(--ember)}.accent2{color:var(--saffron)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:0 21px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:11px;font-weight:900;letter-spacing:.04em;cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(56,34,20,.12)}.btn.primary{background:linear-gradient(120deg,var(--ember),#ff8b46);color:#fff;border:0}.btn.darkbtn{background:#17100d;color:#fff;border:0}.btn.saffron{background:linear-gradient(120deg,var(--saffron),#ffd56d);border:0;color:#26180e}
+.topbar{height:34px;background:#100b09;color:#cfc3bb;font-size:10px;display:flex;align-items:center}.topbar .container{display:flex;justify-content:space-between;gap:20px}
+.navwrap{position:fixed;top:0;left:0;right:0;z-index:60;transition:.25s}.navwrap.scrolled{background:rgba(255,250,242,.94);backdrop-filter:blur(18px);box-shadow:0 10px 30px rgba(52,30,18,.08)}.navwrap.scrolled .topbar{display:none}.navwrap.scrolled nav{height:74px}
+.navspace{height:116px}nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:13px}.logo{width:55px;height:55px;border-radius:18px;background:conic-gradient(from 210deg,var(--ember),var(--saffron),var(--teal),var(--plum),var(--ember));display:grid;place-items:center;color:#fff;font-family:Georgia,serif;font-size:26px;font-weight:900;box-shadow:0 14px 35px rgba(239,93,66,.25)}.brandname{font-family:Georgia,serif;font-size:18px;font-weight:900;letter-spacing:.07em}.brandsub{font-size:8px;color:#84766e;letter-spacing:.15em;margin-top:4px}
+.navlinks{display:flex;gap:22px;font-size:10px;font-weight:800;color:#5f5148}.navlinks a{position:relative}.navlinks a:after{content:"";position:absolute;left:0;bottom:-8px;width:0;height:2px;background:var(--ember);transition:.2s}.navlinks a:hover:after{width:100%}
+.menuBtn{display:none;background:none;border:0;font-weight:900}.drawer{display:none;position:fixed;top:78px;left:12px;right:12px;z-index:59;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow)}.drawer.open{display:block}.drawer a{display:block;padding:14px;border-bottom:1px solid var(--line);font-size:13px}
+
+.hero{min-height:850px;position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1781332150932-e4af32932ee9?auto=format&fit=crop&w=1200&q=86') center/cover no-repeat;filter:saturate(1.12) contrast(1.05)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,10,8,.97),rgba(18,10,8,.75) 48%,rgba(18,10,8,.10) 84%),linear-gradient(180deg,transparent 55%,rgba(0,0,0,.52))}
+.hero-content{position:relative;z-index:2;max-width:790px;color:#fff;padding:78px 0 70px}.hero .kicker{color:#ffd171}.hero .kicker:before{background:#ffd171}.hero p{font-family:"Trebuchet MS",Arial,sans-serif;font-size:17px;line-height:1.82;color:#e5d8cf;max-width:650px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:36px}.hbadge{padding:13px 15px;border:1px solid rgba(255,255,255,.12);background:rgba(20,11,9,.58);backdrop-filter:blur(9px);border-radius:14px;font-size:10px;color:#d8cbc1}.hbadge b{color:#ffd072}
+
+.quick{margin-top:-36px;position:relative;z-index:5}.quickgrid{display:grid;grid-template-columns:repeat(6,1fr);background:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}.qitem{padding:22px;border-right:1px solid var(--line);transition:.2s}.qitem:last-child{border-right:0}.qitem:hover{background:#fff4e7}.qicon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-weight:900;color:#fff;margin-bottom:13px}.qitem:nth-child(1) .qicon{background:var(--ember)}.qitem:nth-child(2) .qicon{background:var(--saffron);color:#2b1b10}.qitem:nth-child(3) .qicon{background:var(--teal)}.qitem:nth-child(4) .qicon{background:var(--plum)}.qitem:nth-child(5) .qicon{background:var(--sky)}.qitem:nth-child(6) .qicon{background:#4032a6}.qitem b{font-size:12px;display:block;margin-bottom:4px}.qitem span{font-size:10px;color:#86786f}
+
+.story{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}.story-img{height:590px;border-radius:30px;overflow:hidden;box-shadow:var(--shadow);position:relative}.story-img img{width:100%;height:100%;object-fit:cover}.story-img:after{content:"EMBER • SPICE";position:absolute;left:24px;bottom:20px;font-family:Georgia,serif;color:#fff;font-size:28px;letter-spacing:.08em;text-shadow:0 4px 20px #000}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}.value{padding:17px;border-radius:16px;background:#fff;border:1px solid var(--line)}.value b{display:block;margin-bottom:4px;color:#352118}.value span{font-size:11px;line-height:1.6;color:#7c6e65}
+
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:38px}
+.menu-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}.searchbox{flex:1;min-width:230px;display:flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px}.searchbox input{flex:1;border:0;outline:0;background:none;padding:8px 5px}.filter{padding:10px 15px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:10px;font-weight:900;cursor:pointer}.filter.active{background:var(--ink);color:#fff}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.menu-card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 16px 48px rgba(61,34,18,.06);transition:.25s}.menu-card:hover{transform:translateY(-5px);box-shadow:0 24px 58px rgba(61,34,18,.12)}.menu-img{height:210px;overflow:hidden}.menu-img img{width:100%;height:100%;object-fit:cover;transition:.45s}.menu-card:hover img{transform:scale(1.05)}.menu-body{padding:18px}.menu-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.diet{font-size:8px;font-weight:900;padding:6px 8px;border-radius:999px}.diet.veg{background:#e7f8ed;color:#1b7a43}.diet.nonveg{background:#ffe9e5;color:#b33d2c}.spice{font-size:11px}.menu-body h3{font-size:18px;margin:0 0 7px}.menu-body p{font-size:11px;color:#786a61;line-height:1.65;margin:0 0 15px;min-height:52px}.menu-foot{display:flex;justify-content:space-between;align-items:center;gap:12px}.menu-foot strong{font-size:14px;color:#d84f39}.add{border:0;background:#17100d;color:#fff;border-radius:999px;padding:9px 12px;font-size:9px;font-weight:900;cursor:pointer}
+
+.colorband{background:linear-gradient(90deg,var(--ember),var(--saffron),var(--teal),var(--sky),var(--plum));padding:5px}
+.specials{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.special{border-radius:24px;padding:27px;color:#fff;min-height:250px;position:relative;overflow:hidden}.special:nth-child(1){background:linear-gradient(145deg,#d94a35,#8c1f24)}.special:nth-child(2){background:linear-gradient(145deg,#1a9a82,#135b62)}.special:nth-child(3){background:linear-gradient(145deg,#7040a3,#432565)}.special:after{content:"";position:absolute;right:-55px;bottom:-55px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08)}.special span{font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:900}.special h3{font-family:Georgia,serif;font-size:30px;margin:10px 0}.special p{font-size:11px;line-height:1.7;color:rgba(255,255,255,.80)}
+
+.reserve{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:start}.formcard{background:#fff;border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:var(--shadow)}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:#6e5e55}.field input,.field select,.field textarea{background:#fffaf4;border:1px solid #eadfd4;border-radius:11px;padding:13px;outline:0}.field textarea{min-height:95px;resize:vertical}
+.info-list{display:grid;gap:12px;margin-top:24px}.info{padding:14px 0;border-top:1px solid var(--line)}.info b{display:block;margin-bottom:3px}.info span{font-size:11px;color:#7d6f66}
+
+.catering{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;background:#17100d;color:#fff;border-radius:30px;padding:40px}.catering .lead{color:#b9ada5}.cater-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.cater{padding:15px;border:1px solid rgba(255,255,255,.10);border-radius:14px;background:rgba(255,255,255,.03);font-size:11px}.cater b{display:block;color:#ffc761;margin-bottom:4px}
+
+.gallery{display:grid;grid-template-columns:1.15fr .85fr .85fr;gap:12px}.gimg{height:240px;border-radius:22px;overflow:hidden;position:relative}.gimg.big{height:492px;grid-row:span 2}.gimg img{width:100%;height:100%;object-fit:cover}.gimg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.35))}
+
+.loyalty{background:linear-gradient(120deg,#ffe0ad,#ffd36d);border-radius:30px;padding:40px;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center}.loyalty h2{color:#2c1c12}.loyalty .lead{color:#6b4e35}.loyalty-list{display:grid;gap:10px}.loyalty-row{background:rgba(255,255,255,.48);border-radius:13px;padding:14px;font-size:11px}.loyalty-row b{display:block;margin-bottom:4px}
+
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.testimonial{background:#fff;border:1px solid var(--line);border-radius:21px;padding:24px}.stars{color:#f2a62c}.testimonial p{font-size:12px;line-height:1.75;color:#776b63}.person{display:flex;align-items:center;gap:10px}.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(145deg,var(--ember),var(--plum));display:grid;place-items:center;color:#fff;font-weight:900}.person b{font-size:12px}.person small{display:block;font-size:10px;color:#8a7c73}
+
+.faq{display:grid;gap:10px}.faqitem{border:1px solid var(--line);background:#fff;border-radius:15px;overflow:hidden}.faqq{width:100%;padding:17px 18px;background:none;border:0;text-align:left;display:flex;justify-content:space-between;font-weight:800;cursor:pointer}.faqa{display:none;padding:0 18px 18px;color:#756a62;font-size:12px;line-height:1.7}.faqitem.open .faqa{display:block}
+.mapwrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}.map{min-height:390px;border-radius:26px;background:linear-gradient(135deg,rgba(239,93,66,.12),rgba(47,184,153,.12)),repeating-linear-gradient(0deg,#f4ede3 0 42px,#e6dcd0 43px 44px),repeating-linear-gradient(90deg,transparent 0 62px,#dacdbf 63px 64px);position:relative}.map:before{content:"";position:absolute;left:52%;top:46%;width:30px;height:30px;background:var(--ember);border-radius:50% 50% 50% 0;transform:rotate(-45deg)}.hours{background:#17100d;color:#fff;border-radius:26px;padding:30px}.hourrow{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:11px}
+
+.cartbtn{position:fixed;right:18px;bottom:18px;z-index:55;width:62px;height:62px;border:0;border-radius:50%;background:linear-gradient(145deg,var(--ember),var(--saffron));color:#fff;font-weight:900;box-shadow:0 18px 45px rgba(0,0,0,.26);cursor:pointer}.cartcount{position:absolute;right:-2px;top:-2px;width:21px;height:21px;border-radius:50%;background:#fff;color:#17100d;display:grid;place-items:center;font-size:9px}
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.68);backdrop-filter:blur(8px);padding:18px}.modal.open{display:flex}.modalbox{width:min(540px,100%);max-height:82vh;overflow:auto;background:#fff;border-radius:24px;padding:24px;box-shadow:0 30px 90px rgba(0,0,0,.3)}.cartrow{display:flex;justify-content:space-between;gap:15px;padding:13px 0;border-bottom:1px solid var(--line);font-size:11px}.carttotal{display:flex;justify-content:space-between;padding-top:18px;font-weight:900;color:#d84f39}
+
+footer{background:#100b09;color:#8f837b;padding:50px 0 28px}.footergrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:30px}footer h4{color:#fff;margin:0 0 14px}footer a{display:block;padding:6px 0;font-size:11px}.copy{margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;font-size:10px}
+.reveal{opacity:0;transform:translateY(24px);transition:.65s}.reveal.show{opacity:1;transform:none}
+
+@media(max-width:1020px){
+ .topbar{display:none}.navspace{height:82px}.navlinks{display:none}.menuBtn{display:block}
+ .quickgrid{grid-template-columns:repeat(3,1fr)}.story,.reserve,.catering,.loyalty,.mapwrap{grid-template-columns:1fr}
+ .menu-grid{grid-template-columns:repeat(2,1fr)}.specials,.testimonials{grid-template-columns:1fr 1fr}
+ .gallery{grid-template-columns:1fr 1fr}.gimg.big{grid-row:auto;height:240px}
+}
+@media(max-width:650px){
+ .container{width:min(var(--max),calc(100% - 24px))}.section{padding:74px 0}h1{font-size:53px}
+ .quickgrid,.menu-grid,.specials,.testimonials,.formgrid,.footergrid,.gallery{grid-template-columns:1fr}
+ .values,.cater-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.sectionhead{flex-direction:column;align-items:flex-start}.copy{flex-direction:column;gap:8px}
+}
+
+.menu-img img,.story-img img,.gimg img{background:#eadfd4}
+.menu-img img{object-position:center}
+</style>
+</head>
+<body>
+<header class="navwrap" id="nav">
+<div class="topbar"><div class="container"><span>Modern South Asian Kitchen • Live Fire • Bold Flavours</span><span>Open Daily 12PM–1AM • +92 300 888 2020</span></div></div>
+<div class="container"><nav>
+<a class="brand" href="#home"><div class="logo">ES</div><div><div class="brandname">EMBER SPICE</div><div class="brandsub">FIRE • FLAVOUR • CELEBRATION</div></div></a>
+<div class="navlinks"><a href="#menu">Menu</a><a href="#reserve">Reservations</a><a href="#story">Our Story</a><a href="#catering">Catering</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></div>
+<a class="btn primary" href="#reserve">BOOK A TABLE →</a><button class="menuBtn" id="menuBtn">MENU</button>
+</nav></div>
+</header>
+<div class="drawer" id="drawer"><a href="#menu">Menu</a><a href="#reserve">Reservations</a><a href="#story">Our Story</a><a href="#catering">Catering</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></div>
+<div class="navspace"></div>
+<main>
+<section class="hero" id="home"><div class="hero-bg"></div><div class="container"><div class="hero-content reveal">
+<div class="kicker">Ember Spice Restaurant</div><h1>Where fire meets<br/><span class="accent2">flavour.</span></h1>
+<p>A colourful modern South Asian kitchen serving smoky grills, rich curries, royal biryanis, playful fusion plates and desserts worth staying for.</p>
+<div class="actions"><a class="btn primary" href="#menu">EXPLORE FULL MENU →</a><a class="btn" href="#reserve" style="color:white;border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.07)">RESERVE A TABLE</a></div>
+<div class="hero-badges"><div class="hbadge"><b>38+ Dishes</b> Full Visual Menu</div><div class="hbadge"><b>Live Fire</b> Charcoal Grill</div><div class="hbadge"><b>4.9★</b> Guest Favourite</div><div class="hbadge"><b>Family Dining</b> + Private Events</div></div>
+</div></div></section>
+<section class="quick"><div class="container quickgrid">
+<a class="qitem" href="#menu"><div class="qicon">01</div><b>Full Menu</b><span>Photos for every dish</span></a>
+<a class="qitem" href="#reserve"><div class="qicon">02</div><b>Reserve Table</b><span>Date, time &amp; seating</span></a>
+<a class="qitem" href="#menu"><div class="qicon">03</div><b>Order Online</b><span>Add to cart + WhatsApp</span></a>
+<a class="qitem" href="#catering"><div class="qicon">04</div><b>Catering</b><span>Corporate &amp; weddings</span></a>
+<a class="qitem" href="#events"><div class="qicon">05</div><b>Private Events</b><span>Birthdays &amp; dinners</span></a>
+<a class="qitem" href="#contact"><div class="qicon">06</div><b>Visit Us</b><span>Location &amp; timings</span></a>
+</div></section>
+<section class="section" id="story"><div class="container story">
+<div class="story-img reveal"><img alt="Real South Asian food photography from Unsplash" src="https://images.unsplash.com/photo-1772730064970-a7b2735c93b9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="reveal"><div class="kicker">Our Story</div><h2>Bold food.<br/><span class="accent">Warm hospitality.</span></h2><p class="lead">Ember Spice is designed as a high-energy dining experience: colourful plates, fragrant spices, open-fire cooking and a room made for families, celebrations and late-night dinners.</p>
+<div class="values"><div class="value"><b>Live-Fire Cooking</b><span>Charcoal grills, tandoor and smoky finishing.</span></div><div class="value"><b>Fresh Daily</b><span>Marinades, breads, chutneys and desserts prepared fresh.</span></div><div class="value"><b>Big Menu</b><span>Something for families, foodies, vegetarians and spice lovers.</span></div><div class="value"><b>Celebration Ready</b><span>Private dining, birthdays, corporate meals and catering.</span></div></div></div>
+</div></section>
+<div class="colorband"></div>
+<section class="section alt" id="menu"><div class="container">
+<div class="sectionhead reveal"><div><div class="kicker">Visual Menu</div><h2>Pick your mood.<br/><span class="accent">We’ll bring the fire.</span></h2></div><button class="btn darkbtn" id="openCartTop">VIEW CART →</button></div>
+<div class="menu-controls reveal">
+<div class="searchbox"><input id="menuSearch" placeholder="Search chicken, biryani, paneer, drinks..."/></div>
+<button class="filter active" data-filter="all">All</button><button class="filter" data-filter="starters">Starters</button><button class="filter" data-filter="grills">Grills</button><button class="filter" data-filter="curries">Curries</button><button class="filter" data-filter="rice">Rice</button><button class="filter" data-filter="breads">Breads</button><button class="filter" data-filter="fusion">Fusion</button><button class="filter" data-filter="desserts">Desserts</button><button class="filter" data-filter="drinks">Drinks</button>
+</div>
+<div class="menu-grid" id="menuGrid">
+<article class="menu-card reveal" data-cat="starters" data-diet="nonveg" data-name="smoky chicken tikka">
+<div class="menu-img"><img alt="Smoky Chicken Tikka — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1781332150932-e4af32932ee9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Smoky Chicken Tikka</h3>
+<p>Charred chicken, hung yogurt, Kashmiri chili, lemon.</p>
+<div class="menu-foot"><strong>PKR 780</strong><button class="add" data-name="Smoky Chicken Tikka" data-price="780">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="starters" data-diet="veg" data-name="paneer fire cubes">
+<div class="menu-img"><img alt="Paneer Fire Cubes — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1757715376287-90f24dac4593?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Paneer Fire Cubes</h3>
+<p>Tandoori paneer, peppers, mint chutney, ember spice rub.</p>
+<div class="menu-foot"><strong>PKR 720</strong><button class="add" data-name="Paneer Fire Cubes" data-price="720">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="starters" data-diet="nonveg" data-name="crispy dynamite prawns">
+<div class="menu-img"><img alt="Crispy Dynamite Prawns — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1681108933468-d6ee56f1f97e?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶🌶</span></div>
+<h3>Crispy Dynamite Prawns</h3>
+<p>Crispy prawns, spicy mayo, sesame, spring onion.</p>
+<div class="menu-foot"><strong>PKR 1,150</strong><button class="add" data-name="Crispy Dynamite Prawns" data-price="1150">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="starters" data-diet="veg" data-name="loaded masala fries">
+<div class="menu-img"><img alt="Loaded Masala Fries — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1717294978892-cef673e1d17b?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Loaded Masala Fries</h3>
+<p>Crispy fries, masala dust, cheese sauce, jalapeños.</p>
+<div class="menu-foot"><strong>PKR 590</strong><button class="add" data-name="Loaded Masala Fries" data-price="590">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="starters" data-diet="nonveg" data-name="mutton seekh kebab">
+<div class="menu-img"><img alt="Mutton Seekh Kebab — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1781332150932-e4af32932ee9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶🌶</span></div>
+<h3>Mutton Seekh Kebab</h3>
+<p>Hand-minced mutton, green chili, cumin, smoked butter.</p>
+<div class="menu-foot"><strong>PKR 990</strong><button class="add" data-name="Mutton Seekh Kebab" data-price="990">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="starters" data-diet="veg" data-name="corn chaat cups">
+<div class="menu-img"><img alt="Corn Chaat Cups — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1757715376287-90f24dac4593?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶</span></div>
+<h3>Corn Chaat Cups</h3>
+<p>Roasted corn, tamarind, mint, crunchy sev.</p>
+<div class="menu-foot"><strong>PKR 520</strong><button class="add" data-name="Corn Chaat Cups" data-price="520">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="grills" data-diet="nonveg" data-name="ember mixed grill">
+<div class="menu-img"><img alt="Ember Mixed Grill — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1781332150932-e4af32932ee9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Ember Mixed Grill</h3>
+<p>Chicken tikka, malai boti, seekh kebab, grilled prawns.</p>
+<div class="menu-foot"><strong>PKR 2,490</strong><button class="add" data-name="Ember Mixed Grill" data-price="2490">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="grills" data-diet="nonveg" data-name="malai boti">
+<div class="menu-img"><img alt="Malai Boti — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1781332150932-e4af32932ee9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶</span></div>
+<h3>Malai Boti</h3>
+<p>Creamy charcoal chicken, cardamom, cashew, mild spices.</p>
+<div class="menu-foot"><strong>PKR 980</strong><button class="add" data-name="Malai Boti" data-price="980">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="grills" data-diet="nonveg" data-name="lahori chargha">
+<div class="menu-img"><img alt="Lahori Chargha — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1781332150932-e4af32932ee9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶🌶</span></div>
+<h3>Lahori Chargha</h3>
+<p>Whole-style spiced chicken, lemon, chaat masala.</p>
+<div class="menu-foot"><strong>PKR 1,890</strong><button class="add" data-name="Lahori Chargha" data-price="1890">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="grills" data-diet="nonveg" data-name="beef bihari boti">
+<div class="menu-img"><img alt="Beef Bihari Boti — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1781332150932-e4af32932ee9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶🌶</span></div>
+<h3>Beef Bihari Boti</h3>
+<p>Tender beef strips, papaya marinade, mustard oil, chilies.</p>
+<div class="menu-foot"><strong>PKR 1,190</strong><button class="add" data-name="Beef Bihari Boti" data-price="1190">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="grills" data-diet="nonveg" data-name="tandoori fish">
+<div class="menu-img"><img alt="Tandoori Fish — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1568782947821-3d660dacc7cb?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Tandoori Fish</h3>
+<p>Boneless fish, ajwain, lemon, red chili, fresh herbs.</p>
+<div class="menu-foot"><strong>PKR 1,490</strong><button class="add" data-name="Tandoori Fish" data-price="1490">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="grills" data-diet="nonveg" data-name="afghani chicken">
+<div class="menu-img"><img alt="Afghani Chicken — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1781332150932-e4af32932ee9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶</span></div>
+<h3>Afghani Chicken</h3>
+<p>Cream, pepper, garlic, charred chicken, butter glaze.</p>
+<div class="menu-foot"><strong>PKR 1,290</strong><button class="add" data-name="Afghani Chicken" data-price="1290">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="curries" data-diet="nonveg" data-name="butter chicken royale">
+<div class="menu-img"><img alt="Butter Chicken Royale — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1772730064970-a7b2735c93b9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶</span></div>
+<h3>Butter Chicken Royale</h3>
+<p>Silky tomato-butter gravy, grilled chicken, cream swirl.</p>
+<div class="menu-foot"><strong>PKR 1,390</strong><button class="add" data-name="Butter Chicken Royale" data-price="1390">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="curries" data-diet="nonveg" data-name="chicken handi">
+<div class="menu-img"><img alt="Chicken Handi — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1772730064970-a7b2735c93b9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Chicken Handi</h3>
+<p>Boneless chicken, tomato, cream, ginger, green chili.</p>
+<div class="menu-foot"><strong>PKR 1,290</strong><button class="add" data-name="Chicken Handi" data-price="1290">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="curries" data-diet="nonveg" data-name="mutton karahi">
+<div class="menu-img"><img alt="Mutton Karahi — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1772730064970-a7b2735c93b9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶🌶</span></div>
+<h3>Mutton Karahi</h3>
+<p>Mutton, tomatoes, cracked pepper, ginger, coriander.</p>
+<div class="menu-foot"><strong>PKR 2,090</strong><button class="add" data-name="Mutton Karahi" data-price="2090">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="curries" data-diet="veg" data-name="dal makhani">
+<div class="menu-img"><img alt="Dal Makhani — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1772730064970-a7b2735c93b9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶</span></div>
+<h3>Dal Makhani</h3>
+<p>Slow-cooked black lentils, butter, cream, smoked chili.</p>
+<div class="menu-foot"><strong>PKR 790</strong><button class="add" data-name="Dal Makhani" data-price="790">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="curries" data-diet="veg" data-name="paneer lababdar">
+<div class="menu-img"><img alt="Paneer Lababdar — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1757715376287-90f24dac4593?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Paneer Lababdar</h3>
+<p>Paneer, onion-tomato gravy, fenugreek, cream.</p>
+<div class="menu-foot"><strong>PKR 990</strong><button class="add" data-name="Paneer Lababdar" data-price="990">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="curries" data-diet="nonveg" data-name="palak chicken">
+<div class="menu-img"><img alt="Palak Chicken — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1757715376287-90f24dac4593?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Palak Chicken</h3>
+<p>Chicken in vibrant spinach gravy, garlic, green chili.</p>
+<div class="menu-foot"><strong>PKR 1,190</strong><button class="add" data-name="Palak Chicken" data-price="1190">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="rice" data-diet="nonveg" data-name="royal chicken biryani">
+<div class="menu-img"><img alt="Royal Chicken Biryani — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1666190092689-e3968aa0c32c?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Royal Chicken Biryani</h3>
+<p>Aromatic basmati, saffron, spiced chicken, fried onion.</p>
+<div class="menu-foot"><strong>PKR 990</strong><button class="add" data-name="Royal Chicken Biryani" data-price="990">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="rice" data-diet="nonveg" data-name="mutton dum biryani">
+<div class="menu-img"><img alt="Mutton Dum Biryani — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1666190092689-e3968aa0c32c?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶🌶</span></div>
+<h3>Mutton Dum Biryani</h3>
+<p>Slow-cooked mutton, basmati, saffron, mint, whole spices.</p>
+<div class="menu-foot"><strong>PKR 1,390</strong><button class="add" data-name="Mutton Dum Biryani" data-price="1390">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="rice" data-diet="nonveg" data-name="kabuli pulao">
+<div class="menu-img"><img alt="Kabuli Pulao — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1666190092689-e3968aa0c32c?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶</span></div>
+<h3>Kabuli Pulao</h3>
+<p>Basmati, tender beef, raisins, carrots, toasted nuts.</p>
+<div class="menu-foot"><strong>PKR 1,190</strong><button class="add" data-name="Kabuli Pulao" data-price="1190">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="rice" data-diet="veg" data-name="ember veg pulao">
+<div class="menu-img"><img alt="Ember Veg Pulao — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1666190092689-e3968aa0c32c?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶</span></div>
+<h3>Ember Veg Pulao</h3>
+<p>Basmati rice, seasonal vegetables, herbs, roasted nuts.</p>
+<div class="menu-foot"><strong>PKR 760</strong><button class="add" data-name="Ember Veg Pulao" data-price="760">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="breads" data-diet="veg" data-name="garlic butter naan">
+<div class="menu-img"><img alt="Garlic Butter Naan — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1772730064970-a7b2735c93b9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶</span></div>
+<h3>Garlic Butter Naan</h3>
+<p>Tandoor naan, roasted garlic, butter, coriander.</p>
+<div class="menu-foot"><strong>PKR 280</strong><button class="add" data-name="Garlic Butter Naan" data-price="280">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="breads" data-diet="veg" data-name="cheese naan">
+<div class="menu-img"><img alt="Cheese Naan — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1650142700227-ebd74e00d84e?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶</span></div>
+<h3>Cheese Naan</h3>
+<p>Stuffed mozzarella naan with butter glaze.</p>
+<div class="menu-foot"><strong>PKR 420</strong><button class="add" data-name="Cheese Naan" data-price="420">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="breads" data-diet="veg" data-name="roghni naan">
+<div class="menu-img"><img alt="Roghni Naan — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1772730064970-a7b2735c93b9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶</span></div>
+<h3>Roghni Naan</h3>
+<p>Sesame-rich soft naan, butter brushed.</p>
+<div class="menu-foot"><strong>PKR 320</strong><button class="add" data-name="Roghni Naan" data-price="320">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="breads" data-diet="veg" data-name="whole wheat roti">
+<div class="menu-img"><img alt="Whole Wheat Roti — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1650142700227-ebd74e00d84e?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶</span></div>
+<h3>Whole Wheat Roti</h3>
+<p>Tandoor-baked whole wheat flatbread.</p>
+<div class="menu-foot"><strong>PKR 160</strong><button class="add" data-name="Whole Wheat Roti" data-price="160">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="fusion" data-diet="nonveg" data-name="tandoori chicken burger">
+<div class="menu-img"><img alt="Tandoori Chicken Burger — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1629471722874-13d4208d62ea?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Tandoori Chicken Burger</h3>
+<p>Charred chicken fillet, slaw, mint mayo, brioche.</p>
+<div class="menu-foot"><strong>PKR 1,090</strong><button class="add" data-name="Tandoori Chicken Burger" data-price="1090">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="fusion" data-diet="nonveg" data-name="masala steak pasta">
+<div class="menu-img"><img alt="Masala Steak Pasta — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1572015124294-488267231e35?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Masala Steak Pasta</h3>
+<p>Creamy pasta, sliced steak, chili-garlic masala.</p>
+<div class="menu-foot"><strong>PKR 1,490</strong><button class="add" data-name="Masala Steak Pasta" data-price="1490">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="fusion" data-diet="veg" data-name="paneer tikka wrap">
+<div class="menu-img"><img alt="Paneer Tikka Wrap — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1757715376287-90f24dac4593?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Paneer Tikka Wrap</h3>
+<p>Paneer tikka, pickled onion, mint chutney, soft wrap.</p>
+<div class="menu-foot"><strong>PKR 890</strong><button class="add" data-name="Paneer Tikka Wrap" data-price="890">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="fusion" data-diet="nonveg" data-name="ember loaded pizza">
+<div class="menu-img"><img alt="Ember Loaded Pizza — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1774806189179-d85e97215555?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet nonveg">NON-VEG</span><span class="spice">🌶🌶</span></div>
+<h3>Ember Loaded Pizza</h3>
+<p>Smoked chicken, peppers, onions, mozzarella, chili oil.</p>
+<div class="menu-foot"><strong>PKR 1,690</strong><button class="add" data-name="Ember Loaded Pizza" data-price="1690">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="desserts" data-diet="veg" data-name="gulab jamun cheesecake">
+<div class="menu-img"><img alt="Gulab Jamun Cheesecake — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1773620496695-73c2086abf39?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice"></span></div>
+<h3>Gulab Jamun Cheesecake</h3>
+<p>Creamy cheesecake, gulab jamun, pistachio crumb.</p>
+<div class="menu-foot"><strong>PKR 720</strong><button class="add" data-name="Gulab Jamun Cheesecake" data-price="720">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="desserts" data-diet="veg" data-name="saffron rasmalai">
+<div class="menu-img"><img alt="Saffron Rasmalai — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice"></span></div>
+<h3>Saffron Rasmalai</h3>
+<p>Soft rasmalai, saffron milk, pistachio, rose.</p>
+<div class="menu-foot"><strong>PKR 690</strong><button class="add" data-name="Saffron Rasmalai" data-price="690">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="desserts" data-diet="veg" data-name="chocolate lava kulfi">
+<div class="menu-img"><img alt="Chocolate Lava Kulfi — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice"></span></div>
+<h3>Chocolate Lava Kulfi</h3>
+<p>Warm chocolate cake, kulfi, cocoa crunch.</p>
+<div class="menu-foot"><strong>PKR 790</strong><button class="add" data-name="Chocolate Lava Kulfi" data-price="790">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="desserts" data-diet="veg" data-name="lotus kheer jar">
+<div class="menu-img"><img alt="Lotus Kheer Jar — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice"></span></div>
+<h3>Lotus Kheer Jar</h3>
+<p>Slow-cooked rice pudding, Lotus crumble, caramel.</p>
+<div class="menu-foot"><strong>PKR 620</strong><button class="add" data-name="Lotus Kheer Jar" data-price="620">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="drinks" data-diet="veg" data-name="mango chili fizz">
+<div class="menu-img"><img alt="Mango Chili Fizz — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶</span></div>
+<h3>Mango Chili Fizz</h3>
+<p>Mango, lime, soda, chili-salt rim.</p>
+<div class="menu-foot"><strong>PKR 520</strong><button class="add" data-name="Mango Chili Fizz" data-price="520">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="drinks" data-diet="veg" data-name="rose lychee cooler">
+<div class="menu-img"><img alt="Rose Lychee Cooler — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice"></span></div>
+<h3>Rose Lychee Cooler</h3>
+<p>Lychee, rose, lemon, soda, basil seeds.</p>
+<div class="menu-foot"><strong>PKR 560</strong><button class="add" data-name="Rose Lychee Cooler" data-price="560">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="drinks" data-diet="veg" data-name="mint masala lemonade">
+<div class="menu-img"><img alt="Mint Masala Lemonade — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice">🌶</span></div>
+<h3>Mint Masala Lemonade</h3>
+<p>Fresh mint, lemon, black salt, soda.</p>
+<div class="menu-foot"><strong>PKR 460</strong><button class="add" data-name="Mint Masala Lemonade" data-price="460">ADD +</button></div>
+</div>
+</article>
+<article class="menu-card reveal" data-cat="drinks" data-diet="veg" data-name="kashmiri chai">
+<div class="menu-img"><img alt="Kashmiri Chai — real Unsplash food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+<div class="menu-body">
+<div class="menu-top"><span class="diet veg">VEG</span><span class="spice"></span></div>
+<h3>Kashmiri Chai</h3>
+<p>Pink tea, milk, pistachio, cardamom.</p>
+<div class="menu-foot"><strong>PKR 490</strong><button class="add" data-name="Kashmiri Chai" data-price="490">ADD +</button></div>
+</div>
+</article>
+</div>
+</div></section>
+<section class="section"><div class="container">
+<div class="sectionhead reveal"><div><div class="kicker">House Specials</div><h2>Made to become<br/><span class="accent">your new favourite.</span></h2></div></div>
+<div class="specials">
+<article class="special reveal"><span>Signature Platter</span><h3>The Ember Feast</h3><p>Mixed grill, biryani, butter chicken, naan, chutneys and dessert — built for the whole table.</p><a class="btn lightbtn" href="#menu">ORDER FEAST →</a></article>
+<article class="special reveal"><span>Weekend</span><h3>Family Brunch</h3><p>Late brunch with live-fire breakfast plates, parathas, chai, fresh juice and desserts.</p><a class="btn lightbtn" href="#reserve">BOOK BRUNCH →</a></article>
+<article class="special reveal"><span>Chef’s Table</span><h3>Spice Journey</h3><p>A curated tasting menu moving from smoky starters to rich curries and playful desserts.</p><a class="btn lightbtn" href="#reserve">RESERVE →</a></article>
+</div>
+</div></section>
+<section class="section alt" id="reserve"><div class="container reserve">
+<div class="reveal"><div class="kicker">Reservations</div><h2>Your table is<br/><span class="accent">waiting.</span></h2><p class="lead">Reserve for family dinners, dates, birthdays or business meals. Choose seating and add special requests.</p>
+<div class="info-list"><div class="info"><b>Indoor Dining</b><span>Colourful premium dining room with comfortable family seating.</span></div><div class="info"><b>Private Dining</b><span>Dedicated area for birthdays, corporate dinners and celebrations.</span></div><div class="info"><b>Groups 10+</b><span>Set menus and custom platters available on request.</span></div></div></div>
+<form class="formcard reveal" id="reserveForm"><div class="formgrid">
+<div class="field"><label>Name</label><input placeholder="Your name" required=""/></div><div class="field"><label>Phone</label><input placeholder="+92 3XX XXXXXXX" required=""/></div>
+<div class="field"><label>Date</label><input required="" type="date"/></div><div class="field"><label>Time</label><select><option>1:00 PM</option><option>3:00 PM</option><option>5:00 PM</option><option>7:00 PM</option><option>9:00 PM</option><option>11:00 PM</option></select></div>
+<div class="field"><label>Guests</label><select><option>2 Guests</option><option>4 Guests</option><option>6 Guests</option><option>8 Guests</option><option>10+ Guests</option></select></div><div class="field"><label>Seating</label><select><option>Any</option><option>Family Area</option><option>Quiet Corner</option><option>Private Dining</option></select></div>
+<div class="field full"><label>Special Request</label><textarea placeholder="Birthday setup, high chair, allergies, anniversary..."></textarea></div><div class="field full"><button class="btn primary" type="submit">REQUEST RESERVATION →</button></div>
+</div><div id="reserveSuccess" style="display:none;margin-top:12px;padding:12px;border-radius:10px;background:#fff0e9;color:#c74531;font-size:11px;font-weight:900">Reservation request received. The restaurant team will confirm shortly.</div></form>
+</div></section>
+<section class="section" id="catering"><div class="container catering reveal">
+<div><div class="kicker" style="color:#ffc866">Catering &amp; Events</div><h2>Bring Ember Spice<br/><span class="accent2">to your event.</span></h2><p class="lead">Corporate lunches, wedding functions, birthdays and private dinners with custom menus, live stations and buffet setups.</p><div class="actions"><a class="btn saffron" href="https://wa.me/923008882020">GET CATERING QUOTE →</a><a class="btn" href="#reserve">BOOK EVENT VISIT</a></div></div>
+<div class="cater-grid"><div class="cater"><b>Corporate Lunches</b>Box meals, buffets and executive setups.</div><div class="cater"><b>Weddings</b>Large-format catering and live stations.</div><div class="cater"><b>Birthdays</b>Private dining and celebration menus.</div><div class="cater"><b>Live BBQ</b>On-site tandoor and charcoal grill service.</div></div>
+</div></section>
+<section class="section alt" id="gallery"><div class="container">
+<div class="sectionhead reveal"><div><div class="kicker">Gallery</div><h2>Colour on the plate.<br/><span class="accent">Energy in the room.</span></h2></div></div>
+<div class="gallery">
+<div class="gimg big reveal"><img alt="Ember Spice food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1781332150932-e4af32932ee9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div><div class="gimg reveal"><img alt="Ember Spice food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1666190092689-e3968aa0c32c?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div><div class="gimg reveal"><img alt="Ember Spice food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1773620496695-73c2086abf39?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div><div class="gimg reveal"><img alt="Ember Spice food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1772730064970-a7b2735c93b9?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div><div class="gimg reveal"><img alt="Ember Spice food photography" loading="lazy" referrerpolicy="no-referrer" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&amp;fit=crop&amp;w=1200&amp;q=86"/></div>
+</div>
+</div></section>
+<section class="section" id="events"><div class="container loyalty reveal">
+<div><div class="kicker" style="color:#7e4d14">Ember Rewards</div><h2>Eat. Earn.<br/>Come back hungry.</h2><p class="lead">A loyalty program for regular guests with points, birthday rewards and early access to tasting menus.</p><div class="actions"><button class="btn darkbtn">JOIN EMBER REWARDS</button><button class="btn darkbtn">BUY GIFT CARD</button></div></div>
+<div class="loyalty-list"><div class="loyalty-row"><b>1 Point per PKR 100</b>Earn points on dine-in and takeaway orders.</div><div class="loyalty-row"><b>Free Birthday Dessert</b>A sweet treat during your birthday month.</div><div class="loyalty-row"><b>Priority Booking</b>Preferred weekend reservation slots.</div><div class="loyalty-row"><b>Members-Only Tastings</b>Early invites to new menu previews.</div></div>
+</div></section>
+<section class="section alt"><div class="container">
+<div class="sectionhead reveal"><div><div class="kicker">Guest Reviews</div><h2>Big flavours.<br/><span class="accent">Bigger reactions.</span></h2></div></div>
+<div class="testimonials">
+<article class="testimonial reveal"><div class="stars">★★★★★</div><p>The menu has something for everyone and the mixed grill is the kind of dish you order again before you even leave.</p><div class="person"><div class="avatar">A</div><div><b>Ahmed K.</b><small>Family Dinner</small></div></div></article>
+<article class="testimonial reveal"><div class="stars">★★★★★</div><p>Colourful space, great service and the biryani plus butter chicken combination was excellent.</p><div class="person"><div class="avatar">S</div><div><b>Sara M.</b><small>Weekend Guest</small></div></div></article>
+<article class="testimonial reveal"><div class="stars">★★★★★</div><p>We booked a birthday dinner and the private setup, food timing and staff coordination were all impressive.</p><div class="person"><div class="avatar">H</div><div><b>Hamza R.</b><small>Private Event</small></div></div></article>
+</div>
+</div></section>
+<section class="section"><div class="container">
+<div class="sectionhead reveal"><div><div class="kicker">FAQ</div><h2>Before you<br/><span class="accent">bring your appetite.</span></h2></div></div>
+<div class="faq">
+<div class="faqitem reveal"><button class="faqq">Do you have vegetarian options?<span>+</span></button><div class="faqa">Yes. The menu includes paneer dishes, dal, veg pulao, breads, starters, desserts and drinks. Use the VEG badges in the menu.</div></div>
+<div class="faqitem reveal"><button class="faqq">Can I order for takeaway?<span>+</span></button><div class="faqa">Yes. Add items to the order cart and use the WhatsApp checkout button for this demo.</div></div>
+<div class="faqitem reveal"><button class="faqq">Do you host birthdays and corporate dinners?<span>+</span></button><div class="faqa">Yes. Private dining, group menus and custom event setups are available.</div></div>
+<div class="faqitem reveal"><button class="faqq">Can spice levels be adjusted?<span>+</span></button><div class="faqa">Most dishes can be adjusted from mild to hot. The chili icons give a simple spice-level guide.</div></div>
+</div>
+</div></section>
+<section class="section" id="contact"><div class="container mapwrap">
+<div class="map reveal"></div><div class="hours reveal"><div class="kicker" style="color:#ffc866">Visit Ember Spice</div><h2 style="color:white">Come hungry.<br/><span class="accent2">Leave happy.</span></h2><p class="lead">Karachi, Pakistan • Demo restaurant location</p>
+<div class="hourrow"><span>Monday – Thursday</span><b>12PM – 12AM</b></div><div class="hourrow"><span>Friday</span><b>12PM – 1AM</b></div><div class="hourrow"><span>Saturday</span><b>12PM – 1AM</b></div><div class="hourrow"><span>Sunday</span><b>12PM – 12AM</b></div>
+<div class="actions"><a class="btn saffron" href="https://wa.me/923008882020">WHATSAPP US →</a><a class="btn" href="#reserve">BOOK TABLE</a></div></div>
+</div></section>
+</main>
+<button class="cartbtn" id="cartBtn">BAG<span class="cartcount" id="cartCount">0</span></button>
+<div class="modal" id="cartModal"><div class="modalbox">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:15px"><div><div class="kicker">Your Order</div><h3 style="font-size:26px;margin:10px 0">Ember Spice Cart</h3></div><button class="btn" id="closeCart">CLOSE</button></div>
+<div id="cartItems"></div><div class="carttotal"><span>Total</span><span id="cartTotal">PKR 0</span></div><button class="btn primary" id="checkoutBtn" style="width:100%;margin-top:18px">WHATSAPP ORDER →</button>
+</div></div>
+<footer><div class="container">
+<div class="footergrid"><div><div class="brand"><div class="logo">ES</div><div><div class="brandname" style="color:white">EMBER SPICE</div><div class="brandsub">FIRE • FLAVOUR • CELEBRATION</div></div></div><p style="font-size:11px;line-height:1.7;max-width:350px;margin-top:18px">A colourful modern South Asian restaurant concept with a rich visual menu, online ordering, reservations, catering and private events.</p></div>
+<div><h4>Explore</h4><a href="#menu">Menu</a><a href="#story">Our Story</a><a href="#gallery">Gallery</a><a href="#events">Rewards</a></div>
+<div><h4>Services</h4><a href="#reserve">Reservations</a><a href="#catering">Catering</a><a href="#events">Private Events</a><a href="#menu">Order Online</a></div>
+<div><h4>Contact</h4><a href="#">Karachi, Pakistan</a><a href="#">+92 300 888 2020</a><a href="#">hello@emberspice.pk</a><a href="#">Instagram</a></div></div>
+<div class="copy"><span>© 2026 Ember Spice. Demo restaurant website.</span><span>Privacy • Terms • Allergens • Halal</span></div>
+<div style="text-align:center;font-size:9px;color:#776c65;margin-top:14px">Demo food photography sourced from Unsplash. Replace with the restaurant’s own final photography before launch.</div></div></footer>
+<script>
+const nav=document.getElementById('nav'),drawer=document.getElementById('drawer');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>20));
+document.getElementById('menuBtn').onclick=()=>drawer.classList.toggle('open');
+drawer.querySelectorAll('a').forEach(a=>a.onclick=()=>drawer.classList.remove('open'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+let activeFilter='all';
+const search=document.getElementById('menuSearch');
+function applyMenu(){
+ const q=search.value.toLowerCase().trim();
+ document.querySelectorAll('.menu-card').forEach(c=>{
+  const filterOk=activeFilter==='all'||c.dataset.cat===activeFilter;
+  const searchOk=!q||c.dataset.name.includes(q)||c.innerText.toLowerCase().includes(q);
+  c.style.display=(filterOk&&searchOk)?'block':'none';
+ });
+}
+document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;applyMenu();
+});
+search.addEventListener('input',applyMenu);
+
+const cart=[],modal=document.getElementById('cartModal');
+function renderCart(){
+ document.getElementById('cartCount').textContent=cart.length;
+ const wrap=document.getElementById('cartItems');wrap.innerHTML='';let total=0;
+ cart.forEach((x,i)=>{total+=x.price;const r=document.createElement('div');r.className='cartrow';r.innerHTML='<span>'+x.name+'</span><span>PKR '+x.price.toLocaleString()+' <button data-i="'+i+'" style="border:0;background:none;color:#d84f39;font-weight:900;cursor:pointer">×</button></span>';wrap.appendChild(r);});
+ wrap.querySelectorAll('button').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.i,1);renderCart();});
+ document.getElementById('cartTotal').textContent='PKR '+total.toLocaleString();
+}
+document.querySelectorAll('.add').forEach(b=>b.onclick=()=>{cart.push({name:b.dataset.name,price:+b.dataset.price});renderCart();const t=b.textContent;b.textContent='ADDED ✓';setTimeout(()=>b.textContent=t,800);});
+document.getElementById('cartBtn').onclick=()=>modal.classList.add('open');
+document.getElementById('openCartTop').onclick=()=>modal.classList.add('open');
+document.getElementById('closeCart').onclick=()=>modal.classList.remove('open');
+document.getElementById('checkoutBtn').onclick=()=>{
+ if(!cart.length)return alert('Add something to your order first.');
+ const lines=cart.map(x=>'• '+x.name+' — PKR '+x.price.toLocaleString()).join('\n');
+ const total=cart.reduce((s,x)=>s+x.price,0);
+ const msg='Hi Ember Spice, I would like to order:\n'+lines+'\n\nTotal: PKR '+total.toLocaleString();
+ location.href='https://wa.me/923008882020?text='+encodeURIComponent(msg);
+};
+document.getElementById('reserveForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('reserveSuccess').style.display='block';});
+document.querySelectorAll('.faqq').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+</script>
+</body>
+</html>

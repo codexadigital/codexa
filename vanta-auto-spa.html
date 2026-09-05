@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b0d">
+<title>VANTA AUTO SPA — Ultra Luxury Car Detailing</title>
+<meta name="description" content="Luxury car detailing, ceramic coating, PPF, paint correction and interior restoration.">
+<style>
+:root{
+ --bg:#080a0c;--bg2:#0d1115;--panel:#12171c;--panel2:#171d23;--line:rgba(255,255,255,.085);
+ --text:#f7f8f8;--muted:#94a0aa;--lime:#c8ff35;--cyan:#55d9ff;--silver:#dfe5e9;--gold:#d5b477;
+ --shadow:0 30px 100px rgba(0,0,0,.42);--max:1280px;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}.container{width:min(var(--max),calc(100% - 40px));margin:auto}.section{padding:105px 0}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--lime);font:800 10px "Trebuchet MS",Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.eyebrow:before{content:"";width:34px;height:2px;background:linear-gradient(90deg,var(--lime),var(--cyan))}
+.display{font-family:"Bodoni MT","Didot",Georgia,serif}.tech{font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif}.serif{font-family:Georgia,"Times New Roman",serif}
+h1,h2,h3,p{margin-top:0}h1{font:500 clamp(58px,7.7vw,112px)/.9 "Bodoni MT","Didot",Georgia,serif;letter-spacing:-.06em;margin:18px 0 24px}
+h2{font:500 clamp(42px,5.2vw,68px)/.98 "Bodoni MT","Didot",Georgia,serif;letter-spacing:-.045em;margin:14px 0 18px}
+h3{font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif}.lead{font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;max-width:720px;color:#a9b3bc;font-size:16px;line-height:1.85}
+.lime{color:var(--lime)}.gold{color:var(--gold)}.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:51px;padding:0 21px;border-radius:999px;border:1px solid var(--line);background:#13181d;color:#fff;font-size:10px;font-weight:900;letter-spacing:.06em;cursor:pointer;transition:.23s}
+.btn:hover{transform:translateY(-2px);border-color:rgba(200,255,53,.34);box-shadow:0 18px 40px rgba(0,0,0,.24)}
+.btn.primary{background:var(--lime);color:#0b0e10;border:0}.btn.goldbtn{background:var(--gold);color:#12100d;border:0}.btn.ghost{background:rgba(255,255,255,.045)}
+.nav{position:fixed;inset:0 0 auto;z-index:70;background:rgba(8,10,12,.76);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.navin{height:80px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px}
+.mark{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--lime),var(--cyan));display:grid;place-items:center;color:#0b0f11;font:900 18px Georgia,serif;box-shadow:0 12px 35px rgba(91,218,255,.12)}
+.brand b{font-family:Georgia,serif;letter-spacing:.1em}.brand small{display:block;color:#75818a;font-size:8px;letter-spacing:.15em;margin-top:3px}
+.links{display:flex;gap:24px;font-size:10px;font-weight:800;color:#a5afb7}.links a:hover{color:#fff}.menuBtn{display:none}
+.hero{min-height:900px;position:relative;display:flex;align-items:center;padding-top:80px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=2000&q=90") center/cover no-repeat;filter:saturate(.85) contrast(1.05)}
+.hero:after{content:"";position:absolute;inset:0;background:
+ linear-gradient(90deg,rgba(5,7,9,.99) 0%,rgba(5,7,9,.88) 45%,rgba(5,7,9,.28) 80%),
+ linear-gradient(180deg,transparent 50%,rgba(0,0,0,.76) 100%)}
+.heroContent{position:relative;z-index:2;max-width:820px}.hero p{max-width:680px;color:#c0c8cf;font-size:17px;line-height:1.85}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:29px}
+.heroBadges{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}.heroBadge{padding:13px 15px;border:1px solid var(--line);border-radius:14px;background:rgba(13,17,21,.58);backdrop-filter:blur(8px);font-size:9px;color:#9ba7b0}.heroBadge b{display:block;color:#fff;font-size:13px;margin-bottom:3px}
+.scrolltag{position:absolute;right:24px;bottom:30px;z-index:3;writing-mode:vertical-rl;font-size:8px;letter-spacing:.22em;color:#68727b;text-transform:uppercase}
+.floatStrip{margin-top:-40px;position:relative;z-index:8}.strip{display:grid;grid-template-columns:repeat(5,1fr);background:rgba(16,20,24,.97);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.stripItem{padding:22px;border-right:1px solid var(--line)}.stripItem:last-child{border-right:0}.stripItem b{display:block;font-size:12px;margin-bottom:4px}.stripItem span{font-size:9px;color:#7e8992}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}.imageFrame{height:610px;border-radius:30px;overflow:hidden;position:relative;box-shadow:var(--shadow);border:1px solid var(--line)}
+.imageFrame img{width:100%;height:100%;object-fit:cover}.imageFrame:after{content:"VANTA STANDARD";position:absolute;left:22px;bottom:20px;font:800 9px "Trebuchet MS",Arial,sans-serif;letter-spacing:.22em;color:white}
+.miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}.mini{padding:17px;border:1px solid var(--line);background:#11161b;border-radius:16px}.mini b{display:block;font-size:12px;margin-bottom:5px}.mini span{font-size:10px;line-height:1.6;color:#81909a}
+.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:38px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.service{min-height:235px;padding:24px;background:linear-gradient(180deg,#141a20,#0f1317);border:1px solid var(--line);border-radius:23px;position:relative;overflow:hidden}
+.service:after{content:"";position:absolute;right:-55px;bottom:-55px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(200,255,53,.11),transparent 72%)}
+.no{font-size:9px;color:var(--lime);letter-spacing:.12em;font-weight:900}.service h3{font-size:21px;margin:38px 0 10px}.service p{font-size:11px;line-height:1.72;color:#89959f}.service a{font-size:9px;font-weight:900;color:#ddff95}
+.packages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.package{padding:28px;border-radius:25px;border:1px solid var(--line);background:#11161b;position:relative}.package.featured{background:linear-gradient(180deg,#192118,#10160f);border-color:rgba(200,255,53,.32);box-shadow:0 20px 70px rgba(95,131,38,.08)}
+.package .pill{position:absolute;right:18px;top:18px;padding:7px 9px;border-radius:999px;background:var(--lime);color:#10130e;font-size:8px;font-weight:900}.package h3{font:500 29px Georgia,serif;margin:4px 0 12px}.price{font-size:34px;font-weight:900}.price small{font-size:10px;color:#74808a}
+.package ul{list-style:none;padding:0;margin:22px 0}.package li{padding:10px 0;border-bottom:1px solid var(--line);font-size:10px;color:#929da6}.package li:before{content:"✓";color:var(--lime);margin-right:8px}
+.process{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.step{padding:19px;border:1px solid var(--line);background:#101419;border-radius:18px}.step span{display:block;color:var(--lime);font-size:9px;font-weight:900;margin-bottom:22px}.step b{display:block;margin-bottom:6px}.step p{font-size:10px;line-height:1.6;color:#7e8992}
+.quoteGrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}.quoteBox{padding:27px;border-radius:25px;border:1px solid var(--line);background:#11161b;box-shadow:var(--shadow)}
+.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:8px;color:#75818b;letter-spacing:.12em;text-transform:uppercase;font-weight:900}
+.field input,.field select,.field textarea{background:#0c1014;color:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;outline:0}.field textarea{min-height:92px;resize:vertical}
+.estimate{margin-top:15px;padding:17px;border:1px solid rgba(200,255,53,.22);border-radius:15px;background:rgba(200,255,53,.045)}.estimate small{display:block;color:#7e8993;margin-bottom:4px}.estimate b{font-size:27px;color:var(--lime)}
+.baWrap{display:grid;grid-template-columns:1fr 1fr;gap:15px}.ba{height:430px;border-radius:24px;overflow:hidden;position:relative;border:1px solid var(--line)}.ba img{width:100%;height:100%;object-fit:cover}.baLabel{position:absolute;left:15px;top:15px;padding:8px 10px;border-radius:999px;background:#090c0f;color:#fff;font-size:8px;font-weight:900}.ba.after .baLabel{background:var(--lime);color:#10130f}
+.membership{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:40px;border-radius:30px;background:linear-gradient(135deg,#e4e8ea,#bec7cd);color:#0c0f11}.membership .lead{color:#4d5961}.memberGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.memberItem{padding:14px;border-radius:14px;background:rgba(255,255,255,.44);font-size:10px}.memberItem b{display:block;margin-bottom:4px}
+.gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:11px}.g{height:240px;border-radius:20px;overflow:hidden;border:1px solid var(--line)}.g.big{height:491px;grid-row:span 2}.g img{width:100%;height:100%;object-fit:cover;transition:.4s}.g:hover img{transform:scale(1.04)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.review{padding:24px;border-radius:21px;border:1px solid var(--line);background:#11161b}.stars{color:var(--lime);letter-spacing:.1em}.review p{font-size:11px;line-height:1.75;color:#909ba4}.review b{font-size:11px}
+.faq{display:grid;gap:10px}.faqItem{border:1px solid var(--line);border-radius:16px;background:#11161b;overflow:hidden}.faqQ{width:100%;padding:17px 18px;border:0;background:none;color:#fff;display:flex;justify-content:space-between;text-align:left;font-weight:800;cursor:pointer}.faqA{display:none;padding:0 18px 18px;color:#87939c;font-size:11px;line-height:1.7}.faqItem.open .faqA{display:block}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:20px}.contactCard{padding:29px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(135deg,#151b21,#0d1115)}
+.hours .row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:10px;color:#8b969f}.hours .row b{color:#fff}
+footer{padding:48px 0 27px;border-top:1px solid var(--line);background:#07090b}.footGrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:28px}.footGrid h4{margin:0 0 12px}.footGrid a{display:block;padding:6px 0;color:#7f8992;font-size:10px}.copy{margin-top:28px;padding-top:17px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#606b74;font-size:9px}
+.float{position:fixed;right:18px;bottom:18px;z-index:60;width:60px;height:60px;border-radius:50%;border:0;background:var(--lime);color:#111;font-weight:900;box-shadow:0 20px 50px rgba(0,0,0,.4);cursor:pointer}
+.reveal{opacity:0;transform:translateY(24px);transition:.68s}.reveal.show{opacity:1;transform:none}
+@media(max-width:1000px){.links{display:none}.menuBtn{display:inline-flex}.strip{grid-template-columns:repeat(2,1fr)}.grid2,.quoteGrid,.membership,.contact{grid-template-columns:1fr}.services,.packages,.reviews{grid-template-columns:1fr 1fr}.process{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:1fr 1fr}.g.big{grid-row:auto;height:240px}}
+@media(max-width:650px){.container{width:min(var(--max),calc(100% - 22px))}.section{padding:75px 0}h1{font-size:54px}.strip,.services,.packages,.process,.reviews,.formGrid,.miniGrid,.baWrap,.memberGrid,.gallery,.footGrid{grid-template-columns:1fr}.field.full{grid-column:auto}.sectionHead{flex-direction:column;align-items:flex-start}.copy{flex-direction:column;gap:7px}.hero{min-height:790px}}
+</style>
+</head>
+<body>
+<header class="nav">
+<div class="container navin">
+<a class="brand" href="#home"><div class="mark">VA</div><div><b>VANTA AUTO SPA</b><small>DETAILING • PPF • CERAMIC</small></div></a>
+<div class="links"><a href="#services">Services</a><a href="#packages">Packages</a><a href="#process">Process</a><a href="#results">Results</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></div>
+<a class="btn primary" href="#quote">BOOK DETAIL →</a>
+</div>
+</header>
+
+<section class="hero" id="home">
+<div class="container heroContent reveal">
+<div class="eyebrow">Luxury Automotive Preservation</div>
+<h1>Not a wash.<br><span class="lime">A restoration.</span></h1>
+<p>Precision detailing, paint correction, ceramic coating and PPF for owners who care about every reflection, every edge and every finish.</p>
+<div class="actions"><a class="btn primary" href="#quote">GET INSTANT QUOTE →</a><a class="btn ghost" href="#results">VIEW RESULTS</a></div>
+<div class="heroBadges">
+<div class="heroBadge"><b>1,800+</b>Vehicles Detailed</div><div class="heroBadge"><b>4.9/5</b>Client Rating</div>
+<div class="heroBadge"><b>7 Years</b>Protection Options</div><div class="heroBadge"><b>Studio Grade</b>Lighting & Process</div>
+</div>
+</div><div class="scrolltag">Scroll to explore</div>
+</section>
+
+<section class="floatStrip"><div class="container strip">
+<div class="stripItem"><b>Paint Correction</b><span>Swirl & defect reduction</span></div>
+<div class="stripItem"><b>Ceramic Coating</b><span>Gloss + hydrophobic protection</span></div>
+<div class="stripItem"><b>Paint Protection Film</b><span>Invisible impact protection</span></div>
+<div class="stripItem"><b>Interior Restoration</b><span>Leather, fabric & trim care</span></div>
+<div class="stripItem"><b>Maintenance Plans</b><span>Keep the finish perfect</span></div>
+</div></section>
+
+<section class="section"><div class="container grid2">
+<div class="imageFrame reveal"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1500&q=86" alt="Luxury sports car"></div>
+<div class="reveal"><div class="eyebrow">The Vanta Standard</div><h2>Luxury lives in<br><span>the details.</span></h2><p class="lead">Every vehicle starts with inspection under controlled lighting. We match the process to paint condition, surface type and the owner’s goals — never a one-size-fits-all wash.</p>
+<div class="miniGrid"><div class="mini"><b>Controlled Studio</b><span>Lighting built to reveal haze, swirls and defects.</span></div><div class="mini"><b>Premium Chemistry</b><span>Professional-grade compounds, coatings and care products.</span></div><div class="mini"><b>Safe Wash Method</b><span>Multi-stage wash designed to reduce contact damage.</span></div><div class="mini"><b>Aftercare Guidance</b><span>Simple maintenance advice after every protected finish.</span></div></div>
+</div></div></section>
+
+<section class="section" id="services" style="background:#0c0f12"><div class="container">
+<div class="sectionHead reveal"><div><div class="eyebrow">Signature Services</div><h2>Everything your car needs<br><span>to stay exceptional.</span></h2></div><a class="btn" href="#quote">BUILD A PACKAGE</a></div>
+<div class="services">
+<div class="service reveal"><div class="no">01 / DETAIL</div><h3>Signature Detail</h3><p>Foam wash, wheels, decontamination, interior vacuum, trim, glass and premium finish.</p><a href="#quote">SELECT SERVICE →</a></div>
+<div class="service reveal"><div class="no">02 / CORRECTION</div><h3>Paint Correction</h3><p>Machine polishing to reduce swirls, oxidation, haze and visual surface defects.</p><a href="#quote">SELECT SERVICE →</a></div>
+<div class="service reveal"><div class="no">03 / COATING</div><h3>Ceramic Coating</h3><p>High-gloss protective coating with strong water behavior and easier maintenance.</p><a href="#quote">SELECT SERVICE →</a></div>
+<div class="service reveal"><div class="no">04 / PPF</div><h3>Paint Protection Film</h3><p>Clear film protection for high-impact areas or complete vehicle coverage.</p><a href="#quote">SELECT SERVICE →</a></div>
+<div class="service reveal"><div class="no">05 / INTERIOR</div><h3>Interior Reset</h3><p>Deep cleaning for leather, fabric, carpets, trim, roof lining and high-touch surfaces.</p><a href="#quote">SELECT SERVICE →</a></div>
+<div class="service reveal"><div class="no">06 / ENGINE</div><h3>Engine Bay Detail</h3><p>Careful cleaning and dressing for a refined, factory-fresh presentation.</p><a href="#quote">SELECT SERVICE →</a></div>
+</div></div></section>
+
+<section class="section" id="packages"><div class="container">
+<div class="sectionHead reveal"><div><div class="eyebrow">Curated Packages</div><h2>Choose your level<br><span>of obsession.</span></h2></div></div>
+<div class="packages">
+<div class="package reveal"><h3>Essential</h3><div class="price">PKR 7,500 <small>FROM</small></div><ul><li>Premium exterior wash</li><li>Wheel & tire detail</li><li>Interior vacuum</li><li>Dashboard & trim clean</li><li>Glass treatment</li></ul><a class="btn" href="#quote">SELECT PACKAGE</a></div>
+<div class="package featured reveal"><span class="pill">MOST POPULAR</span><h3>Signature</h3><div class="price">PKR 18,500 <small>FROM</small></div><ul><li>Deep decontamination</li><li>One-step paint enhancement</li><li>Interior deep clean</li><li>Leather conditioning</li><li>6-month paint sealant</li></ul><a class="btn primary" href="#quote">SELECT PACKAGE</a></div>
+<div class="package reveal"><h3>Vanta Pro</h3><div class="price">PKR 55,000 <small>FROM</small></div><ul><li>Multi-stage paint correction</li><li>3-year ceramic coating</li><li>Wheel-face coating</li><li>Glass coating</li><li>Full interior restoration</li></ul><a class="btn" href="#quote">SELECT PACKAGE</a></div>
+</div></div></section>
+
+<section class="section" id="process" style="background:#0c0f12"><div class="container">
+<div class="sectionHead reveal"><div><div class="eyebrow">Our Process</div><h2>Five stages.<br><span>Zero shortcuts.</span></h2></div></div>
+<div class="process"><div class="step reveal"><span>01</span><b>Inspect</b><p>Paint, trim, interior and protection history reviewed.</p></div><div class="step reveal"><span>02</span><b>Decontaminate</b><p>Safe wash, iron removal and bonded contamination removal.</p></div><div class="step reveal"><span>03</span><b>Correct</b><p>Machine polishing selected for realistic defect reduction.</p></div><div class="step reveal"><span>04</span><b>Protect</b><p>Sealant, coating or film applied based on package.</p></div><div class="step reveal"><span>05</span><b>Deliver</b><p>Final inspection, finish check and aftercare briefing.</p></div></div>
+</div></section>
+
+<section class="section" id="quote"><div class="container quoteGrid">
+<div class="reveal"><div class="eyebrow">Instant Estimate</div><h2>Build your<br><span>detail package.</span></h2><p class="lead">Choose your vehicle, service and condition to get a quick demo estimate. Final pricing is confirmed after inspection.</p></div>
+<div class="quoteBox reveal"><div class="formGrid">
+<div class="field"><label>Vehicle Type</label><select id="vehicle"><option value="1">Sedan</option><option value="1.15">SUV / Crossover</option><option value="1.25">Large SUV / 4x4</option><option value="1.1">Sports Car</option></select></div>
+<div class="field"><label>Service</label><select id="service"><option value="7500">Essential Detail</option><option value="18500">Signature Detail</option><option value="32000">Paint Correction</option><option value="55000">Ceramic Coating</option><option value="85000">Front PPF Package</option><option value="240000">Full Body PPF</option></select></div>
+<div class="field"><label>Condition</label><select id="condition"><option value="1">Normal</option><option value="1.15">Needs Extra Work</option><option value="1.3">Heavy Restoration</option></select></div>
+<div class="field"><label>Preferred Date</label><input type="date"></div>
+<div class="field full"><label>Notes</label><textarea placeholder="Scratches, stains, previous coating, special requests..."></textarea></div>
+</div><div class="estimate"><small>Estimated from</small><b id="estimate">PKR 7,500</b></div>
+<div class="actions"><a class="btn primary" id="waQuote" href="#">WHATSAPP QUOTE →</a><a class="btn" href="tel:+923001234567">CALL STUDIO</a></div></div>
+</div></section>
+
+<section class="section" id="results" style="background:#0c0f12"><div class="container">
+<div class="sectionHead reveal"><div><div class="eyebrow">Transformation</div><h2>From tired paint<br><span>to mirror finish.</span></h2></div></div>
+<div class="baWrap"><div class="ba reveal"><span class="baLabel">BEFORE</span><img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1400&q=84" alt="Car before detailing"></div><div class="ba after reveal"><span class="baLabel">AFTER</span><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1400&q=88" alt="Car after detailing"></div></div>
+</div></section>
+
+<section class="section"><div class="container membership reveal">
+<div><div class="eyebrow" style="color:#25311a">Vanta Membership</div><h2 style="color:#0c0f11">Protection should<br>not end at delivery.</h2><p class="lead">Monthly maintenance plans for coated and protected vehicles, with priority booking and condition checks.</p><div class="actions"><button class="btn" style="background:#101417">JOIN MEMBERSHIP</button></div></div>
+<div class="memberGrid"><div class="memberItem"><b>Priority Booking</b>Preferred maintenance slots.</div><div class="memberItem"><b>Safe Maintenance Wash</b>Coating-friendly wash process.</div><div class="memberItem"><b>Quarterly Inspection</b>Paint and film condition review.</div><div class="memberItem"><b>Member Pricing</b>Preferred rates on add-ons.</div></div>
+</div></section>
+
+<section class="section" id="gallery" style="background:#0c0f12"><div class="container">
+<div class="sectionHead reveal"><div><div class="eyebrow">Studio Gallery</div><h2>Work that deserves<br><span>a closer look.</span></h2></div></div>
+<div class="gallery">
+<div class="g big reveal"><img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1300&q=86" alt=""></div>
+<div class="g reveal"><img src="https://images.unsplash.com/photo-1680102143987-c62b572f6276?auto=format&fit=crop&w=1200&q=86" alt=""></div>
+<div class="g reveal"><img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1000&q=84" alt=""></div>
+<div class="g reveal"><img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1000&q=84" alt=""></div>
+<div class="g reveal"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=1000&q=84" alt=""></div>
+</div></div></section>
+
+<section class="section"><div class="container">
+<div class="sectionHead reveal"><div><div class="eyebrow">Client Reviews</div><h2>The finish speaks.<br><span>So do they.</span></h2></div></div>
+<div class="reviews"><div class="review reveal"><div class="stars">★★★★★</div><p>My black car had visible swirl marks. After correction and coating, the depth and gloss looked completely different.</p><b>Hamza K. — BMW Owner</b></div><div class="review reveal"><div class="stars">★★★★★</div><p>The interior work was extremely thorough. Leather, roof lining and small trim areas all looked refreshed.</p><b>Ali R. — Prado Owner</b></div><div class="review reveal"><div class="stars">★★★★★</div><p>Professional studio, clear communication and no rushed work. The finish is exactly what I wanted.</p><b>Saad M. — Mercedes Owner</b></div></div>
+</div></section>
+
+<section class="section" style="background:#0c0f12"><div class="container">
+<div class="sectionHead reveal"><div><div class="eyebrow">FAQ</div><h2>Before you hand<br><span>over the keys.</span></h2></div></div>
+<div class="faq">
+<div class="faqItem reveal"><button class="faqQ">How long does ceramic coating take?<span>+</span></button><div class="faqA">Most coating jobs require one to two days depending on paint condition and the amount of correction required.</div></div>
+<div class="faqItem reveal"><button class="faqQ">Is PPF completely invisible?<span>+</span></button><div class="faqA">Quality film is designed to be optically clear. Installation quality, edge work and panel shape affect final appearance.</div></div>
+<div class="faqItem reveal"><button class="faqQ">Can every scratch be removed?<span>+</span></button><div class="faqA">No. Deep defects may need paint repair. We inspect first and explain realistic improvement levels before work begins.</div></div>
+<div class="faqItem reveal"><button class="faqQ">Do you offer maintenance after ceramic coating?<span>+</span></button><div class="faqA">Yes. Maintenance plans are available for coated and protected cars to help keep the finish performing properly.</div></div>
+</div></div></section>
+
+<section class="section" id="contact"><div class="container contact">
+<div class="contactCard reveal"><div class="eyebrow">Visit The Studio</div><h2>Drop the keys.<br><span>We handle the rest.</span></h2><p class="lead">Karachi, Pakistan • Demo location for CODEXA portfolio presentation.</p><div class="actions"><a class="btn primary" href="https://wa.me/923001234567">WHATSAPP →</a><a class="btn" href="tel:+923001234567">CALL NOW</a></div></div>
+<div class="contactCard reveal"><h3>Studio Hours</h3><div class="hours"><div class="row"><span>Monday – Thursday</span><b>10AM – 9PM</b></div><div class="row"><span>Friday</span><b>2PM – 10PM</b></div><div class="row"><span>Saturday</span><b>10AM – 10PM</b></div><div class="row"><span>Sunday</span><b>11AM – 8PM</b></div></div></div>
+</div></section>
+
+<button class="float" onclick="location.href='https://wa.me/923001234567'">WA</button>
+
+<footer><div class="container"><div class="footGrid">
+<div><div class="brand"><div class="mark">VA</div><div><b>VANTA AUTO SPA</b><small>DETAILING • PPF • CERAMIC</small></div></div><p class="muted" style="max-width:340px;font-size:10px;line-height:1.7;margin-top:16px">Ultra-premium automotive detailing concept designed to present high-value services with confidence.</p></div>
+<div><h4>Services</h4><a href="#services">Detailing</a><a href="#services">Paint Correction</a><a href="#services">Ceramic Coating</a><a href="#services">PPF</a></div>
+<div><h4>Explore</h4><a href="#packages">Packages</a><a href="#process">Process</a><a href="#results">Results</a><a href="#gallery">Gallery</a></div>
+<div><h4>Contact</h4><a href="#">Karachi, Pakistan</a><a href="#">+92 300 1234567</a><a href="#">hello@vantaautospa.pk</a><a href="#">Instagram</a></div>
+</div><div class="copy"><span>© 2026 Vanta Auto Spa — Demo Portfolio Website.</span><span>Privacy • Terms • Aftercare</span></div></div></footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.faqQ').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+
+const vehicle=document.getElementById('vehicle'),service=document.getElementById('service'),condition=document.getElementById('condition'),estimate=document.getElementById('estimate'),wa=document.getElementById('waQuote');
+function calc(){
+ const total=Math.round((+service.value)*(+vehicle.value)*(+condition.value)/500)*500;
+ estimate.textContent='PKR '+total.toLocaleString();
+ const msg='Hi Vanta Auto Spa, I want a quote for '+service.options[service.selectedIndex].text+' on a '+vehicle.options[vehicle.selectedIndex].text+'. Demo estimate: PKR '+total.toLocaleString()+'.';
+ wa.href='https://wa.me/923001234567?text='+encodeURIComponent(msg);
+}
+[vehicle,service,condition].forEach(x=>x.addEventListener('change',calc));calc();
+</script>
+</body>
+</html>

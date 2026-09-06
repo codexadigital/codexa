@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#05060b">
+<title>CYBER — Karachi Gaming Arena</title>
+<style>
+:root{--bg:#05060b;--panel:#0f1421;--panel2:#151b2c;--line:rgba(255,255,255,.09);--text:#f8f9ff;--muted:#9aa5bd;--cyan:#35e5ff;--purple:#8d5cff;--pink:#ff4fc3;--lime:#c3ff36;--orange:#ff8e42;--max:1280px;--shadow:0 30px 100px rgba(0,0,0,.45)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 10% 5%,rgba(141,92,255,.13),transparent 25%),radial-gradient(circle at 90% 15%,rgba(53,229,255,.1),transparent 24%),var(--bg);color:var(--text);font-family:"Segoe UI",Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:36px 36px}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}.container{width:min(var(--max),calc(100% - 38px));margin:auto}.section{padding:96px 0}.dark2{background:rgba(10,13,22,.78);border-block:1px solid rgba(255,255,255,.04)}
+.kicker{display:flex;align-items:center;gap:10px;color:var(--cyan);font:900 10px "Trebuchet MS",Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase}.kicker:before{content:"";width:34px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+h1,h2,h3,p{margin-top:0}h1{font:900 clamp(62px,8vw,122px)/.82 Impact,"Arial Black",sans-serif;letter-spacing:.01em;text-transform:uppercase;margin:18px 0 24px}h2{font:500 clamp(42px,5.4vw,72px)/.96 Georgia,"Times New Roman",serif;letter-spacing:-.045em;margin:14px 0 18px}h3{font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif}.lead{font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;max-width:710px;color:#a6b0c8;font-size:16px;line-height:1.82}.cyan{color:var(--cyan)}.purple{color:#aa8cff}.lime{color:var(--lime)}.pink{color:var(--pink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 21px;border-radius:999px;border:1px solid var(--line);background:#121625;color:#fff;font-size:10px;font-weight:900;letter-spacing:.07em;cursor:pointer;transition:.22s}.btn:hover{transform:translateY(-2px);border-color:rgba(53,229,255,.35);box-shadow:0 16px 45px rgba(0,0,0,.28)}.btn.primary{background:linear-gradient(120deg,var(--cyan),#7cf0ff);color:#061013;border:0}.btn.purpleBtn{background:linear-gradient(120deg,var(--purple),var(--pink));border:0}.btn.limeBtn{background:var(--lime);color:#0b0f0c;border:0}
+.nav{position:fixed;inset:0 0 auto 0;z-index:80;background:rgba(5,6,11,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.navin{height:80px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px}.mark{width:48px;height:48px;border-radius:14px;background:conic-gradient(from 210deg,var(--cyan),var(--purple),var(--pink),var(--lime),var(--cyan));display:grid;place-items:center;color:#05060b;font:900 18px Impact,"Arial Black",sans-serif}.brand b{font:900 20px Impact,"Arial Black",sans-serif;letter-spacing:.1em}.brand small{display:block;color:#77819a;font-size:8px;letter-spacing:.16em;margin-top:3px}.links{display:flex;gap:22px;font-size:10px;font-weight:800;color:#a5afc7}.links a:hover{color:#fff}
+.hero{min-height:900px;position:relative;display:flex;align-items:center;padding-top:80px;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2000&q=90") center/cover no-repeat;filter:saturate(1.05) contrast(1.05)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,4,8,.99) 0%,rgba(3,4,8,.88) 42%,rgba(3,4,8,.28) 80%),linear-gradient(180deg,transparent 52%,rgba(3,4,8,.86) 100%)}.heroContent{position:relative;z-index:2;max-width:850px}.hero h1 .stroke{-webkit-text-stroke:1px rgba(255,255,255,.72);color:transparent}.hero p{font-size:17px;line-height:1.82;color:#c4cadb;max-width:700px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.heroTags{display:flex;flex-wrap:wrap;gap:9px;margin-top:32px}.heroTag{padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(9,12,20,.58);backdrop-filter:blur(8px);font-size:9px;color:#9ba6be}.heroTag b{display:block;color:#fff;font-size:12px;margin-bottom:3px}.streetTag{position:absolute;right:24px;bottom:30px;z-index:3;color:#737d95;font:900 8px "Trebuchet MS",Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;writing-mode:vertical-rl}
+.quickWrap{margin-top:-42px;position:relative;z-index:7}.quick{display:grid;grid-template-columns:repeat(5,1fr);background:rgba(15,19,31,.96);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}.quickItem{padding:22px;border-right:1px solid var(--line)}.quickItem:last-child{border:0}.quickItem b{display:block;font-size:12px;margin-bottom:5px}.quickItem span{font-size:9px;color:#7d88a1}.quickItem:nth-child(1) b{color:var(--cyan)}.quickItem:nth-child(2) b{color:#ad91ff}.quickItem:nth-child(3) b{color:var(--lime)}.quickItem:nth-child(4) b{color:var(--pink)}.quickItem:nth-child(5) b{color:var(--orange)}
+.sectionHead{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:38px}.zoneGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.zone{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:#101421;transition:.25s}.zone:hover{transform:translateY(-5px)}.zoneImg{height:245px;overflow:hidden;position:relative}.zoneImg img{width:100%;height:100%;object-fit:cover;transition:.4s}.zone:hover img{transform:scale(1.04)}.zoneImg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(5,7,12,.85))}.zoneBadge{position:absolute;left:14px;top:14px;z-index:2;padding:8px 10px;border-radius:999px;background:rgba(6,8,13,.75);font-size:8px;font-weight:900;border:1px solid var(--line)}.zoneBody{padding:20px}.zoneBody h3{font-size:21px;margin:0 0 7px}.zoneBody p{font-size:11px;line-height:1.65;color:#8c97af}.zoneFoot{display:flex;justify-content:space-between;align-items:center;margin-top:15px}.price{color:var(--cyan);font-weight:900}.price small{font-size:8px;color:#7d879d}
+.slotWrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}.slotPanel,.calcPanel{background:#101421;border:1px solid var(--line);border-radius:25px;padding:26px;box-shadow:var(--shadow)}.slotTop{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}.datePill{padding:9px 11px;border-radius:999px;background:rgba(53,229,255,.08);border:1px solid rgba(53,229,255,.18);font-size:9px;color:#9edff0}.stationTabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}.stationTab{padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:#0c101b;color:#a7b2ca;font-size:9px;font-weight:900;cursor:pointer}.stationTab.active{background:var(--cyan);color:#061013}.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.slot{padding:13px 6px;border-radius:12px;border:1px solid var(--line);background:#0d111c;color:#fff;font-size:9px;font-weight:900;cursor:pointer}.slot:hover,.slot.selected{border-color:var(--cyan);background:rgba(53,229,255,.08);color:var(--cyan)}.slot.busy{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:8px;color:#77829c;text-transform:uppercase;letter-spacing:.12em;font-weight:900}.field select,.field input,.field textarea{background:#0b0f19;color:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;outline:0}.totalBox{margin-top:15px;padding:17px;border:1px solid rgba(195,255,54,.2);background:rgba(195,255,54,.045);border-radius:15px}.totalBox small{display:block;color:#7e8a9f;margin-bottom:4px}.totalBox b{font-size:28px;color:var(--lime)}
+.memberships{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.member{padding:28px;border-radius:25px;border:1px solid var(--line);background:#101421;position:relative}.member.featured{background:linear-gradient(180deg,#181338,#101425);border-color:rgba(141,92,255,.38)}.member .pill{position:absolute;right:18px;top:18px;padding:7px 9px;border-radius:999px;background:linear-gradient(90deg,var(--purple),var(--pink));font-size:8px;font-weight:900}.member h3{font:500 29px Georgia,serif;margin:4px 0 12px}.memberPrice{font-size:33px;font-weight:900}.memberPrice small{font-size:10px;color:#7c879e}.member ul{list-style:none;padding:0;margin:22px 0}.member li{padding:10px 0;border-bottom:1px solid var(--line);font-size:10px;color:#909bb3}.member li:before{content:"✓";color:var(--lime);margin-right:8px}
+.tourneys{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.tour{padding:24px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(160deg,#12172a,#0c101a)}.gameTag{font-size:8px;color:var(--cyan);letter-spacing:.14em;font-weight:900}.tour h3{font-size:22px;margin:24px 0 9px}.tour p{font-size:11px;color:#8b96ad;line-height:1.65}.tourMeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.tourMeta span{padding:7px 9px;border:1px solid var(--line);border-radius:999px;font-size:8px;color:#a9b3c8}
+.board{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:#101421}.boardHead,.boardRow{display:grid;grid-template-columns:70px 1.5fr 1fr 1fr 1fr;align-items:center}.boardHead{background:#151a2b;color:#77839c;font-size:8px;letter-spacing:.12em;text-transform:uppercase;font-weight:900}.boardHead div,.boardRow div{padding:15px 16px}.boardRow{border-top:1px solid var(--line);font-size:11px}.rank{font:900 18px Impact,"Arial Black",sans-serif;color:var(--cyan)}.player{font-weight:900}.win{color:var(--lime);font-weight:900}
+.events{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;align-items:center}.eventVisual{height:540px;border-radius:28px;overflow:hidden;position:relative;border:1px solid var(--line)}.eventVisual img{width:100%;height:100%;object-fit:cover}.eventVisual:after{content:"PRIVATE MODE";position:absolute;left:20px;bottom:18px;padding:9px 11px;border-radius:999px;background:rgba(6,7,13,.74);font-size:8px;letter-spacing:.16em;font-weight:900}.eventGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}.eventItem{padding:15px;border:1px solid var(--line);border-radius:15px;background:#101421}.eventItem b{display:block;margin-bottom:4px}.eventItem span{font-size:10px;color:#8490a7;line-height:1.5}
+.cafeStrip{padding:36px;border-radius:28px;background:linear-gradient(110deg,#321448,#151d36 55%,#0d2631);border:1px solid var(--line);display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:center}.snacks{display:grid;grid-template-columns:1fr 1fr;gap:9px}.snack{padding:13px;border-radius:13px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);font-size:10px}.snack b{display:block;margin-bottom:4px}.snack span{color:#9ca6bc}
+.gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:11px}.g{height:235px;border-radius:20px;overflow:hidden;border:1px solid var(--line)}.g.big{height:481px;grid-row:span 2}.g img{width:100%;height:100%;object-fit:cover;transition:.4s}.g:hover img{transform:scale(1.04)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.review{padding:24px;border-radius:21px;border:1px solid var(--line);background:#101421}.stars{color:var(--lime)}.review p{font-size:11px;line-height:1.75;color:#909bb3}.review b{font-size:11px}.review small{display:block;color:#6f7a92;margin-top:3px}
+.faq{display:grid;gap:10px}.faqItem{border:1px solid var(--line);border-radius:16px;background:#101421;overflow:hidden}.faqQ{width:100%;padding:17px 18px;background:none;border:0;color:#fff;text-align:left;display:flex;justify-content:space-between;font-weight:900;cursor:pointer}.faqA{display:none;padding:0 18px 18px;color:#8894ab;font-size:11px;line-height:1.7}.faqItem.open .faqA{display:block}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:20px}.contactCard{padding:29px;border:1px solid var(--line);border-radius:25px;background:linear-gradient(145deg,#12172a,#0c1018)}.hours .row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:10px;color:#8792a9}.hours .row b{color:#fff}
+footer{padding:48px 0 27px;border-top:1px solid var(--line);background:#040509}.footGrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:28px}.footGrid h4{margin:0 0 12px}.footGrid a{display:block;padding:6px 0;color:#7f8aa1;font-size:10px}.copy{margin-top:28px;padding-top:17px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#5e687e;font-size:9px}
+.float{position:fixed;right:18px;bottom:18px;z-index:70;width:62px;height:62px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--lime),var(--cyan));color:#08100c;font-weight:900;box-shadow:0 20px 55px rgba(0,0,0,.5);cursor:pointer}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);z-index:100;padding:12px 17px;border-radius:999px;background:#fff;color:#111;font-size:10px;font-weight:900;opacity:0;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}.reveal{opacity:0;transform:translateY(24px);transition:.68s}.reveal.show{opacity:1;transform:none}
+@media(max-width:1000px){.links{display:none}.quick{grid-template-columns:repeat(2,1fr)}.zoneGrid,.memberships,.tourneys,.reviews{grid-template-columns:1fr 1fr}.slotWrap,.events,.cafeStrip,.contact{grid-template-columns:1fr}.gallery{grid-template-columns:1fr 1fr}.g.big{grid-row:auto;height:235px}.boardHead,.boardRow{grid-template-columns:50px 1.4fr 1fr 1fr}.boardHead div:nth-child(5),.boardRow div:nth-child(5){display:none}}
+@media(max-width:650px){.container{width:min(var(--max),calc(100% - 22px))}.section{padding:74px 0}.hero{min-height:790px}h1{font-size:58px}.quick,.zoneGrid,.memberships,.tourneys,.reviews,.formGrid,.eventGrid,.snacks,.gallery,.footGrid{grid-template-columns:1fr}.sectionHead{flex-direction:column;align-items:flex-start}.slots{grid-template-columns:repeat(2,1fr)}.field.full{grid-column:auto}.boardHead,.boardRow{grid-template-columns:42px 1.5fr 1fr}.boardHead div:nth-child(4),.boardRow div:nth-child(4){display:none}.copy{flex-direction:column;gap:7px}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="container navin">
+<a class="brand" href="#home"><div class="mark">C</div><div><b>CYBER</b><small>KARACHI GAMING ARENA</small></div></a>
+<div class="links"><a href="#zones">Zones</a><a href="#booking">Book</a><a href="#memberships">Membership</a><a href="#tournaments">Tournaments</a><a href="#leaderboard">Leaderboard</a><a href="#events">Events</a></div>
+<a class="btn primary" href="#booking">BOOK A SLOT →</a>
+</div></header>
+
+<section class="hero" id="home"><div class="container heroContent reveal">
+<div class="kicker">Karachi • Gaming • After Dark</div>
+<h1>ENTER<br><span class="stroke">CYBER.</span></h1>
+<p>PS5 battles, high-FPS PC sessions, racing sim nights, tournaments and private events — built for Karachi crews who take gaming seriously.</p>
+<div class="actions"><a class="btn primary" href="#booking">LIVE SLOT BOOKING →</a><a class="btn purpleBtn" href="#tournaments">VIEW TOURNAMENTS</a></div>
+<div class="heroTags"><div class="heroTag"><b>PS5 Lounge</b>4K • 120Hz setups</div><div class="heroTag"><b>PC Arena</b>High refresh esports rigs</div><div class="heroTag"><b>Racing Sim</b>Wheel + pedal cockpits</div><div class="heroTag"><b>Late Nights</b>Karachi scene on</div></div>
+</div><div class="streetTag">Karachi nights hit different</div></section>
+
+<section class="quickWrap"><div class="container quick">
+<div class="quickItem"><b>PS5 ZONE</b><span>EA FC • Tekken • COD • WWE</span></div>
+<div class="quickItem"><b>PC ARENA</b><span>CS2 • Valorant • Fortnite • GTA V</span></div>
+<div class="quickItem"><b>RACING SIM</b><span>F1 • Forza • Assetto Corsa</span></div>
+<div class="quickItem"><b>TOURNAMENTS</b><span>Weekly brackets + prizes</span></div>
+<div class="quickItem"><b>PRIVATE MODE</b><span>Birthdays • Crew nights • Events</span></div>
+</div></section>
+
+<section class="section" id="zones"><div class="container">
+<div class="sectionHead reveal"><div><div class="kicker">Choose Your Setup</div><h2>Three zones.<br><span class="cyan">One serious scene.</span></h2></div><a class="btn" href="#booking">CHECK LIVE SLOTS</a></div>
+<div class="zoneGrid">
+<article class="zone reveal"><div class="zoneImg"><span class="zoneBadge">PS5 • 4K • 120Hz</span><img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=1200&q=86" alt="Real PS5 controller photo"></div><div class="zoneBody"><h3>PS5 Lounge</h3><p>Big-screen couch setups for EA FC, Tekken, WWE, COD and co-op nights with your boys.</p><div class="zoneFoot"><span class="price">PKR 700 <small>/ HOUR</small></span><a class="btn" href="#booking">BOOK</a></div></div></article>
+<article class="zone reveal"><div class="zoneImg"><span class="zoneBadge">240Hz • COMPETITIVE</span><img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=1200&q=86" alt="Real gaming PC photo"></div><div class="zoneBody"><h3>PC Arena</h3><p>High-refresh rigs and competitive-ready setups for CS2, Valorant, Fortnite and more.</p><div class="zoneFoot"><span class="price">PKR 500 <small>/ HOUR</small></span><a class="btn" href="#booking">BOOK</a></div></div></article>
+<article class="zone reveal"><div class="zoneImg"><span class="zoneBadge">WHEEL • PEDALS • COCKPIT</span><img src="https://images.unsplash.com/photo-1592840496694-26d035b52b48?auto=format&fit=crop&w=1200&q=86" alt="Real racing setup photo"></div><div class="zoneBody"><h3>Racing Sim</h3><p>Immersive racing sessions for F1, Forza and sim nights with wheel, pedal and cockpit experience.</p><div class="zoneFoot"><span class="price">PKR 1,200 <small>/ HOUR</small></span><a class="btn" href="#booking">BOOK</a></div></div></article>
+</div></div></section>
+
+<section class="section dark2" id="booking"><div class="container slotWrap">
+<div class="slotPanel reveal">
+<div class="slotTop"><div><div class="kicker">Live Slot Booking</div><h3 style="font-size:26px;margin:10px 0 0">Tonight at CYBER</h3></div><span class="datePill" id="todayLabel">Today</span></div>
+<div class="stationTabs"><button class="stationTab active" data-station="PS5 Lounge">PS5</button><button class="stationTab" data-station="PC Arena">PC</button><button class="stationTab" data-station="Racing Sim">RACING</button></div>
+<div class="slots"><button class="slot">4:00 PM</button><button class="slot busy">5:00 PM</button><button class="slot">6:00 PM</button><button class="slot">7:00 PM</button><button class="slot busy">8:00 PM</button><button class="slot">9:00 PM</button><button class="slot">10:00 PM</button><button class="slot">11:00 PM</button><button class="slot">12:00 AM</button><button class="slot">1:00 AM</button><button class="slot busy">2:00 AM</button><button class="slot">3:00 AM</button></div>
+<p style="margin:16px 0 0;color:#6f7a92;font-size:9px">Demo live availability for portfolio presentation. Final client site can connect to real booking data.</p>
+</div>
+
+<div class="calcPanel reveal"><div class="kicker">Hourly Price Calculator</div><h3 style="font-size:26px;margin:10px 0 18px">Build your session</h3>
+<div class="formGrid">
+<div class="field"><label>Zone</label><select id="calcZone"><option value="700">PS5 Lounge — PKR 700/hr</option><option value="500">PC Arena — PKR 500/hr</option><option value="1200">Racing Sim — PKR 1,200/hr</option></select></div>
+<div class="field"><label>Hours</label><select id="hours"><option value="1">1 Hour</option><option value="2">2 Hours</option><option value="3">3 Hours</option><option value="4">4 Hours</option><option value="5">5 Hours</option></select></div>
+<div class="field"><label>Stations</label><select id="stations"><option value="1">1 Station</option><option value="2">2 Stations</option><option value="3">3 Stations</option><option value="4">4 Stations</option></select></div>
+<div class="field"><label>Players</label><select id="players"><option>1–2 Players</option><option>3–4 Players</option><option>5–8 Players</option><option>9+ Players</option></select></div>
+<div class="field full"><label>Name / Crew</label><input id="crewName" placeholder="e.g. Gulshan Boys"></div>
+<div class="field full"><label>WhatsApp Number</label><input id="phone" placeholder="+92 3XX XXXXXXX"></div>
+</div>
+<div class="totalBox"><small>Estimated session total</small><b id="sessionTotal">PKR 700</b></div>
+<div class="actions"><a class="btn limeBtn" id="waBooking" href="#">WHATSAPP BOOKING →</a><button class="btn" id="confirmSlot">CONFIRM SELECTED SLOT</button></div>
+</div></div></section>
+
+<section class="section" id="memberships"><div class="container">
+<div class="sectionHead reveal"><div><div class="kicker">Memberships</div><h2>Play more.<br><span class="purple">Pay smarter.</span></h2></div></div>
+<div class="memberships">
+<div class="member reveal"><h3>Casual</h3><div class="memberPrice">PKR 2,999 <small>/ MONTH</small></div><ul><li>5 gaming hours included</li><li>5% off extra hours</li><li>Member-only booking window</li><li>Birthday bonus hour</li></ul><a class="btn" href="#booking">JOIN</a></div>
+<div class="member featured reveal"><span class="pill">MOST POPULAR</span><h3>Grinder</h3><div class="memberPrice">PKR 5,999 <small>/ MONTH</small></div><ul><li>15 gaming hours included</li><li>15% off extra hours</li><li>Priority weekend booking</li><li>Tournament entry discount</li><li>1 guest pass monthly</li></ul><a class="btn purpleBtn" href="#booking">JOIN GRINDER</a></div>
+<div class="member reveal"><h3>Night Owl</h3><div class="memberPrice">PKR 8,999 <small>/ MONTH</small></div><ul><li>25 gaming hours included</li><li>20% off extra hours</li><li>Priority midnight slots</li><li>2 guest passes monthly</li><li>Members-only late-night events</li></ul><a class="btn" href="#booking">JOIN</a></div>
+</div></div></section>
+
+<section class="section dark2" id="tournaments"><div class="container">
+<div class="sectionHead reveal"><div><div class="kicker">Weekly Tournaments</div><h2>Bracket up.<br><span class="lime">Prove it.</span></h2></div><button class="btn limeBtn">REGISTER TEAM →</button></div>
+<div class="tourneys">
+<div class="tour reveal"><div class="gameTag">EA SPORTS FC</div><h3>Friday Night FC</h3><p>1v1 knockout tournament. Fast matches, loud crowd, final on the main screen.</p><div class="tourMeta"><span>FRI • 10 PM</span><span>PKR 1,000 ENTRY</span><span>PKR 15K PRIZE</span></div></div>
+<div class="tour reveal"><div class="gameTag">TEKKEN 8</div><h3>King of Karachi</h3><p>Double-elimination fighting bracket with streamed finals and leaderboard points.</p><div class="tourMeta"><span>SAT • 9 PM</span><span>PKR 800 ENTRY</span><span>PKR 12K PRIZE</span></div></div>
+<div class="tour reveal"><div class="gameTag">VALORANT</div><h3>Cyber 5v5 Clash</h3><p>Team tournament for serious squads. Bring your lineup, lock your roles and compete.</p><div class="tourMeta"><span>SUN • 8 PM</span><span>TEAM ENTRY</span><span>PKR 25K PRIZE</span></div></div>
+</div></div></section>
+
+<section class="section" id="leaderboard"><div class="container">
+<div class="sectionHead reveal"><div><div class="kicker">Leaderboard</div><h2>Karachi's current<br><span class="cyan">top grinders.</span></h2></div></div>
+<div class="board reveal">
+<div class="boardHead"><div>Rank</div><div>Player</div><div>Game</div><div>Wins</div><div>Points</div></div>
+<div class="boardRow"><div class="rank">#1</div><div class="player">RX • Hamza</div><div>Tekken 8</div><div class="win">23</div><div>2,980</div></div>
+<div class="boardRow"><div class="rank">#2</div><div class="player">KHI • Daniyal</div><div>EA FC</div><div class="win">19</div><div>2,710</div></div>
+<div class="boardRow"><div class="rank">#3</div><div class="player">VOID • Saad</div><div>Valorant</div><div class="win">17</div><div>2,440</div></div>
+<div class="boardRow"><div class="rank">#4</div><div class="player">NED • Ayan</div><div>CS2</div><div class="win">15</div><div>2,210</div></div>
+<div class="boardRow"><div class="rank">#5</div><div class="player">Clifton • Zain</div><div>F1</div><div class="win">14</div><div>1,980</div></div>
+</div></div></section>
+
+<section class="section dark2" id="events"><div class="container events">
+<div class="eventVisual reveal"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1500&q=86" alt="Real gaming photo"></div>
+<div class="reveal"><div class="kicker">Birthdays & Private Events</div><h2>Book the whole<br><span class="pink">scene.</span></h2><p class="lead">Birthday nights, university crew meetups, office gaming battles or full private takeovers. Lock stations, run mini tournaments and add food.</p>
+<div class="eventGrid"><div class="eventItem"><b>Birthday Mode</b><span>Reserved setups + custom match plan.</span></div><div class="eventItem"><b>Private Takeover</b><span>Exclusive zone or full-arena booking.</span></div><div class="eventItem"><b>Mini Tournament</b><span>Bracket setup + score tracking.</span></div><div class="eventItem"><b>Food Add-On</b><span>Snacks, drinks and party combos.</span></div></div>
+<div class="actions"><a class="btn purpleBtn" href="https://wa.me/923001112233">PLAN PRIVATE EVENT →</a></div>
+</div></div></section>
+
+<section class="section"><div class="container cafeStrip reveal">
+<div><div class="kicker">Fuel Station</div><h2>Game on.<br><span class="lime">Hunger off.</span></h2><p class="lead">Quick bites and cold drinks so nobody has to leave mid-session.</p></div>
+<div class="snacks"><div class="snack"><b>Loaded Fries</b><span>PKR 550</span></div><div class="snack"><b>Chicken Sliders</b><span>PKR 690</span></div><div class="snack"><b>Energy Drink</b><span>PKR 390</span></div><div class="snack"><b>Cyber Combo</b><span>Fries + drink • PKR 790</span></div></div>
+</div></section>
+
+<section class="section dark2" id="gallery"><div class="container">
+<div class="sectionHead reveal"><div><div class="kicker">CYBER After Dark</div><h2>Lights low.<br><span class="purple">FPS high.</span></h2></div></div>
+<div class="gallery">
+<div class="g big reveal"><img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1400&q=86" alt="Real gaming room photo"></div>
+<div class="g reveal"><img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=1200&q=86" alt="Real gaming PC photo"></div>
+<div class="g reveal"><img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=1200&q=86" alt="Real PlayStation photo"></div>
+<div class="g reveal"><img src="https://images.unsplash.com/photo-1592840496694-26d035b52b48?auto=format&fit=crop&w=1200&q=86" alt="Real racing gaming photo"></div>
+<div class="g reveal"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=86" alt="Real gaming controller photo"></div>
+</div></div></section>
+
+<section class="section"><div class="container">
+<div class="sectionHead reveal"><div><div class="kicker">Reviews</div><h2>The boys have<br><span class="lime">spoken.</span></h2></div></div>
+<div class="reviews">
+<div class="review reveal"><div class="stars">★★★★★</div><p>PS5 setup was clean, screens were smooth and the late-night vibe was exactly what we wanted. Proper scene.</p><b>Ahmed R.</b><small>DHA • Weekend Crew</small></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>PCs felt fast and the Valorant session had zero nonsense. Booking a full team slot again next week.</p><b>Saad K.</b><small>Gulshan • Valorant Squad</small></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>Racing sim was the highlight. We booked two rigs and ended up staying way longer than planned.</p><b>Hamza M.</b><small>North Nazimabad • F1 Night</small></div>
+</div></div></section>
+
+<section class="section dark2"><div class="container">
+<div class="sectionHead reveal"><div><div class="kicker">FAQ</div><h2>Before the<br><span class="cyan">session starts.</span></h2></div></div>
+<div class="faq">
+<div class="faqItem reveal"><button class="faqQ">Can I book multiple PS5 or PC stations together?<span>+</span></button><div class="faqA">Yes. Group bookings can reserve multiple stations for the same time. The calculator also supports multiple stations.</div></div>
+<div class="faqItem reveal"><button class="faqQ">Can we bring our own controllers or accounts?<span>+</span></button><div class="faqA">Yes, subject to the final venue rules. Personal accounts can be used where supported and logged out after the session.</div></div>
+<div class="faqItem reveal"><button class="faqQ">Do you host birthdays and university events?<span>+</span></button><div class="faqA">Yes. CYBER can offer reserved zones, mini tournaments, food combos and private-event packages.</div></div>
+<div class="faqItem reveal"><button class="faqQ">How do tournament registrations work?<span>+</span></button><div class="faqA">Players or teams register before the deadline, pay the entry fee, then receive bracket and check-in details through WhatsApp.</div></div>
+<div class="faqItem reveal"><button class="faqQ">Is walk-in gaming available?<span>+</span></button><div class="faqA">Walk-ins can be accepted if stations are free, but weekend and late-night slots are better booked in advance.</div></div>
+</div></div></section>
+
+<section class="section" id="contact"><div class="container contact">
+<div class="contactCard reveal"><div class="kicker">Pull Up</div><h2>Karachi.<br><span class="purple">Scene on?</span></h2><p class="lead">Karachi, Pakistan • Demo location for CODEXA portfolio. Final client site can include live map, branch selector and real contact details.</p><div class="actions"><a class="btn limeBtn" href="https://wa.me/923001112233">WHATSAPP CYBER →</a><a class="btn" href="#booking">BOOK SLOT</a></div></div>
+<div class="contactCard reveal"><h3>Gaming Hours</h3><div class="hours"><div class="row"><span>Monday – Thursday</span><b>2PM – 2AM</b></div><div class="row"><span>Friday</span><b>2PM – 4AM</b></div><div class="row"><span>Saturday</span><b>12PM – 4AM</b></div><div class="row"><span>Sunday</span><b>12PM – 3AM</b></div></div></div>
+</div></section>
+
+<button class="float" onclick="location.href='https://wa.me/923001112233'">WA</button><div class="toast" id="toast">Slot selected ✓</div>
+
+<footer><div class="container"><div class="footGrid">
+<div><div class="brand"><div class="mark">C</div><div><b>CYBER</b><small>KARACHI GAMING ARENA</small></div></div><p style="max-width:350px;color:#7d889f;font-size:10px;line-height:1.7;margin-top:16px">Premium Karachi gaming-zone concept featuring PS5, PC gaming, racing simulators, tournaments, memberships and private events.</p></div>
+<div><h4>Play</h4><a href="#zones">PS5 Lounge</a><a href="#zones">PC Arena</a><a href="#zones">Racing Sim</a><a href="#booking">Book Slot</a></div>
+<div><h4>Community</h4><a href="#tournaments">Tournaments</a><a href="#leaderboard">Leaderboard</a><a href="#memberships">Memberships</a><a href="#events">Private Events</a></div>
+<div><h4>Contact</h4><a href="#">Karachi, Pakistan</a><a href="#">+92 300 1112233</a><a href="#">play@cyberarena.pk</a><a href="#">Instagram</a></div>
+</div><div class="copy"><span>© 2026 CYBER — Demo Portfolio Website.</span><span>Real photography via Unsplash • Replace with final venue photography before launch.</span></div></div></footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.faqQ').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+document.getElementById('todayLabel').textContent=new Date().toLocaleDateString('en-PK',{weekday:'short',day:'numeric',month:'short'});
+let selectedStation='PS5 Lounge',selectedSlot='';
+document.querySelectorAll('.stationTab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.stationTab').forEach(x=>x.classList.remove('active'));b.classList.add('active');selectedStation=b.dataset.station});
+document.querySelectorAll('.slot:not(.busy)').forEach(b=>b.onclick=()=>{document.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');selectedSlot=b.textContent;const t=document.getElementById('toast');t.textContent=selectedStation+' • '+selectedSlot+' selected ✓';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400)});
+const z=document.getElementById('calcZone'),h=document.getElementById('hours'),s=document.getElementById('stations'),total=document.getElementById('sessionTotal'),wa=document.getElementById('waBooking');
+function calc(){const price=(+z.value)*(+h.value)*(+s.value);total.textContent='PKR '+price.toLocaleString();const crew=document.getElementById('crewName').value||'Guest';const phone=document.getElementById('phone').value||'Not provided';const zone=z.options[z.selectedIndex].text.split('—')[0].trim();const msg=`Hi CYBER, I want to book a gaming session.
+
+Zone: ${zone}
+Hours: ${h.value}
+Stations: ${s.value}
+Crew/Name: ${crew}
+Phone: ${phone}
+Selected live slot: ${selectedSlot||'Not selected'}
+Estimated total: PKR ${price.toLocaleString()}`;wa.href='https://wa.me/923001112233?text='+encodeURIComponent(msg)}
+[z,h,s,document.getElementById('crewName'),document.getElementById('phone')].forEach(x=>x.addEventListener('input',calc));calc();
+document.getElementById('confirmSlot').onclick=()=>{if(!selectedSlot){alert('Select an available live slot first.');return}calc();document.getElementById('waBooking').click()}
+</script>
+</body></html>

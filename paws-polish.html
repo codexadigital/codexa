@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PAWS & POLISH — a premium pet grooming, spa and daycare website concept by CODEXA." />
+  <title>PAWS & POLISH — Premium Pet Grooming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#102b24;
+      --ink2:#173b31;
+      --cream:#f7f2e9;
+      --paper:#fffdf8;
+      --gold:#dba84e;
+      --gold2:#efc477;
+      --sage:#dfe8dc;
+      --muted:#6d756f;
+      --line:rgba(16,43,36,.13);
+      --shadow:0 24px 70px rgba(16,43,36,.13);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:#1e2925;font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    button,input,select,textarea{font:inherit}
+    .container{width:min(1180px,calc(100% - 40px));margin:auto}
+    .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+    .serif{font-family:'Playfair Display',serif}
+    .section{padding:100px 0}
+    .section-title{font:600 clamp(36px,5vw,64px)/1.02 'Playfair Display',serif;margin:10px 0 16px;color:var(--ink)}
+    .section-copy{max-width:650px;color:var(--muted);font-size:17px;line-height:1.75}
+
+    /* nav */
+    .nav-wrap{position:fixed;z-index:50;top:0;left:0;right:0;padding:14px 0;transition:.3s}
+    .nav-wrap.scrolled{background:rgba(255,253,248,.92);backdrop-filter:blur(16px);box-shadow:0 8px 30px rgba(16,43,36,.08);border-bottom:1px solid var(--line)}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;color:white;transition:.3s}
+    .scrolled .brand,.scrolled .nav-links a{color:var(--ink)}
+    .brand-mark{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--ink);font-size:22px}
+    .brand-text b{display:block;font-family:'Playfair Display',serif;font-size:19px;letter-spacing:.04em}
+    .brand-text small{display:block;font-size:8px;letter-spacing:.23em;text-transform:uppercase;opacity:.78}
+    .nav-links{display:flex;align-items:center;gap:26px}
+    .nav-links a{font-size:14px;color:white;opacity:.92;transition:.25s}
+    .nav-links a:hover{opacity:1;color:var(--gold)}
+    .nav-cta,.btn-primary{border:0;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#142820;font-weight:700;padding:14px 22px;border-radius:999px;cursor:pointer;box-shadow:0 12px 30px rgba(219,168,78,.25);transition:.25s}
+    .nav-cta:hover,.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 35px rgba(219,168,78,.32)}
+    .menu-btn{display:none;border:0;background:transparent;color:white;font-size:28px}
+    .scrolled .menu-btn{color:var(--ink)}
+
+    /* hero */
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;color:white;background:
+      linear-gradient(90deg,rgba(7,29,23,.91) 0%,rgba(7,29,23,.73) 41%,rgba(7,29,23,.20) 72%,rgba(7,29,23,.08) 100%),
+      url('https://images.pexels.com/photos/19145886/pexels-photo-19145886.jpeg?auto=compress&cs=tinysrgb&w=2200') center/cover no-repeat;
+    }
+    .hero:after{content:"";position:absolute;inset:auto 0 0;height:170px;background:linear-gradient(transparent,var(--paper));pointer-events:none}
+    .hero-content{position:relative;z-index:2;padding-top:90px;max-width:770px}
+    .hero-kicker{display:inline-flex;gap:9px;align-items:center;border:1px solid rgba(255,255,255,.25);padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);font-size:12px;letter-spacing:.13em;text-transform:uppercase}
+    .hero h1{font:600 clamp(56px,7vw,94px)/.94 'Playfair Display',serif;margin:22px 0 20px;letter-spacing:-.03em;max-width:820px}
+    .hero h1 em{color:var(--gold2);font-weight:500}
+    .hero p{font-size:18px;line-height:1.7;max-width:620px;color:rgba(255,255,255,.85)}
+    .hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:28px}
+    .btn-ghost{border:1px solid rgba(255,255,255,.5);color:white;background:rgba(255,255,255,.07);backdrop-filter:blur(8px);padding:14px 22px;border-radius:999px;font-weight:700;cursor:pointer}
+    .hero-trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:35px;font-size:13px;color:rgba(255,255,255,.82)}
+    .hero-trust span:before{content:'✦';color:var(--gold2);margin-right:8px}
+
+    /* intro */
+    .intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+    .intro-visual{height:650px;position:relative}
+    .intro-visual .main-pic{position:absolute;inset:0 80px 0 0;border-radius:42px;overflow:hidden;box-shadow:var(--shadow)}
+    .intro-visual .small-pic{position:absolute;width:280px;height:300px;right:0;bottom:45px;border-radius:30px;overflow:hidden;border:10px solid var(--paper);box-shadow:var(--shadow)}
+    .intro-stamp{position:absolute;right:6px;top:26px;background:var(--gold);width:118px;height:118px;border-radius:50%;display:grid;place-items:center;text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--ink);transform:rotate(8deg);box-shadow:var(--shadow)}
+    .feature-row{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:26px}
+    .feature{padding:17px 18px;border:1px solid var(--line);border-radius:18px;background:white}
+    .feature b{display:block;color:var(--ink);margin-bottom:5px}
+    .feature small{color:var(--muted)}
+
+    /* services */
+    .services{background:var(--cream)}
+    .services-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:36px}
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .service-card{background:white;border-radius:24px;overflow:hidden;border:1px solid rgba(16,43,36,.08);transition:.3s}
+    .service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+    .service-img{height:260px;overflow:hidden}
+    .service-card:hover .service-img img{transform:scale(1.04)}
+    .service-img img{transition:.45s}
+    .service-body{padding:22px}
+    .service-body h3{font:600 27px/1.1 'Playfair Display',serif;margin:0 0 8px;color:var(--ink)}
+    .service-body p{color:var(--muted);line-height:1.6;font-size:14px}
+    .service-meta{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:15px;border-top:1px solid var(--line)}
+    .price{font-weight:700;color:var(--ink)}
+    .arrow{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--cream)}
+
+    /* estimator */
+    .estimate-wrap{display:grid;grid-template-columns:1fr 1fr;background:var(--ink);border-radius:36px;overflow:hidden;box-shadow:var(--shadow)}
+    .estimate-photo{min-height:560px;background:url('https://images.pexels.com/photos/19145895/pexels-photo-19145895.jpeg?auto=compress&cs=tinysrgb&w=1400') center/cover}
+    .estimator{padding:56px;color:white}
+    .estimator h2{font:600 50px/1 'Playfair Display',serif;margin:10px 0 12px}
+    .estimator p{color:rgba(255,255,255,.7);line-height:1.7}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:26px}
+    .field{background:white;border-radius:14px;padding:4px 13px}
+    .field label{display:block;color:#68746e;font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding-top:8px;font-weight:700}
+    .field select,.field input{width:100%;border:0;outline:0;background:transparent;padding:6px 0 10px;color:var(--ink)}
+    .estimate-result{margin-top:18px;border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.06)}
+    .estimate-result strong{font:600 30px 'Playfair Display',serif;color:var(--gold2)}
+
+    /* membership */
+    .membership{background:linear-gradient(180deg,#fffdf8,#f3eadb)}
+    .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+    .plan{padding:34px;border-radius:28px;background:white;border:1px solid var(--line);position:relative}
+    .plan.featured{background:var(--ink);color:white;transform:translateY(-10px)}
+    .plan .badge{position:absolute;top:16px;right:16px;background:var(--gold);color:var(--ink);font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;padding:8px 10px;border-radius:999px}
+    .plan h3{font:600 30px 'Playfair Display',serif;margin:8px 0}
+    .plan .amount{font-size:42px;font-weight:700;color:var(--ink);margin:16px 0}
+    .plan.featured .amount{color:var(--gold2)}
+    .plan .amount span{font-size:14px;font-weight:500;color:var(--muted)}
+    .plan.featured .amount span,.plan.featured p,.plan.featured li{color:rgba(255,255,255,.68)}
+    .plan ul{list-style:none;padding:0;margin:22px 0;color:var(--muted);line-height:2}
+    .plan li:before{content:'✓';color:var(--gold);font-weight:800;margin-right:9px}
+    .plan button{width:100%;margin-top:8px}
+
+    /* gallery */
+    .gallery-grid{display:grid;grid-template-columns:1.25fr .75fr .75fr;grid-template-rows:270px 270px;gap:14px;margin-top:36px}
+    .gallery-item{border-radius:24px;overflow:hidden;position:relative}
+    .gallery-item:first-child{grid-row:1/3}
+    .gallery-item img{transition:.5s}
+    .gallery-item:hover img{transform:scale(1.05)}
+    .gallery-item .cap{position:absolute;left:16px;bottom:14px;background:rgba(16,43,36,.82);color:white;padding:8px 12px;border-radius:999px;font-size:11px;backdrop-filter:blur(8px)}
+
+    /* testimonials */
+    .reviews{background:var(--ink);color:white}
+    .reviews .section-title{color:white}
+    .reviews .section-copy{color:rgba(255,255,255,.65)}
+    .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+    .review{border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:28px;background:rgba(255,255,255,.045)}
+    .stars{color:var(--gold2);letter-spacing:.14em}
+    .review p{font:500 23px/1.45 'Playfair Display',serif;color:rgba(255,255,255,.91)}
+    .reviewer{display:flex;gap:12px;align-items:center;margin-top:20px;color:rgba(255,255,255,.65);font-size:13px}
+    .avatar{width:46px;height:46px;border-radius:50%;overflow:hidden}
+
+    /* faq */
+    .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+    .faq-list{border-top:1px solid var(--line)}
+    .faq-item{border-bottom:1px solid var(--line)}
+    .faq-q{display:flex;justify-content:space-between;gap:15px;padding:21px 0;cursor:pointer;font-weight:700;color:var(--ink)}
+    .faq-a{max-height:0;overflow:hidden;color:var(--muted);line-height:1.7;transition:.35s}
+    .faq-item.open .faq-a{max-height:180px;padding-bottom:20px}
+    .faq-plus{transition:.3s}.faq-item.open .faq-plus{transform:rotate(45deg)}
+
+    /* cta */
+    .final-cta{padding:26px 0 90px}
+    .cta-box{min-height:430px;border-radius:38px;overflow:hidden;position:relative;background:
+      linear-gradient(90deg,rgba(16,43,36,.91),rgba(16,43,36,.58),rgba(16,43,36,.15)),
+      url('https://images.pexels.com/photos/6131162/pexels-photo-6131162.jpeg?auto=compress&cs=tinysrgb&w=1800') center/cover;display:flex;align-items:center}
+    .cta-content{padding:60px;max-width:680px;color:white}
+    .cta-content h2{font:600 clamp(44px,6vw,74px)/.98 'Playfair Display',serif;margin:10px 0 16px}
+    .cta-content p{color:rgba(255,255,255,.78);line-height:1.7;max-width:550px}
+
+    /* footer */
+    footer{background:#0b211b;color:white;padding:55px 0 26px}
+    .footer-grid{display:grid;grid-template-columns:1.4fr .7fr .7fr .9fr;gap:35px}
+    footer h4{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--gold2)}
+    footer p,footer a{color:rgba(255,255,255,.62);font-size:14px;line-height:1.9}
+    footer a:hover{color:white}
+    .copyright{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.1);margin-top:36px;padding-top:22px;font-size:12px;color:rgba(255,255,255,.45)}
+
+    /* floating */
+    .floating-book{position:fixed;z-index:40;right:22px;bottom:22px;background:#25D366;color:white;border:0;border-radius:999px;padding:15px 20px;font-weight:700;box-shadow:0 16px 35px rgba(0,0,0,.2);cursor:pointer}
+
+    /* modal */
+    .modal{position:fixed;inset:0;background:rgba(7,22,18,.72);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)}
+    .modal.show{display:flex}
+    .modal-card{width:min(720px,100%);max-height:90vh;overflow:auto;background:var(--paper);border-radius:28px;padding:34px;box-shadow:0 30px 100px rgba(0,0,0,.35)}
+    .modal-top{display:flex;justify-content:space-between;gap:20px;align-items:start}
+    .modal-top h3{font:600 38px 'Playfair Display',serif;color:var(--ink);margin:0}
+    .close{border:0;background:var(--cream);width:40px;height:40px;border-radius:50%;font-size:22px;cursor:pointer}
+    .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:24px}
+    .booking-grid input,.booking-grid select,.booking-grid textarea{width:100%;border:1px solid var(--line);background:white;border-radius:13px;padding:14px;outline:none}
+    .booking-grid textarea{min-height:100px;resize:vertical;grid-column:1/-1}
+    .booking-grid .full{grid-column:1/-1}
+    .success{display:none;background:#e7f5eb;border:1px solid #b7ddc2;color:#245634;padding:16px;border-radius:14px;margin-top:15px}
+
+    @media(max-width:980px){
+      .nav-links{display:none}.menu-btn{display:block}
+      .nav-links.open{display:flex;position:absolute;top:67px;left:20px;right:20px;background:var(--paper);border-radius:20px;padding:20px;flex-direction:column;box-shadow:var(--shadow)}
+      .nav-links.open a{color:var(--ink)}
+      .intro-grid,.estimate-wrap,.faq-grid{grid-template-columns:1fr}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .plan-grid,.review-grid{grid-template-columns:1fr}
+      .plan.featured{transform:none}
+      .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:300px 250px 250px}.gallery-item:first-child{grid-column:1/-1;grid-row:auto}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .intro-visual{height:560px}
+    }
+    @media(max-width:640px){
+      .container{width:min(100% - 26px,1180px)}
+      .section{padding:72px 0}
+      .hero{min-height:92vh;background-position:62% center}
+      .hero h1{font-size:55px}.hero p{font-size:16px}
+      .hero-trust{gap:12px 18px}
+      .services-grid{grid-template-columns:1fr}
+      .services-head{display:block}
+      .form-grid,.booking-grid{grid-template-columns:1fr}.booking-grid textarea,.booking-grid .full{grid-column:auto}
+      .estimator{padding:32px 22px}.estimate-photo{min-height:360px}
+      .intro-visual{height:460px}.intro-visual .main-pic{inset:0 40px 0 0}.intro-visual .small-pic{width:190px;height:210px;border-width:7px}.intro-stamp{width:90px;height:90px;font-size:9px}
+      .feature-row{grid-template-columns:1fr}
+      .gallery-grid{display:grid;grid-template-columns:1fr;grid-template-rows:none}.gallery-item,.gallery-item:first-child{height:300px;grid-column:auto}
+      .footer-grid{grid-template-columns:1fr}
+      .cta-content{padding:36px 26px}
+      .floating-book{right:14px;bottom:14px;padding:13px 16px}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav-wrap" id="navWrap">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#home" aria-label="Paws and Polish home">
+          <span class="brand-mark">🐾</span>
+          <span class="brand-text"><b>PAWS & POLISH</b><small>Grooming · Daycare · Spa</small></span>
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="#services">Services</a><a href="#pricing">Memberships</a><a href="#gallery">Gallery</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a>
+        </div>
+        <button class="nav-cta" onclick="openBooking()">Book your pet</button>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="hero-kicker">Premium grooming · London concept</div>
+        <h1>Luxury care for pets who <em>deserve the best.</em></h1>
+        <p>Thoughtful grooming, calm spa rituals and playful daycare — delivered by experienced professionals in a warm, design-led space.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="openBooking()">Book your pet →</button>
+          <a class="btn-ghost" href="#services">Explore services</a>
+        </div>
+        <div class="hero-trust"><span>Certified groomers</span><span>Pet-safe products</span><span>Stress-aware care</span><span>Open 7 days</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container intro-grid">
+        <div class="intro-visual">
+          <div class="main-pic"><img loading="lazy" src="https://images.pexels.com/photos/23692682/pexels-photo-23692682.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Professional groomer caring for a dog"></div>
+          <div class="small-pic"><img loading="lazy" src="https://images.pexels.com/photos/6816841/pexels-photo-6816841.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Dog being brushed by a groomer"></div>
+          <div class="intro-stamp">Loved by<br>happy pets<br>every week</div>
+        </div>
+        <div>
+          <span class="eyebrow">Care beyond the leash</span>
+          <h2 class="section-title">A calmer kind of pet care.</h2>
+          <p class="section-copy">PAWS & POLISH is designed around comfort first. From one-to-one grooming to supervised daycare, every visit is tailored to your pet’s coat, temperament and routine.</p>
+          <div class="feature-row">
+            <div class="feature"><b>One-to-one attention</b><small>No rushed production-line grooming.</small></div>
+            <div class="feature"><b>Premium products</b><small>Gentle formulas selected for coat & skin.</small></div>
+            <div class="feature"><b>Transparent pricing</b><small>Clear packages with no surprise extras.</small></div>
+            <div class="feature"><b>Photo updates</b><small>Stay connected while your pet is with us.</small></div>
+          </div>
+          <button class="btn-primary" style="margin-top:26px" onclick="openBooking()">Reserve a visit</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="services-head">
+          <div><span class="eyebrow">Signature services</span><h2 class="section-title">Everything they need.<br>Nothing they don’t.</h2></div>
+          <p class="section-copy">Flexible services for fresh coats, healthy paws and happier days — from quick maintenance to full spa transformations.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card"><div class="service-img"><img loading="lazy" src="https://images.pexels.com/photos/19145895/pexels-photo-19145895.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dog bath"></div><div class="service-body"><h3>Bath & Brush</h3><p>Deep cleanse, conditioning, blow-dry, brush-out and finishing fragrance.</p><div class="service-meta"><span class="price">from £35</span><span class="arrow">↗</span></div></div></article>
+          <article class="service-card"><div class="service-img"><img loading="lazy" src="https://images.pexels.com/photos/6816844/pexels-photo-6816844.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dog haircut"></div><div class="service-body"><h3>Cut & Style</h3><p>Breed-aware styling, coat shaping, sanitary trim and finishing detail.</p><div class="service-meta"><span class="price">from £55</span><span class="arrow">↗</span></div></div></article>
+          <article class="service-card"><div class="service-img"><img loading="lazy" src="https://images.pexels.com/photos/6131162/pexels-photo-6131162.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dog spa towel dry"></div><div class="service-body"><h3>Spa & Paw Care</h3><p>Nail trim, paw balm, ear cleanse, deshedding and soothing add-ons.</p><div class="service-meta"><span class="price">from £18</span><span class="arrow">↗</span></div></div></article>
+          <article class="service-card"><div class="service-img"><img loading="lazy" src="https://images.pexels.com/photos/37443358/pexels-photo-37443358.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dogs playing at daycare"></div><div class="service-body"><h3>Pet Daycare</h3><p>Supervised social time, enrichment, rest zones and lots of tail wags.</p><div class="service-meta"><span class="price">from £28/day</span><span class="arrow">↗</span></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container estimate-wrap">
+        <div class="estimate-photo" role="img" aria-label="Professional dog bath"></div>
+        <div class="estimator">
+          <span class="eyebrow">Instant estimator</span>
+          <h2>Get a quick price.</h2>
+          <p>Choose your pet and service for an indicative estimate. Final pricing depends on coat condition, temperament and time required.</p>
+          <div class="form-grid">
+            <div class="field"><label>Service</label><select id="serviceSelect"><option value="35">Bath & Brush</option><option value="55">Cut & Style</option><option value="18">Spa & Paw Care</option><option value="28">Daycare</option></select></div>
+            <div class="field"><label>Pet size</label><select id="sizeSelect"><option value="0">Small</option><option value="15">Medium</option><option value="30">Large</option><option value="45">XL / Double coat</option></select></div>
+            <div class="field"><label>Coat condition</label><select id="coatSelect"><option value="0">Regular maintenance</option><option value="12">Extra brushing</option><option value="25">Heavy matting / deshed</option></select></div>
+            <div class="field"><label>Extra</label><select id="extraSelect"><option value="0">No extra</option><option value="10">Nail trim</option><option value="14">Teeth freshen</option><option value="18">Paw spa</option></select></div>
+          </div>
+          <div class="estimate-result"><span>Estimated from</span><strong id="estimatePrice">£35</strong></div>
+          <button class="btn-primary" style="margin-top:18px;width:100%" onclick="openBooking()">Book this service →</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section membership" id="pricing">
+      <div class="container">
+        <span class="eyebrow">Memberships</span><h2 class="section-title">Care that becomes a routine.</h2>
+        <p class="section-copy">For pet parents who love consistent care, priority appointments and better value throughout the year.</p>
+        <div class="plan-grid">
+          <div class="plan"><h3>Fresh Pup</h3><p>Simple maintenance between full grooms.</p><div class="amount">£39 <span>/ month</span></div><ul><li>1 bath & brush credit</li><li>10% off add-ons</li><li>Priority rebooking</li><li>Birthday treat</li></ul><button class="btn-primary" onclick="openBooking()">Choose Fresh Pup</button></div>
+          <div class="plan featured"><span class="badge">Most popular</span><h3>Polished Pup</h3><p>For pets who like looking salon-fresh all month.</p><div class="amount">£69 <span>/ month</span></div><ul><li>1 full groom credit</li><li>15% off add-ons</li><li>Priority booking</li><li>Free nail care</li><li>Monthly photo update</li></ul><button class="btn-primary" onclick="openBooking()">Choose Polished Pup</button></div>
+          <div class="plan"><h3>Daycare Club</h3><p>Flexible care for busy weeks and social pets.</p><div class="amount">£119 <span>/ month</span></div><ul><li>5 daycare days</li><li>Priority reservations</li><li>Daily photo update</li><li>10% off grooming</li></ul><button class="btn-primary" onclick="openBooking()">Choose Daycare Club</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <span class="eyebrow">The PAWS & POLISH diary</span><h2 class="section-title">Real care. Real happy pets.</h2>
+        <p class="section-copy">A visual taste of grooming days, spa moments and playful daycare energy.</p>
+        <div class="gallery-grid">
+          <div class="gallery-item"><img loading="lazy" src="https://images.pexels.com/photos/19145877/pexels-photo-19145877.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Pet grooming salon"><span class="cap">Salon day</span></div>
+          <div class="gallery-item"><img loading="lazy" src="https://images.pexels.com/photos/6131165/pexels-photo-6131165.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dog bath"><span class="cap">Spa ritual</span></div>
+          <div class="gallery-item"><img loading="lazy" src="https://images.pexels.com/photos/32710699/pexels-photo-32710699.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dogs playing"><span class="cap">Playtime</span></div>
+          <div class="gallery-item"><img loading="lazy" src="https://images.pexels.com/photos/6816837/pexels-photo-6816837.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Professional dog grooming"><span class="cap">Finishing touches</span></div>
+          <div class="gallery-item"><img loading="lazy" src="https://images.pexels.com/photos/19145888/pexels-photo-19145888.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dog grooming"><span class="cap">Fresh & fluffy</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reviews" id="reviews">
+      <div class="container">
+        <span class="eyebrow">Pet parent notes</span><h2 class="section-title">The kind of place they run back to.</h2>
+        <p class="section-copy">Demo testimonials for the concept presentation — replace with verified client reviews before a real launch.</p>
+        <div class="review-grid">
+          <div class="review"><div class="stars">★★★★★</div><p>“The calmest grooming experience we’ve had. Milo came out looking incredible and completely relaxed.”</p><div class="reviewer"><div class="avatar"><img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=160" alt="Customer"></div><div><b>Sophie M.</b><br>Notting Hill</div></div></div>
+          <div class="review"><div class="stars">★★★★★</div><p>“Daycare feels thoughtful rather than chaotic. The photo updates are such a nice touch.”</p><div class="reviewer"><div class="avatar"><img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=160" alt="Customer"></div><div><b>Daniel R.</b><br>Kensington</div></div></div>
+          <div class="review"><div class="stars">★★★★★</div><p>“Beautiful space, lovely team and transparent pricing. We booked our next visit before leaving.”</p><div class="reviewer"><div class="avatar"><img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=160" alt="Customer"></div><div><b>Amelia J.</b><br>Fulham</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-grid">
+        <div><span class="eyebrow">Questions, answered</span><h2 class="section-title">Before their first visit.</h2><p class="section-copy">Everything pet parents usually ask before grooming or daycare.</p></div>
+        <div class="faq-list">
+          <div class="faq-item"><div class="faq-q">How long does a full groom take?<span class="faq-plus">＋</span></div><div class="faq-a">Most full grooms take around 2–3 hours, depending on breed, coat condition and temperament. We never rush a nervous pet.</div></div>
+          <div class="faq-item"><div class="faq-q">Do you groom puppies?<span class="faq-plus">＋</span></div><div class="faq-a">Yes. Puppy introduction sessions are designed to make the salon feel positive and familiar before longer grooming appointments.</div></div>
+          <div class="faq-item"><div class="faq-q">Can I book grooming and daycare together?<span class="faq-plus">＋</span></div><div class="faq-a">Absolutely. Select both during booking and we’ll organise the day around your pet’s grooming slot and suitable rest time.</div></div>
+          <div class="faq-item"><div class="faq-q">What should I bring for daycare?<span class="faq-plus">＋</span></div><div class="faq-a">Bring any required medication, feeding instructions and a familiar comfort item if helpful. We provide bowls, beds, enrichment and fresh water.</div></div>
+          <div class="faq-item"><div class="faq-q">Are the prices final?<span class="faq-plus">＋</span></div><div class="faq-a">The website estimator is indicative. We confirm the final price after assessing coat condition, size and the service time required.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="container cta-box">
+        <div class="cta-content">
+          <span class="eyebrow">Ready when they are</span>
+          <h2>Fresh coat.<br>Happy heart.</h2>
+          <p>Book grooming, daycare or a spa add-on in under a minute. We’ll take care of the rest.</p>
+          <div class="hero-actions"><button class="btn-primary" onclick="openBooking()">Book an appointment</button><button class="btn-ghost" onclick="demoWhatsApp()">Chat on WhatsApp</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><div class="brand" style="color:white"><span class="brand-mark">🐾</span><span class="brand-text"><b>PAWS & POLISH</b><small>Grooming · Daycare · Spa</small></span></div><p style="max-width:360px;margin-top:18px">A premium pet-care concept crafted to feel warm, modern and internationally marketable.</p></div>
+        <div><h4>Explore</h4><p><a href="#services">Services</a><br><a href="#pricing">Memberships</a><br><a href="#gallery">Gallery</a><br><a href="#reviews">Reviews</a></p></div>
+        <div><h4>Visit</h4><p>Notting Hill<br>London, UK<br><br>Mon–Sun<br>8:00–19:00</p></div>
+        <div><h4>Contact</h4><p>hello@pawsandpolish.demo<br>+44 20 0000 0000<br><br>Instagram · TikTok · Pinterest</p></div>
+      </div>
+      <div class="copyright"><span>© 2026 PAWS & POLISH — Demo concept by CODEXA.</span><span>Photography: real stock imagery from Pexels contributors.</span></div>
+    </div>
+  </footer>
+
+  <button class="floating-book" onclick="openBooking()">🐾 Book now</button>
+
+  <div class="modal" id="bookingModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-top"><div><span class="eyebrow">Appointment request</span><h3>Book your pet</h3></div><button class="close" onclick="closeBooking()">×</button></div>
+      <form id="bookingForm" class="booking-grid">
+        <input required placeholder="Your name">
+        <input required placeholder="Pet's name">
+        <select required><option value="">Choose service</option><option>Bath & Brush</option><option>Cut & Style</option><option>Spa & Paw Care</option><option>Daycare</option></select>
+        <select required><option value="">Pet size</option><option>Small</option><option>Medium</option><option>Large</option><option>XL / Double coat</option></select>
+        <input required type="date" id="bookingDate">
+        <select required><option value="">Preferred time</option><option>09:00</option><option>10:30</option><option>12:00</option><option>14:00</option><option>15:30</option><option>17:00</option></select>
+        <input required type="email" placeholder="Email">
+        <input required type="tel" placeholder="Phone / WhatsApp">
+        <textarea placeholder="Breed, coat notes, temperament or anything we should know"></textarea>
+        <button class="btn-primary full" type="submit">Send booking request →</button>
+      </form>
+      <div class="success" id="successBox">✓ Demo booking received. On a real client site this can connect to email, WhatsApp, Calendly or a booking backend.</div>
+    </div>
+  </div>
+
+  <script>
+    const navWrap=document.getElementById('navWrap');
+    window.addEventListener('scroll',()=>navWrap.classList.toggle('scrolled',window.scrollY>40));
+    const menuBtn=document.getElementById('menuBtn'), navLinks=document.getElementById('navLinks');
+    menuBtn.addEventListener('click',()=>navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+    const ids=['serviceSelect','sizeSelect','coatSelect','extraSelect'];
+    ids.forEach(id=>document.getElementById(id).addEventListener('change',calcEstimate));
+    function calcEstimate(){const total=ids.reduce((s,id)=>s+Number(document.getElementById(id).value),0);document.getElementById('estimatePrice').textContent='£'+total;}
+
+    document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+
+    const modal=document.getElementById('bookingModal');
+    function openBooking(){modal.classList.add('show');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
+    function closeBooking(){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+    modal.addEventListener('click',e=>{if(e.target===modal)closeBooking()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBooking()});
+    const d=new Date(); d.setDate(d.getDate()+1); document.getElementById('bookingDate').min=d.toISOString().split('T')[0];
+    document.getElementById('bookingForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('successBox').style.display='block';e.target.reset();});
+    function demoWhatsApp(){alert('Demo WhatsApp action — replace with the client’s real WhatsApp number before launch.');}
+  </script>
+</body>
+</html>
